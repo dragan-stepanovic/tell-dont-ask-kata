@@ -6,13 +6,13 @@ import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 
 public class InMemoryProductCatalog implements ProductCatalog {
 
-    private final Products products;
+  private final Products products;
 
   public InMemoryProductCatalog(Products products) {
     this.products = products;
-    }
+  }
 
-    public Product having(final String name) {
-        return products.having(name);
-    }
+  public Product having(final String name) {
+    return products.having(name);
+  }
 }
