@@ -17,14 +17,14 @@ class OrderApprovalRequest {
   }
 
   private boolean rejectingApprovedOrder(Order order) {
-    return isNotApproved() && order.is(APPROVED);
+    return notApproved() && order.is(APPROVED);
   }
 
   boolean approvingRejectedOrder(Order order) {
     return approved && order.is(REJECTED);
   }
 
-  private boolean isNotApproved() {
+  private boolean notApproved() {
     return !approved;
   }
 
