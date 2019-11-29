@@ -30,6 +30,7 @@ public class OrderApprovalUseCaseTest {
   }
 
   private OrderApprovalRequest approvalRequestWithIdAndApproved(int orderId, OrderApprovalRequest request) {
+    new NotApprovedOrderRequestBuilder().build();
     request.setOrderId(orderId);
     return request;
   }
