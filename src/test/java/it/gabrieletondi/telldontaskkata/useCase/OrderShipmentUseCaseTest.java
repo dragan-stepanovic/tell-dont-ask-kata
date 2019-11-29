@@ -25,7 +25,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    orderRepository.addOrder(orderWithIdAndStatus(1, OrderStatus.APPROVED));
+    orderRepository.add(orderWithIdAndStatus(1, OrderStatus.APPROVED));
 
     OrderShipmentRequest request = new OrderShipmentRequest();
     request.setOrderId(1);
@@ -39,7 +39,7 @@ public class OrderShipmentUseCaseTest {
   @Test(expected = OrderCannotBeShippedException.class)
   public void createdOrdersCannotBeShipped() throws Exception {
     Order initialOrder = orderWithIdAndStatus(1, OrderStatus.CREATED);
-    orderRepository.addOrder(initialOrder);
+    orderRepository.add(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest();
     request.setOrderId(1);
@@ -52,7 +52,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.addOrder(orderWithIdAndStatus(1, OrderStatus.REJECTED));
+    orderRepository.add(orderWithIdAndStatus(1, OrderStatus.REJECTED));
 
     OrderShipmentRequest request = new OrderShipmentRequest();
     request.setOrderId(1);
@@ -65,7 +65,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.addOrder(orderWithIdAndStatus(1, OrderStatus.SHIPPED));
+    orderRepository.add(orderWithIdAndStatus(1, OrderStatus.SHIPPED));
 
     OrderShipmentRequest request = new OrderShipmentRequest();
     request.setOrderId(1);

@@ -2,7 +2,6 @@ package it.gabrieletondi.telldontaskkata.doubles;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class TestOrderRepository implements OrderRepository {
         return orders.stream().filter(o -> o.getId() == orderId).findFirst().get();
     }
 
-    public void addOrder(Order order) {
+  public void add(Order order) {
         this.orders.add(order);
     }
 }
