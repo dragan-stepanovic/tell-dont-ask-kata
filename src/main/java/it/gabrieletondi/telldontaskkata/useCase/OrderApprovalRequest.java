@@ -5,8 +5,8 @@ class OrderApprovalRequest {
   private int orderId;
   private boolean approved;
 
-  static boolean isNotApproved(OrderApprovalRequest request) {
-    return !request.isApproved();
+  boolean isNotApproved() {
+    return !approved;
   }
 
   int getOrderId() {

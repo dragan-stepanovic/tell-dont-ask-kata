@@ -19,11 +19,11 @@ class OrderApprovalUseCase {
       throw new ShippedOrdersCannotBeChangedException();
     }
 
-    if (request.isApproved() && order.is(OrderStatus.REJECTED)) {
+    if (isaBoolean(request, order)) {
       throw new RejectedOrderCannotBeApprovedException();
     }
 
-    if (OrderApprovalRequest.isNotApproved(request) && order.is(OrderStatus.APPROVED)) {
+    if (approvedOrderIsRejected(request, order)) {
       throw new ApprovedOrderCannotBeRejectedException();
     }
 
@@ -31,4 +31,11 @@ class OrderApprovalUseCase {
     orderRepository.save(order);
   }
 
+  private boolean isaBoolean(OrderApprovalRequest request, Order order) {
+    return request.isApproved() && order.is(OrderStatus.REJECTED);
+  }
+
+  private boolean approvedOrderIsRejected(OrderApprovalRequest request, Order order) {
+    return request.isNotApproved() && order.is(OrderStatus.APPROVED);
+  }
 }
