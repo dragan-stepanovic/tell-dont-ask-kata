@@ -43,22 +43,6 @@ public class Order {
     tax = tax.add(orderItem.getTaxAmount());
   }
 
-  public String getCurrency() {
-    return currency;
-  }
-
-  public BigDecimal getTotal() {
-    return total;
-  }
-
-  public List<OrderItem> getItems() {
-    return items;
-  }
-
-  public BigDecimal getTax() {
-    return tax;
-  }
-
   public OrderStatus getStatus() {
     return status;
   }
