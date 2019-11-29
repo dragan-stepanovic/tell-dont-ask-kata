@@ -4,7 +4,11 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-public class NotApprovedOrderRequest extends OrderApprovalRequest {
+class NotApprovedOrderRequest extends OrderApprovalRequest {
+
+  NotApprovedOrderRequest() {
+    approved = false;
+  }
 
   @Override
   void updateOrderStatus(Order order) {

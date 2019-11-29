@@ -33,7 +33,6 @@ public class OrderApprovalUseCaseTest {
       OrderApprovalRequest request1) {
     OrderApprovalRequest request = request1;
         request.setOrderId(orderId);
-        request.setApproved(isApproved);
         return request;
     }
 

@@ -6,6 +6,10 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 
 class ApprovedOrderRequest extends OrderApprovalRequest {
 
+  ApprovedOrderRequest() {
+    approved = true;
+  }
+
   @Override
   void updateOrderStatus(Order order) {
     order.setStatus(APPROVED);

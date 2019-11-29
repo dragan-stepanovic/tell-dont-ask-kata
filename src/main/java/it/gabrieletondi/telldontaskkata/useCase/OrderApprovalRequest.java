@@ -9,7 +9,7 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 class OrderApprovalRequest {
 
   private int orderId;
-  private boolean approved;
+  boolean approved;
 
   void assertNotChangingShippedOrder(Order order) {
     if (changingShippedOrder(order)) {
