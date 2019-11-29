@@ -29,9 +29,9 @@ public class OrderApprovalUseCaseTest {
     assertThat(savedOrder.getStatus(), is(OrderStatus.APPROVED));
   }
 
-  private OrderApprovalRequest approvalRequestWithIdAndApproved(int orderId, OrderApprovalRequest request1) {
-    request1.setOrderId(orderId);
-    return request1;
+  private OrderApprovalRequest approvalRequestWithIdAndApproved(int orderId, OrderApprovalRequest request) {
+    request.setOrderId(orderId);
+    return request;
   }
 
   @Test
