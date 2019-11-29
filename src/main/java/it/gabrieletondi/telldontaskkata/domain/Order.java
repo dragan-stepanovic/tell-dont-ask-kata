@@ -33,6 +33,10 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
+  public boolean statusIs(OrderStatus thatStatus) {
+    return this.status == thatStatus;
+  }
+
   public void addOrderItemFor(Product product, int quantity) {
     add(OrderItem.forA(product, quantity));
   }

@@ -7,11 +7,11 @@ import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 class OrderApprovalUseCase {
     private final OrderRepository orderRepository;
 
-    public OrderApprovalUseCase(OrderRepository orderRepository) {
+  OrderApprovalUseCase(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
-    public void run(OrderApprovalRequest request) {
+  void run(OrderApprovalRequest request) {
         final Order order = orderRepository.getById(request.getOrderId());
 
         if (order.getStatus().equals(OrderStatus.SHIPPED)) {
