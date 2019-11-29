@@ -7,7 +7,6 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 class OrderApprovalRequest {
 
   int orderId;
-  boolean approved;
 
   private void assertNotChangingShippedOrder(Order order) {
     if (changingShippedOrder(order)) {

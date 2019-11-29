@@ -8,7 +8,6 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 class ApprovedOrderRequest extends OrderApprovalRequest {
 
   ApprovedOrderRequest(int orderId) {
-    this.approved = true;
     this.orderId = orderId;
   }
 
@@ -26,6 +25,6 @@ class ApprovedOrderRequest extends OrderApprovalRequest {
   }
 
   private boolean approvingRejectedOrder(Order order) {
-    return approved && order.is(REJECTED);
+    return order.is(REJECTED);
   }
 }
