@@ -8,21 +8,21 @@ class OrderApprovalRequest {
 
   int orderId;
 
+  int getOrderId() {
+    return orderId;
+  }
+
+  void updateOrderStatus(Order order) {
+    assertNotChangingShippedOrder(order);
+  }
+
   private void assertNotChangingShippedOrder(Order order) {
     if (changingShippedOrder(order)) {
       throw new ShippedOrdersCannotBeChangedException();
     }
   }
 
-  int getOrderId() {
-    return orderId;
-  }
-
   private boolean changingShippedOrder(Order order) {
     return order.is(SHIPPED);
-  }
-
-  void updateOrderStatus(Order order) {
-    assertNotChangingShippedOrder(order);
   }
 }
