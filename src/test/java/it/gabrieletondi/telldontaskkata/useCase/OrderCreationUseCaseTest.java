@@ -19,10 +19,7 @@ import org.junit.Test;
 public class OrderCreationUseCaseTest {
 
   private final TestOrderRepository orderRepository = new TestOrderRepository();
-  private Category food = new Category("food", new BigDecimal("10")) {{
-    setName("food");
-    setTaxPercentage(new BigDecimal("10"));
-  }};
+  private final Category food = new Category("food", new BigDecimal("10"));
   private final ProductCatalog productCatalog = new InMemoryProductCatalog(
       new Products(Arrays.asList(
           new Product("salad", new BigDecimal("3.56"), food),

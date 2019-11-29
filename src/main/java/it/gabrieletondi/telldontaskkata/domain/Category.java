@@ -4,13 +4,12 @@ import java.math.BigDecimal;
 
 public class Category {
 
-  private final BigDecimal bigDecimal;
   private String name;
   private BigDecimal taxPercentage;
 
-  protected Category(String name, BigDecimal bigDecimal) {
+  public Category(String name, BigDecimal taxPercentage) {
     this.name = name;
-    this.bigDecimal = bigDecimal;
+    this.taxPercentage = taxPercentage;
   }
 
   protected void setName(String name) {
