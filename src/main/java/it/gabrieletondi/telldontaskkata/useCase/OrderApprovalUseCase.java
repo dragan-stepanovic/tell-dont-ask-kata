@@ -20,7 +20,7 @@ class OrderApprovalUseCase {
 
 
     if (request.isApproved()) {
-      new ApprovedOrderRequest(1).updateOrderStatus(order);
+      new ApprovedOrderRequest().updateOrderStatus(order);
     } else {
       new NotApprovedOrderRequest().updateOrderStatus(order);
     }
