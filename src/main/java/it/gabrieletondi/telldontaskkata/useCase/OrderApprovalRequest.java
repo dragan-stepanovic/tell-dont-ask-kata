@@ -10,7 +10,13 @@ class OrderApprovalRequest {
   private int orderId;
   private boolean approved;
 
-  boolean rejectingApprovedOrder(Order order) {
+  void assertNotRejectingApprovedOrder(Order order) {
+    if (rejectingApprovedOrder(order)) {
+      throw new ApprovedOrderCannotBeRejectedException();
+    }
+  }
+
+  private boolean rejectingApprovedOrder(Order order) {
     return isNotApproved() && order.is(APPROVED);
   }
 
@@ -18,7 +24,7 @@ class OrderApprovalRequest {
     return approved && order.is(REJECTED);
   }
 
-  boolean isNotApproved() {
+  private boolean isNotApproved() {
     return !approved;
   }
 

@@ -20,16 +20,10 @@ class OrderApprovalUseCase {
 
     assertNotChangingShippedOrder(order);
     assertNotApprovingRejectedOrder(request, order);
-    assertNotRejectingApprovedOrder(request, order);
+    request.assertNotRejectingApprovedOrder(order);
 
     order.setStatus(request.isApproved() ? APPROVED : REJECTED);
     orderRepository.save(order);
-  }
-
-  private void assertNotRejectingApprovedOrder(OrderApprovalRequest request, Order order) {
-    if (request.rejectingApprovedOrder(order)) {
-      throw new ApprovedOrderCannotBeRejectedException();
-    }
   }
 
   private void assertNotApprovingRejectedOrder(OrderApprovalRequest request, Order order) {
