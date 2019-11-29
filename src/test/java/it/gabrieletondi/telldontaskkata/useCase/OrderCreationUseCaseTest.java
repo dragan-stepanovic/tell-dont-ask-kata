@@ -7,6 +7,7 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Product;
+import it.gabrieletondi.telldontaskkata.domain.Products;
 import it.gabrieletondi.telldontaskkata.doubles.InMemoryProductCatalog;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
@@ -18,15 +19,15 @@ import org.junit.Test;
 public class OrderCreationUseCaseTest {
 
   private final TestOrderRepository orderRepository = new TestOrderRepository();
-  private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
   private Category food = new Category() {{
     setName("food");
     setTaxPercentage(new BigDecimal("10"));
   }};
   private final ProductCatalog productCatalog = new InMemoryProductCatalog(
-      Arrays.<Product>asList(
+      new Products(Arrays.asList(
           new Product("salad", new BigDecimal("3.56"), food),
-          new Product("tomato", new BigDecimal("4.65"), food)));
+          new Product("tomato", new BigDecimal("4.65"), food))));
+  private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
 
   @Test
   public void sellMultipleItems() throws Exception {
