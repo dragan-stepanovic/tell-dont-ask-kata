@@ -21,10 +21,10 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request1 = new ApprovedOrderRequest();
-    request1.setOrderId(1);
+    OrderApprovalRequest request = new ApprovedOrderRequest();
+    request.setOrderId(1);
 
-    useCase.run(request1);
+    useCase.run(request);
 
     final Order savedOrder = orderRepository.getSavedOrder();
     assertThat(savedOrder.getStatus(), is(OrderStatus.APPROVED));
@@ -37,10 +37,10 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request1 = new NotApprovedOrderRequest();
-    request1.setOrderId(1);
+    OrderApprovalRequest request = new NotApprovedOrderRequest();
+    request.setOrderId(1);
 
-    useCase.run(request1);
+    useCase.run(request);
 
     final Order savedOrder = orderRepository.getSavedOrder();
     assertThat(savedOrder.getStatus(), is(OrderStatus.REJECTED));
@@ -53,10 +53,10 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request1 = new ApprovedOrderRequest();
-    request1.setOrderId(1);
+    OrderApprovalRequest request = new ApprovedOrderRequest();
+    request.setOrderId(1);
 
-    useCase.run(request1);
+    useCase.run(request);
 
     assertThat(orderRepository.getSavedOrder(), is(nullValue()));
   }
@@ -68,10 +68,10 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request1 = new NotApprovedOrderRequest();
-    request1.setOrderId(1);
+    OrderApprovalRequest request = new NotApprovedOrderRequest();
+    request.setOrderId(1);
 
-    useCase.run(request1);
+    useCase.run(request);
 
     assertThat(orderRepository.getSavedOrder(), is(nullValue()));
   }
@@ -83,10 +83,10 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request1 = new ApprovedOrderRequest();
-    request1.setOrderId(1);
+    OrderApprovalRequest request = new ApprovedOrderRequest();
+    request.setOrderId(1);
 
-    useCase.run(request1);
+    useCase.run(request);
 
     assertThat(orderRepository.getSavedOrder(), is(nullValue()));
   }
@@ -98,10 +98,10 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request1 = new NotApprovedOrderRequest();
-    request1.setOrderId(1);
+    OrderApprovalRequest request = new NotApprovedOrderRequest();
+    request.setOrderId(1);
 
-    useCase.run(request1);
+    useCase.run(request);
 
     assertThat(orderRepository.getSavedOrder(), is(nullValue()));
   }
