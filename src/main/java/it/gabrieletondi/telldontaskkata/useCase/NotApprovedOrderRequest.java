@@ -10,6 +10,11 @@ class NotApprovedOrderRequest extends OrderApprovalRequest {
     approved = false;
   }
 
+  NotApprovedOrderRequest(int orderId) {
+    this.approved = false;
+    this.orderId = orderId;
+  }
+
   @Override
   void updateOrderStatus(Order order) {
     order.setStatus(REJECTED);
