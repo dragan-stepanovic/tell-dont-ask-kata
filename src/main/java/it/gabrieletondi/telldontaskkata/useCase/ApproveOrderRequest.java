@@ -5,9 +5,9 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-class ApprovedOrderRequest extends OrderApprovalRequest {
+class ApproveOrderRequest extends OrderApprovalRequest {
 
-  ApprovedOrderRequest(int orderId) {
+  ApproveOrderRequest(int orderId) {
     this.orderId = orderId;
   }
 
@@ -18,13 +18,13 @@ class ApprovedOrderRequest extends OrderApprovalRequest {
     order.setStatus(APPROVED);
   }
 
-  private void assertNotApprovingRejectedOrder(Order order) {
+  private static void assertNotApprovingRejectedOrder(Order order) {
     if (approvingRejectedOrder(order)) {
       throw new RejectedOrderCannotBeApprovedException();
     }
   }
 
-  private boolean approvingRejectedOrder(Order order) {
+  private static boolean approvingRejectedOrder(Order order) {
     return order.is(REJECTED);
   }
 }

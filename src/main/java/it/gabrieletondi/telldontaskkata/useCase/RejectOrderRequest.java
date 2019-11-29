@@ -5,9 +5,9 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-class NotApprovedOrderRequest extends OrderApprovalRequest {
+class RejectOrderRequest extends OrderApprovalRequest {
 
-  NotApprovedOrderRequest(int orderId) {
+  RejectOrderRequest(int orderId) {
     this.orderId = orderId;
   }
 

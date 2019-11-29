@@ -21,7 +21,7 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new ApprovedOrderRequest(1);
+    OrderApprovalRequest request = new ApproveOrderRequest(1);
 
     useCase.run(request);
 
@@ -36,7 +36,7 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new NotApprovedOrderRequest(1);
+    OrderApprovalRequest request = new RejectOrderRequest(1);
 
     useCase.run(request);
 
@@ -51,7 +51,7 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new ApprovedOrderRequest(1);
+    OrderApprovalRequest request = new ApproveOrderRequest(1);
 
     useCase.run(request);
 
@@ -65,7 +65,7 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new NotApprovedOrderRequest(1);
+    OrderApprovalRequest request = new RejectOrderRequest(1);
 
     useCase.run(request);
 
@@ -79,7 +79,7 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new ApprovedOrderRequest(1);
+    OrderApprovalRequest request = new ApproveOrderRequest(1);
 
     useCase.run(request);
 
@@ -93,7 +93,7 @@ public class OrderApprovalUseCaseTest {
     initialOrder.setId(1);
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new NotApprovedOrderRequest(1);
+    OrderApprovalRequest request = new RejectOrderRequest(1);
 
     useCase.run(request);
 
