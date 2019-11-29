@@ -37,7 +37,7 @@ class OrderApprovalRequest {
     return notApproved() && order.is(APPROVED);
   }
 
-  boolean approvingRejectedOrder(Order order) {
+  private boolean approvingRejectedOrder(Order order) {
     return approved && order.is(REJECTED);
   }
 
