@@ -18,31 +18,34 @@ class OrderApprovalUseCase {
   void run(OrderApprovalRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    if (changingShippedOrder(order)) {
-      throw new ShippedOrdersCannotBeChangedException();
-    }
-
-    if (approvingRejectedOrder(request, order)) {
-      throw new RejectedOrderCannotBeApprovedException();
-    }
-
-    if (rejectingApprovedOrder(request, order)) {
-      throw new ApprovedOrderCannotBeRejectedException();
-    }
+    assertNotChangingShippedOrder(order);
+    assertNotApprovingRejectedOrder(request, order);
+    assertNotRejectingApprovedOrder(request, order);
 
     order.setStatus(request.isApproved() ? APPROVED : REJECTED);
     orderRepository.save(order);
+  }
+
+  private void assertNotRejectingApprovedOrder(OrderApprovalRequest request, Order order) {
+    if (request.rejectingApprovedOrder(order)) {
+      throw new ApprovedOrderCannotBeRejectedException();
+    }
+  }
+
+  private void assertNotApprovingRejectedOrder(OrderApprovalRequest request, Order order) {
+    if (request.approvingRejectedOrder(order)) {
+      throw new RejectedOrderCannotBeApprovedException();
+    }
+  }
+
+  private void assertNotChangingShippedOrder(Order order) {
+    if (changingShippedOrder(order)) {
+      throw new ShippedOrdersCannotBeChangedException();
+    }
   }
 
   private boolean changingShippedOrder(Order order) {
     return order.is(SHIPPED);
   }
 
-  private boolean approvingRejectedOrder(OrderApprovalRequest request, Order order) {
-    return request.isApproved() && order.is(REJECTED);
-  }
-
-  private boolean rejectingApprovedOrder(OrderApprovalRequest request, Order order) {
-    return request.isNotApproved() && order.is(APPROVED);
-  }
 }
