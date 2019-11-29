@@ -10,6 +10,7 @@ import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import org.junit.Test;
 
 public class OrderApprovalUseCaseTest {
+
     private final TestOrderRepository orderRepository = new TestOrderRepository();
     private final OrderApprovalUseCase useCase = new OrderApprovalUseCase(orderRepository);
 

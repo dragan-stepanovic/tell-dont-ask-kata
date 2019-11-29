@@ -4,7 +4,7 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-public class ApprovedOrderRequest extends OrderApprovalRequest {
+class ApprovedOrderRequest extends OrderApprovalRequest {
 
   @Override
   void updateOrderStatus(Order order) {

@@ -1,7 +1,5 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
-
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 
@@ -24,7 +22,7 @@ class OrderApprovalUseCase {
     if (request.isApproved()) {
       new ApprovedOrderRequest().updateOrderStatus(order);
     } else {
-      order.setStatus(REJECTED);
+      new NotApprovedOrderRequest().updateOrderStatus(order);
     }
 
     orderRepository.save(order);
