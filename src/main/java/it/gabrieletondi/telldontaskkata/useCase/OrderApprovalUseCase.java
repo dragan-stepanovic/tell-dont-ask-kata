@@ -21,7 +21,7 @@ class OrderApprovalUseCase {
     request.assertNotApprovingRejectedOrder(order);
     request.assertNotRejectingApprovedOrder(order);
 
-    request.updaetOrderStatus(order);
+    request.updateOrderStatus(order);
 
     if (request.isApproved()) {
       order.setStatus(APPROVED);
