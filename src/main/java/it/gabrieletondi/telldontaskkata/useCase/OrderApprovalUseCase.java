@@ -21,7 +21,12 @@ class OrderApprovalUseCase {
     request.assertNotApprovingRejectedOrder(order);
     request.assertNotRejectingApprovedOrder(order);
 
-    order.setStatus(request.isApproved() ? APPROVED : REJECTED);
+    if (request.isApproved()) {
+      order.setStatus(APPROVED);
+    } else {
+      order.setStatus(REJECTED);
+    }
+
     orderRepository.save(order);
   }
 

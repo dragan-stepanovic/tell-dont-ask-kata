@@ -6,7 +6,7 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-class OrderApprovalRequest {
+class OrderApprovalRequest implements IAmOrderApprovalRequest {
 
   private int orderId;
   private boolean approved;
