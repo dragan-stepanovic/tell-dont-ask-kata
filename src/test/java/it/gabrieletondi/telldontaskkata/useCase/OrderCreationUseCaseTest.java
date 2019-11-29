@@ -19,7 +19,7 @@ import org.junit.Test;
 public class OrderCreationUseCaseTest {
 
   private final TestOrderRepository orderRepository = new TestOrderRepository();
-  private Category food = new Category() {{
+  private Category food = new Category("food", new BigDecimal("10")) {{
     setName("food");
     setTaxPercentage(new BigDecimal("10"));
   }};
