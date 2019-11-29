@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
@@ -14,7 +15,17 @@ class ApprovedOrderRequest extends OrderApprovalRequest {
   @Override
   void updateOrderStatus(Order order) {
     super.updateOrderStatus(order);
+    assertNotApprovingRejectedOrder(order);
     order.setStatus(APPROVED);
-    assertNotRejectingApprovedOrder(order);
+  }
+
+  private void assertNotApprovingRejectedOrder(Order order) {
+    if (approvingRejectedOrder(order)) {
+      throw new RejectedOrderCannotBeApprovedException();
+    }
+  }
+
+  private boolean approvingRejectedOrder(Order order) {
+    return approved && order.is(REJECTED);
   }
 }
