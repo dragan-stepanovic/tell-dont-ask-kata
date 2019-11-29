@@ -10,12 +10,12 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Order {
 
-  private BigDecimal total;
-  private String currency;
-  private List<OrderItem> items;
-  private BigDecimal tax;
-  private OrderStatus status;
   private int id;
+  private OrderStatus status;
+  private List<OrderItem> items;
+  private String currency;
+  private BigDecimal total;
+  private BigDecimal tax;
 
   public Order(OrderStatus status, List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
     this.status = status;
