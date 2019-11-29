@@ -14,12 +14,7 @@ class OrderApprovalUseCase {
   void run(OrderApprovalRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    request.assertNotChangingShippedOrder(order);
-    request.assertNotApprovingRejectedOrder(order);
-    request.assertNotRejectingApprovedOrder(order);
-
     request.updateOrderStatus(order);
-
     orderRepository.save(order);
   }
 

@@ -17,6 +17,7 @@ class NotApprovedOrderRequest extends OrderApprovalRequest {
 
   @Override
   void updateOrderStatus(Order order) {
+    super.updateOrderStatus(order);
     order.setStatus(REJECTED);
   }
 }

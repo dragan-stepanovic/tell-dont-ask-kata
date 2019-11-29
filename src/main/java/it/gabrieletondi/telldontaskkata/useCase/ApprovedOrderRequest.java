@@ -17,6 +17,7 @@ class ApprovedOrderRequest extends OrderApprovalRequest {
 
   @Override
   void updateOrderStatus(Order order) {
+    super.updateOrderStatus(order);
     order.setStatus(APPROVED);
   }
 }

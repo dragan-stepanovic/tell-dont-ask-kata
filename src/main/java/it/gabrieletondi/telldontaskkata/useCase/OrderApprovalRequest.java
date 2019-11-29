@@ -62,6 +62,8 @@ class OrderApprovalRequest {
   }
 
   void updateOrderStatus(Order order) {
-
+    assertNotChangingShippedOrder(order);
+    assertNotApprovingRejectedOrder(order);
+    assertNotRejectingApprovedOrder(order);
   }
 }
