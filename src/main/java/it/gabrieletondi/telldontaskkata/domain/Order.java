@@ -1,61 +1,77 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@ToString
+@EqualsAndHashCode
 public class Order {
-    private BigDecimal total;
-    private String currency;
-    private List<OrderItem> items;
-    private BigDecimal tax;
-    private OrderStatus status;
-    private int id;
 
-    public BigDecimal getTotal() {
-        return total;
-    }
+  private BigDecimal total;
+  private String currency;
+  private List<OrderItem> items;
+  private BigDecimal tax;
+  private OrderStatus status;
+  private int id;
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
+  public Order(OrderStatus status, List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
+    this.status = status;
+    this.items = items;
+    this.currency = currency;
+    this.total = total;
+    this.tax = tax;
+  }
 
-    public String getCurrency() {
-        return currency;
-    }
+  public Order() {
+  }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
+  public static Order withoutOrderItems() {
+    return new Order(OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
+        new BigDecimal("0.00"));
+  }
 
-    public List<OrderItem> getItems() {
-        return items;
-    }
+  public void addOrderItemFor(Product product, int quantity) {
+    add(OrderItem.forA(product, quantity));
+  }
 
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
-    }
+  private void add(OrderItem orderItem) {
+    items.add(orderItem);
+    total = total.add(orderItem.getTaxedAmount());
+    tax = tax.add(orderItem.getTaxAmount());
+  }
 
-    public BigDecimal getTax() {
-        return tax;
-    }
+  public String getCurrency() {
+    return currency;
+  }
 
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
-    }
+  public BigDecimal getTotal() {
+    return total;
+  }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
+  public List<OrderItem> getItems() {
+    return items;
+  }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
+  public BigDecimal getTax() {
+    return tax;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public OrderStatus getStatus() {
+    return status;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setStatus(OrderStatus status) {
+    this.status = status;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 }

@@ -1,33 +1,43 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
+import static java.math.BigDecimal.valueOf;
+import static java.math.RoundingMode.HALF_UP;
+
 import java.math.BigDecimal;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@ToString
+@EqualsAndHashCode
 public class Product {
-    private String name;
-    private BigDecimal price;
-    private Category category;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private BigDecimal price;
+  private Category category;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public Product(String name, BigDecimal price, Category category) {
+    this.name = name;
+    this.price = price;
+    this.category = category;
+  }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+  boolean has(String thatName) {
+    return this.name.equals(thatName);
+  }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+  private BigDecimal unitaryTax() {
+    return price.divide(valueOf(100)).multiply(category.getTaxPercentage()).setScale(2, HALF_UP);
+  }
 
-    public Category getCategory() {
-        return category;
-    }
+  BigDecimal taxAmountFor(int quantity) {
+    return unitaryTax().multiply(BigDecimal.valueOf(quantity));
+  }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+  private BigDecimal unitaryTaxedAmount() {
+    return price.add(unitaryTax()).setScale(2, HALF_UP);
+  }
+
+  BigDecimal taxedAmountFor(int quantity) {
+    return unitaryTaxedAmount().multiply(valueOf(quantity)).setScale(2, HALF_UP);
+  }
 }

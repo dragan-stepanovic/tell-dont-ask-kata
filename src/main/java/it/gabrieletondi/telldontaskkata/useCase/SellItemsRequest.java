@@ -2,14 +2,14 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import java.util.List;
 
-public class SellItemsRequest {
+class SellItemsRequest {
     private List<SellItemRequest> requests;
 
-    public void setRequests(List<SellItemRequest> requests) {
+  SellItemsRequest(List<SellItemRequest> requests) {
         this.requests = requests;
     }
 
-    public List<SellItemRequest> getRequests() {
+  List<SellItemRequest> getRequests() {
         return requests;
     }
 }

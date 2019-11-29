@@ -1,13 +1,13 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-public class OrderShipmentRequest {
+class OrderShipmentRequest {
     private int orderId;
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public int getOrderId() {
+  int getOrderId() {
         return orderId;
     }
+
+  void setOrderId(int orderId) {
+    this.orderId = orderId;
+  }
 }

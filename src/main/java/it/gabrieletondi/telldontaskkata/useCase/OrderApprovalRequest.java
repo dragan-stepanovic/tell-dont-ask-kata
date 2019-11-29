@@ -1,6 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-public class OrderApprovalRequest {
+class OrderApprovalRequest {
     private int orderId;
     private boolean approved;
 

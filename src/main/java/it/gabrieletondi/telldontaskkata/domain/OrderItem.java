@@ -1,42 +1,42 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import java.math.BigDecimal;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@ToString
+@EqualsAndHashCode
 public class OrderItem {
-    private Product product;
-    private int quantity;
-    private BigDecimal taxedAmount;
-    private BigDecimal tax;
 
-    public Product getProduct() {
-        return product;
-    }
+  private Product product;
+  private int quantity;
+  private BigDecimal taxAmount;
+  private BigDecimal taxedAmount;
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+  public OrderItem(Product product, int quantity, BigDecimal taxAmount, BigDecimal taxedAmount) {
+    this.product = product;
+    this.quantity = quantity;
+    this.taxAmount = taxAmount;
+    this.taxedAmount = taxedAmount;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  static OrderItem forA(Product product, int quantity) {
+    return new OrderItem(product, quantity, product.taxAmountFor(quantity), product.taxedAmountFor(quantity));
+  }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public BigDecimal getTaxedAmount() {
-        return taxedAmount;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
 
-    public void setTaxedAmount(BigDecimal taxedAmount) {
-        this.taxedAmount = taxedAmount;
-    }
+  public BigDecimal getTaxedAmount() {
+    return taxedAmount;
+  }
 
-    public BigDecimal getTax() {
-        return tax;
-    }
-
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
-    }
+  public BigDecimal getTaxAmount() {
+    return taxAmount;
+  }
 }
