@@ -6,10 +6,6 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 
 class NotApprovedOrderRequest extends OrderApprovalRequest {
 
-  NotApprovedOrderRequest() {
-    approved = false;
-  }
-
   NotApprovedOrderRequest(int orderId) {
     this.approved = false;
     this.orderId = orderId;

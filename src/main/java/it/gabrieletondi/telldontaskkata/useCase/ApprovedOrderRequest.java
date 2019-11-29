@@ -6,10 +6,6 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 
 class ApprovedOrderRequest extends OrderApprovalRequest {
 
-  ApprovedOrderRequest() {
-    this.approved = true;
-  }
-
   ApprovedOrderRequest(int orderId) {
     this.approved = true;
     this.orderId = orderId;

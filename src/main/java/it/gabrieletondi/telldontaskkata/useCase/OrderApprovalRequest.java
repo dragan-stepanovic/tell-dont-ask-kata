@@ -11,19 +11,19 @@ class OrderApprovalRequest {
   int orderId;
   boolean approved;
 
-  void assertNotChangingShippedOrder(Order order) {
+  private void assertNotChangingShippedOrder(Order order) {
     if (changingShippedOrder(order)) {
       throw new ShippedOrdersCannotBeChangedException();
     }
   }
 
-  void assertNotApprovingRejectedOrder(Order order) {
+  private void assertNotApprovingRejectedOrder(Order order) {
     if (approvingRejectedOrder(order)) {
       throw new RejectedOrderCannotBeApprovedException();
     }
   }
 
-  void assertNotRejectingApprovedOrder(Order order) {
+  private void assertNotRejectingApprovedOrder(Order order) {
     if (rejectingApprovedOrder(order)) {
       throw new ApprovedOrderCannotBeRejectedException();
     }
@@ -31,18 +31,6 @@ class OrderApprovalRequest {
 
   int getOrderId() {
     return orderId;
-  }
-
-  void setOrderId(int orderId) {
-    this.orderId = orderId;
-  }
-
-  boolean isApproved() {
-    return approved;
-  }
-
-  void setApproved(boolean approved) {
-    this.approved = approved;
   }
 
   private boolean changingShippedOrder(Order order) {
