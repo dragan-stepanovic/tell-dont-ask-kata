@@ -18,12 +18,7 @@ class OrderApprovalUseCase {
     request.assertNotApprovingRejectedOrder(order);
     request.assertNotRejectingApprovedOrder(order);
 
-
-    if (request.isApproved()) {
-      new ApprovedOrderRequest().updateOrderStatus(order);
-    } else {
-      new NotApprovedOrderRequest().updateOrderStatus(order);
-    }
+    request.updateOrderStatus(order);
 
     orderRepository.save(order);
   }
