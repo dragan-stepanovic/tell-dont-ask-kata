@@ -87,7 +87,7 @@ public class OrderApprovalUseCaseTest {
         initialOrder.setId(1);
         orderRepository.add(initialOrder);
 
-      OrderApprovalRequest request = approvalRequestWithIdAndApproved(1, true, new OrderApprovalRequest());
+      OrderApprovalRequest request = approvalRequestWithIdAndApproved(1, true, new ApprovedOrderRequest());
 
         useCase.run(request);
 
@@ -101,7 +101,7 @@ public class OrderApprovalUseCaseTest {
         initialOrder.setId(1);
         orderRepository.add(initialOrder);
 
-      OrderApprovalRequest request = approvalRequestWithIdAndApproved(1, false, new OrderApprovalRequest());
+      OrderApprovalRequest request = approvalRequestWithIdAndApproved(1, false, new NotApprovedOrderRequest());
 
         useCase.run(request);
 
