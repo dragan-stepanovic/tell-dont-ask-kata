@@ -17,10 +17,6 @@ class OrderApprovalRequest {
     }
   }
 
-  private boolean changingShippedOrder(Order order) {
-    return order.is(SHIPPED);
-  }
-
   void assertNotApprovingRejectedOrder(Order order) {
     if (approvingRejectedOrder(order)) {
       throw new RejectedOrderCannotBeApprovedException();
@@ -31,18 +27,6 @@ class OrderApprovalRequest {
     if (rejectingApprovedOrder(order)) {
       throw new ApprovedOrderCannotBeRejectedException();
     }
-  }
-
-  private boolean rejectingApprovedOrder(Order order) {
-    return notApproved() && order.is(APPROVED);
-  }
-
-  private boolean approvingRejectedOrder(Order order) {
-    return approved && order.is(REJECTED);
-  }
-
-  private boolean notApproved() {
-    return !approved;
   }
 
   int getOrderId() {
@@ -59,5 +43,21 @@ class OrderApprovalRequest {
 
   void setApproved(boolean approved) {
     this.approved = approved;
+  }
+
+  private boolean changingShippedOrder(Order order) {
+    return order.is(SHIPPED);
+  }
+
+  private boolean rejectingApprovedOrder(Order order) {
+    return notApproved() && order.is(APPROVED);
+  }
+
+  private boolean approvingRejectedOrder(Order order) {
+    return approved && order.is(REJECTED);
+  }
+
+  private boolean notApproved() {
+    return !approved;
   }
 }
