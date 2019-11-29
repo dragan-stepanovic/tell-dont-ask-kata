@@ -13,7 +13,6 @@ class OrderApprovalUseCase {
 
   void run(OrderApprovalRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
-
     request.updateOrderStatus(order);
     orderRepository.save(order);
   }
