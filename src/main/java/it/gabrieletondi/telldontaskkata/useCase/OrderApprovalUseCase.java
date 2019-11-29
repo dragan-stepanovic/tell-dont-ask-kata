@@ -1,7 +1,10 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
+
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 
 class OrderApprovalUseCase {
@@ -15,7 +18,7 @@ class OrderApprovalUseCase {
   void run(OrderApprovalRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    if (order.is(OrderStatus.SHIPPED)) {
+    if (order.is(SHIPPED)) {
       throw new ShippedOrdersCannotBeChangedException();
     }
 
@@ -27,15 +30,15 @@ class OrderApprovalUseCase {
       throw new ApprovedOrderCannotBeRejectedException();
     }
 
-    order.setStatus(request.isApproved() ? OrderStatus.APPROVED : OrderStatus.REJECTED);
+    order.setStatus(request.isApproved() ? APPROVED : REJECTED);
     orderRepository.save(order);
   }
 
   private boolean isaBoolean(OrderApprovalRequest request, Order order) {
-    return request.isApproved() && order.is(OrderStatus.REJECTED);
+    return request.isApproved() && order.is(REJECTED);
   }
 
   private boolean approvedOrderIsRejected(OrderApprovalRequest request, Order order) {
-    return request.isNotApproved() && order.is(OrderStatus.APPROVED);
+    return request.isNotApproved() && order.is(APPROVED);
   }
 }
