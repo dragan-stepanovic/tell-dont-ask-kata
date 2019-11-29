@@ -61,7 +61,7 @@ class OrderApprovalRequest {
     return !approved;
   }
 
-  public void updateOrderStatus(Order order) {
+  void updateOrderStatus(Order order) {
 
   }
 }
