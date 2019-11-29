@@ -33,7 +33,7 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public boolean statusIs(OrderStatus thatStatus) {
+  public boolean is(OrderStatus thatStatus) {
     return this.status == thatStatus;
   }
 
