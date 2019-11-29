@@ -23,7 +23,7 @@ class OrderApprovalRequest {
     }
   }
 
-  private void assertNotRejectingApprovedOrder(Order order) {
+  void assertNotRejectingApprovedOrder(Order order) {
     if (rejectingApprovedOrder(order)) {
       throw new ApprovedOrderCannotBeRejectedException();
     }

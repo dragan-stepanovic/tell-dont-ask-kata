@@ -15,5 +15,6 @@ class ApprovedOrderRequest extends OrderApprovalRequest {
   void updateOrderStatus(Order order) {
     super.updateOrderStatus(order);
     order.setStatus(APPROVED);
+    assertNotRejectingApprovedOrder(order);
   }
 }
