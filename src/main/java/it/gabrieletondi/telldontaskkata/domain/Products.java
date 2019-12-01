@@ -10,7 +10,7 @@ public class Products {
     this.values = values;
   }
 
-  public Product having(String name) {
+  public Product selectOneHaving(String name) {
     return values.stream().filter(p -> p.has(name)).findFirst().orElse(null);
   }
 }
