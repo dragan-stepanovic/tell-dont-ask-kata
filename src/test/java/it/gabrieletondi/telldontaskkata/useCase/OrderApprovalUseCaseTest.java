@@ -24,7 +24,6 @@ public class OrderApprovalUseCaseTest {
     OrderApprovalRequest request = new ApproveOrderRequest(1);
 
     useCase.run(request);
-
     final Order savedOrder = orderRepository.getSavedOrder();
     assertThat(savedOrder.getStatus(), is(OrderStatus.APPROVED));
   }
