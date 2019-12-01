@@ -17,5 +17,4 @@ class SellItemRequest {
   int getQuantity() {
     return quantity;
   }
-
 }
