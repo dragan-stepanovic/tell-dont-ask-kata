@@ -29,7 +29,7 @@ public class OrderShipmentUseCaseTest {
     useCase.run(request);
 
     assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.SHIPPED));
-    assertThat(shipmentService.getShippedOrder(), is(initialOrder));
+    assertTrue(shipmentService.shippedOrderIs(initialOrder));
   }
 
   @Test(expected = OrderNotReadyForShippmentException.class)
