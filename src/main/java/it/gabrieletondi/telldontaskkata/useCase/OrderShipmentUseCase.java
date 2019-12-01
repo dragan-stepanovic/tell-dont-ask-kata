@@ -22,7 +22,7 @@ class OrderShipmentUseCase {
   void run(OrderShipmentRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    assertReadyForShipment(order);
+    assertCanBeShipped(order);
     assertNotShippedAlready(order);
     shipmentService.ship(order);
 
@@ -30,7 +30,7 @@ class OrderShipmentUseCase {
     orderRepository.save(order);
   }
 
-  private void assertReadyForShipment(Order order) {
+  private void assertCanBeShipped(Order order) {
     if (order.is(CREATED) || order.is(REJECTED)) {
       throw new OrderCannotBeShippedException();
     }
