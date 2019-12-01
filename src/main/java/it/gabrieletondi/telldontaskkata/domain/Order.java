@@ -76,7 +76,7 @@ public class Order {
 
   private void add(OrderItem orderItem) {
     items.add(orderItem);
-    total = total.add(orderItem.getTaxedAmount());
+    total = orderItem.addTotalAmountTo(total);
     tax = tax.add(orderItem.getTaxAmount());
   }
 
