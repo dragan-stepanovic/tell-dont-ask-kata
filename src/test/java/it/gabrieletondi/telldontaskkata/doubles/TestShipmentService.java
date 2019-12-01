@@ -19,4 +19,8 @@ public class TestShipmentService implements ShipmentService {
   public boolean shippedOrderIs(Order order) {
     return shippedOrder.equals(order);
   }
+
+  public boolean orderIsNotShipped() {
+    return shippedOrder == null;
+  }
 }

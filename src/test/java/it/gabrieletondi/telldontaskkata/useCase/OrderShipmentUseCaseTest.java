@@ -2,9 +2,6 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
@@ -40,7 +37,7 @@ public class OrderShipmentUseCaseTest {
     useCase.run(request);
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
-    assertThat(shipmentService.getShippedOrder(), is(nullValue()));
+    assertTrue(shipmentService.orderIsNotShipped());
   }
 
   @Test(expected = OrderNotReadyForShippmentException.class)
@@ -52,7 +49,7 @@ public class OrderShipmentUseCaseTest {
     useCase.run(request);
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
-    assertThat(shipmentService.getShippedOrder(), is(nullValue()));
+    assertTrue(shipmentService.orderIsNotShipped());
   }
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
@@ -64,6 +61,6 @@ public class OrderShipmentUseCaseTest {
     useCase.run(request);
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
-    assertThat(shipmentService.getShippedOrder(), is(nullValue()));
+    assertTrue(shipmentService.orderIsNotShipped());
   }
 }
