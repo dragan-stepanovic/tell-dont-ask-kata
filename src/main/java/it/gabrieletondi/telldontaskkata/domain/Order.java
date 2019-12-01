@@ -5,6 +5,7 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
+import it.gabrieletondi.telldontaskkata.useCase.ApprovedOrderCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.OrderNotReadyForShippmentException;
 import it.gabrieletondi.telldontaskkata.useCase.RejectedOrderCannotBeApprovedException;
@@ -38,6 +39,16 @@ public class Order {
   public static Order withoutOrderItems() {
     return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
         new BigDecimal("0.00"));
+  }
+
+  public void assertNotRejectingApprovedOrder() {
+    if (rejectingApprovedOrder()) {
+      throw new ApprovedOrderCannotBeRejectedException();
+    }
+  }
+
+  private boolean rejectingApprovedOrder() {
+    return is(APPROVED);
   }
 
   public void assertNotChangingShippedOrder() {
