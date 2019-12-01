@@ -10,18 +10,18 @@ public class OrderItem {
 
   private Product product;
   private int quantity;
-  private BigDecimal taxAmount;
   private BigDecimal price;
+  private BigDecimal taxAmount;
 
-  public OrderItem(Product product, int quantity, BigDecimal taxAmount, BigDecimal price) {
+  public OrderItem(Product product, int quantity, BigDecimal price, BigDecimal taxAmount) {
     this.product = product;
     this.quantity = quantity;
-    this.taxAmount = taxAmount;
     this.price = price;
+    this.taxAmount = taxAmount;
   }
 
   static OrderItem forA(Product product, int quantity) {
-    return new OrderItem(product, quantity, product.taxAmountFor(quantity), product.taxedAmountFor(quantity));
+    return new OrderItem(product, quantity, product.taxedAmountFor(quantity), product.taxAmountFor(quantity));
   }
 
   BigDecimal getPrice() {
