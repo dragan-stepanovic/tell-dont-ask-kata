@@ -22,9 +22,7 @@ public class OrderApprovalUseCaseTest {
   @Test
   public void rejectedExistingOrder() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.CREATED).build());
-
     useCase.run(new RejectOrderRequest(1));
-
     assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.REJECTED));
   }
 
