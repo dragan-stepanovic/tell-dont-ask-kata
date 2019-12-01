@@ -31,7 +31,7 @@ class OrderCreationUseCase {
   }
 
   private boolean notAllProductsFound(SellItemsRequest request) {
-    return request.getRequests().stream().map(SellItemRequest::getProductName)
+    return request.productNames()
         .map(productCatalog::productWith)
         .anyMatch(this::unknown);
   }
