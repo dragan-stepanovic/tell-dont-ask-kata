@@ -1,5 +1,7 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,10 @@ public class Order {
   public static Order withoutOrderItems() {
     return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
         new BigDecimal("0.00"));
+  }
+
+  public void markAsApproved() {
+    this.status = APPROVED;
   }
 
   public void markAsShipped() {
