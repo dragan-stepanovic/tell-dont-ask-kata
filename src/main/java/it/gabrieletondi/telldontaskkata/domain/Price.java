@@ -23,7 +23,7 @@ public class Price {
     return this.amount.divide(valueOf(100)).multiply(this.taxPercentage).setScale(2, HALF_UP);
   }
 
-  BigDecimal withUnitaryTax() {
+  BigDecimal includingUnitaryTax() {
     return amount.add(unitaryTax()).setScale(2, HALF_UP);
   }
 }
