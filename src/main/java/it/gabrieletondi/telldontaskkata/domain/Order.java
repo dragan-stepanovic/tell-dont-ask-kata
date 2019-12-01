@@ -38,25 +38,9 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  private void assertNotShippedAlready() {
-    if (shippedAlready()) {
-      throw new OrderCannotBeShippedTwiceException();
-    }
-  }
-
   public void assertCanBeShipped() {
     assertNotShippedAlready();
     assertReadyForShipment();
-  }
-
-  private void assertReadyForShipment() {
-    if (notReadyForShipment()) {
-      throw new OrderNotReadyForShippmentException();
-    }
-  }
-
-  private boolean notReadyForShipment() {
-    return is(CREATED) || is(REJECTED);
   }
 
   private boolean shippedAlready() {
@@ -83,17 +67,33 @@ public class Order {
     add(OrderItem.forA(product, quantity));
   }
 
-  private void add(OrderItem orderItem) {
-    items.add(orderItem);
-    total = total.add(orderItem.getTaxedAmount());
-    tax = tax.add(orderItem.getTaxAmount());
-  }
-
   public int getId() {
     return id;
   }
 
   public boolean hasStatus(OrderStatus thatStatus) {
     return this.status == thatStatus;
+  }
+
+  private void add(OrderItem orderItem) {
+    items.add(orderItem);
+    total = total.add(orderItem.getTaxedAmount());
+    tax = tax.add(orderItem.getTaxAmount());
+  }
+
+  private void assertNotShippedAlready() {
+    if (shippedAlready()) {
+      throw new OrderCannotBeShippedTwiceException();
+    }
+  }
+
+  private void assertReadyForShipment() {
+    if (notReadyForShipment()) {
+      throw new OrderNotReadyForShippmentException();
+    }
+  }
+
+  private boolean notReadyForShipment() {
+    return is(CREATED) || is(REJECTED);
   }
 }
