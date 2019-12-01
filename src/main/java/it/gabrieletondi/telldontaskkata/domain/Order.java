@@ -40,14 +40,14 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public static void assertNotChangingShippedOrder(Order order) {
-    if (changingShippedOrder(order)) {
+  public void assertNotChangingShippedOrder() {
+    if (changingShippedOrder()) {
       throw new ShippedOrdersCannotBeChangedException();
     }
   }
 
-  private static boolean changingShippedOrder(Order order) {
-    return order.is(SHIPPED);
+  private boolean changingShippedOrder() {
+    return is(SHIPPED);
   }
 
   public void assertCanBeShipped() {
