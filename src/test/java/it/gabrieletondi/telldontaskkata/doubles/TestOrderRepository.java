@@ -11,17 +11,17 @@ public class TestOrderRepository implements OrderRepository {
   private Order insertedOrder;
   private List<Order> orders = new ArrayList<>();
 
+  @Override
+  public Order getById(int orderId) {
+    return orders.stream().filter(o -> o.getId() == orderId).findFirst().get();
+  }
+
   public boolean thereIsNoSavedOrder() {
     return savedOrderIs(null);
   }
 
   public void save(Order order) {
     this.insertedOrder = order;
-  }
-
-  @Override
-  public Order getById(int orderId) {
-    return orders.stream().filter(o -> o.getId() == orderId).findFirst().get();
   }
 
   public void add(Order order) {
