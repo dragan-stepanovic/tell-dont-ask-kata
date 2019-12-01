@@ -24,6 +24,6 @@ public class Price {
   }
 
   BigDecimal includingUnitaryTax() {
-    return amount.add(unitaryTaxAmount()).setScale(2, HALF_UP);
+    return amount.add(unitaryTaxAmount());
   }
 }
