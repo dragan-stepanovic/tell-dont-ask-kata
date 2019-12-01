@@ -45,10 +45,6 @@ public class Order {
     tax = tax.add(orderItem.getTaxAmount());
   }
 
-  public OrderStatus getStatus() {
-    return status;
-  }
-
   public void setStatus(OrderStatus status) {
     this.status = status;
   }
@@ -57,4 +53,7 @@ public class Order {
     return id;
   }
 
+  public boolean hasStatus(OrderStatus thatStatus) {
+    return this.status == thatStatus;
+  }
 }

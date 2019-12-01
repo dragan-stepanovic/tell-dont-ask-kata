@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -24,7 +25,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
     final Order savedOrder = orderRepository.getSavedOrder();
-    assertThat(savedOrder.getStatus(), is(OrderStatus.APPROVED));
+    assertTrue(savedOrder.hasStatus(OrderStatus.APPROVED));
   }
 
   @Test
@@ -37,7 +38,7 @@ public class OrderApprovalUseCaseTest {
     useCase.run(request);
 
     final Order savedOrder = orderRepository.getSavedOrder();
-    assertThat(savedOrder.getStatus(), is(OrderStatus.REJECTED));
+    assertTrue(savedOrder.hasStatus(OrderStatus.REJECTED));
   }
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)
