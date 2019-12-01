@@ -5,7 +5,6 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.service.ShipmentService;
 
@@ -22,11 +21,11 @@ class OrderShipmentUseCase {
   void run(OrderShipmentRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    assertCanBeShipped(order);
     assertNotShippedAlready(order);
+    assertCanBeShipped(order);
     shipmentService.ship(order);
 
-    order.setStatus(OrderStatus.SHIPPED);
+    order.markAsShipped();
     orderRepository.save(order);
   }
 

@@ -31,6 +31,10 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
+  public void markAsShipped() {
+    this.status = OrderStatus.SHIPPED;
+  }
+
   public boolean is(OrderStatus thatStatus) {
     return this.status == thatStatus;
   }
