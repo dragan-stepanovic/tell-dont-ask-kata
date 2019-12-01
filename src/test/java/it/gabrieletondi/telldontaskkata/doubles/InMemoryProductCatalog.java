@@ -25,8 +25,8 @@ public class InMemoryProductCatalog implements ProductCatalog {
   }
 
   @Override
-  public void productsWith(List<String> productNames) {
-
+  public Products productsWith(List<String> productNames) {
+    return null;
   }
 
   private boolean unknown(Product product) {
