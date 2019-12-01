@@ -10,7 +10,6 @@ class RejectOrderRequest extends OrderApprovalRequest {
 
   @Override
   void updateOrderStatus(Order order) {
-    order.assertNotRejectingApprovedOrder();
     order.markAsRejected();
   }
 
