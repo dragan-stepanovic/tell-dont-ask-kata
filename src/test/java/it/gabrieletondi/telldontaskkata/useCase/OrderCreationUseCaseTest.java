@@ -13,6 +13,7 @@ import it.gabrieletondi.telldontaskkata.domain.Products;
 import it.gabrieletondi.telldontaskkata.doubles.InMemoryProductCatalog;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import it.gabrieletondi.telldontaskkata.useCase.invariants.UnknownProductException;
 import java.math.BigDecimal;
 import java.util.Collections;
 import org.junit.Test;
