@@ -39,11 +39,9 @@ public class OrderCreationUseCaseTest {
     final Order insertedOrder = orderRepository.getSavedOrder();
     final Order expected = new Order(1, OrderStatus.CREATED,
         asList(new OrderItem(new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage)), 2,
-                new BigDecimal("0.72"),
-                new BigDecimal("7.84")),
+                new BigDecimal("0.72"), new BigDecimal("7.84")),
             new OrderItem(new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage)), 3,
-                new BigDecimal("1.41"),
-                new BigDecimal("15.36"))),
+                new BigDecimal("1.41"), new BigDecimal("15.36"))),
         "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
 
     assertEquals(expected, insertedOrder);
