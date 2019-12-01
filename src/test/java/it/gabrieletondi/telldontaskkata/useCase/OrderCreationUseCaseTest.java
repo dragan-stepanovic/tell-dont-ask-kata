@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 import it.gabrieletondi.telldontaskkata.domain.Category;
@@ -12,7 +13,6 @@ import it.gabrieletondi.telldontaskkata.doubles.InMemoryProductCatalog;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collections;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class OrderCreationUseCaseTest {
   private final TestOrderRepository orderRepository = new TestOrderRepository();
   private final Category food = new Category("food", new BigDecimal("10"));
   private final ProductCatalog productCatalog = new InMemoryProductCatalog(
-      new Products(Arrays.asList(
+      new Products(asList(
           new Product("salad", new BigDecimal("3.56"), food),
           new Product("tomato", new BigDecimal("4.65"), food))));
   private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
@@ -30,13 +30,13 @@ public class OrderCreationUseCaseTest {
   public void sellMultipleItems() throws Exception {
     SellItemRequest saladRequest = new SellItemRequest("salad", 2);
     SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
-    final SellItemsRequest request = new SellItemsRequest(Arrays.asList(saladRequest, tomatoRequest));
+    final SellItemsRequest request = new SellItemsRequest(asList(saladRequest, tomatoRequest));
 
     useCase.run(request);
 
     final Order insertedOrder = orderRepository.getSavedOrder();
-    final Order expected = new Order(OrderStatus.CREATED, Arrays
-        .asList(new OrderItem(new Product("salad", new BigDecimal("3.56"), food), 2, new BigDecimal("0.72"),
+    final Order expected = new Order(OrderStatus.CREATED,
+        asList(new OrderItem(new Product("salad", new BigDecimal("3.56"), food), 2, new BigDecimal("0.72"),
                 new BigDecimal("7.84")),
             new OrderItem(new Product("tomato", new BigDecimal("4.65"), food), 3, new BigDecimal("1.41"),
                 new BigDecimal("15.36"))),

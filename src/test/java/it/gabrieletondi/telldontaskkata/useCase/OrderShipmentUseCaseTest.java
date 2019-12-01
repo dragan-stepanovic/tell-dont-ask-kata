@@ -20,7 +20,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final int anOrderId = 1;
+    final int anOrderId = 2;
     final Order initialOrder = anOrder().with(anOrderId).with(OrderStatus.APPROVED).build();
     orderRepository.add(initialOrder);
 
