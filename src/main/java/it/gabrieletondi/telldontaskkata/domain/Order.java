@@ -56,6 +56,7 @@ public class Order {
   }
 
   public void markAsRejected() {
+    assertNotChangingShippedOrder();
     changeStatusTo(REJECTED);
   }
 
