@@ -19,6 +19,8 @@ class OrderCreationUseCase {
   void run(SellItemsRequest request) {
 
     assertContainsAllProductsWith(request.productNames());
+    productCatalog.productsWith(request.productNames());
+
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : request.getRequests()) {
       final Product product = productCatalog.productWith(itemRequest.getProductName());

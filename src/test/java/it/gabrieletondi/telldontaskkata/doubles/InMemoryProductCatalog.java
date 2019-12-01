@@ -24,6 +24,11 @@ public class InMemoryProductCatalog implements ProductCatalog {
         .anyMatch(this::unknown);
   }
 
+  @Override
+  public void productsWith(List<String> productNames) {
+
+  }
+
   private boolean unknown(Product product) {
     return product == null;
   }

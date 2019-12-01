@@ -8,4 +8,6 @@ public interface ProductCatalog {
   Product productWith(String name);
 
   boolean doesNotContainsAllProductsWith(List<String> productNames);
+
+  void productsWith(List<String> productNames);
 }
