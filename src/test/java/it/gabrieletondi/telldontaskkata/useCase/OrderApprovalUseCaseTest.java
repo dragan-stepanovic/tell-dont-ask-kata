@@ -30,27 +30,27 @@ public class OrderApprovalUseCaseTest {
   public void cannotApproveRejectedOrder() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.REJECTED).build());
     useCase.run(new ApproveOrderRequest(1));
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
   public void cannotRejectApprovedOrder() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.APPROVED).build());
     useCase.run(new RejectOrderRequest(1));
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeChangedException.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.SHIPPED).build());
     useCase.run(new ApproveOrderRequest(1));
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeChangedException.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.SHIPPED).build());
     useCase.run(new RejectOrderRequest(1));
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
   }
 }

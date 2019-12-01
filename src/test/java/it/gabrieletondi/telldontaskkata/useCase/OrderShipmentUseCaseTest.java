@@ -33,7 +33,7 @@ public class OrderShipmentUseCaseTest {
 
     useCase.run(new OrderShipmentRequest(1));
 
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
   }
 
@@ -43,7 +43,7 @@ public class OrderShipmentUseCaseTest {
 
     useCase.run(new OrderShipmentRequest(1));
 
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
   }
 
@@ -53,7 +53,7 @@ public class OrderShipmentUseCaseTest {
 
     useCase.run(new OrderShipmentRequest(1));
 
-    assertTrue(orderRepository.thereIsNoSavedOrder());
+    assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
   }
 }

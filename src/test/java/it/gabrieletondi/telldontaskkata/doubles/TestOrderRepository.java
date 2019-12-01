@@ -16,7 +16,7 @@ public class TestOrderRepository implements OrderRepository {
     return orders.stream().filter(o -> o.hasId(orderId)).findFirst().get();
   }
 
-  public boolean thereIsNoSavedOrder() {
+  public boolean orderIsNotSaved() {
     return savedOrderIs(null);
   }
 
