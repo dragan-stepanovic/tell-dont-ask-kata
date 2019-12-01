@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -33,6 +34,10 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
+  public void markAsRejected() {
+    this.status = REJECTED;
+  }
+
   public void markAsApproved() {
     this.status = APPROVED;
   }
@@ -53,10 +58,6 @@ public class Order {
     items.add(orderItem);
     total = total.add(orderItem.getTaxedAmount());
     tax = tax.add(orderItem.getTaxAmount());
-  }
-
-  public void setStatus(OrderStatus status) {
-    this.status = status;
   }
 
   public int getId() {
