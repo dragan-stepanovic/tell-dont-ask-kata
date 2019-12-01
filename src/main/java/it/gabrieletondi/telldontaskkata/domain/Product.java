@@ -24,7 +24,7 @@ public class Product {
   }
 
   boolean with(String thatName) {
-    return this.name.equals(thatName);
+    return name.equals(thatName);
   }
 
   BigDecimal taxAmountFor(int quantity) {
