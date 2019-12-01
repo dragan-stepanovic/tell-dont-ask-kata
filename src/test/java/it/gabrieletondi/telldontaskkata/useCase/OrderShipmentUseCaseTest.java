@@ -9,6 +9,8 @@ import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
 import it.gabrieletondi.telldontaskkata.useCase.invariants.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.invariants.OrderNotReadyForShippmentException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentRequest;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentUseCase;
 import org.junit.Test;
 
 public class OrderShipmentUseCaseTest {
