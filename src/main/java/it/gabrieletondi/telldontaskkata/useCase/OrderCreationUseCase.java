@@ -25,7 +25,7 @@ class OrderCreationUseCase {
 
     for (SellItemRequest itemRequest : request.getRequests()) {
       final Product product = productCatalog.having(itemRequest.getProductName());
-      if (notFound(product)) {
+      if (unknown(product)) {
         throw new UnknownProductException();
       }
       order.addOrderItemFor(product, itemRequest.getQuantity());
@@ -34,7 +34,7 @@ class OrderCreationUseCase {
     orderRepository.save(order);
   }
 
-  private boolean notFound(Product product) {
+  private boolean unknown(Product product) {
     return product == null;
   }
 }
