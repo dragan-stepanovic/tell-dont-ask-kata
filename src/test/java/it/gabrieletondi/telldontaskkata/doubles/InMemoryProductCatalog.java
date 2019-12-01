@@ -17,14 +17,14 @@ public class InMemoryProductCatalog implements ProductCatalog {
     return products.oneWithThe(name);
   }
 
-  private static boolean unknown(Product product) {
-    return product == null;
-  }
-
   public boolean doesNotContainsAllProductWith(List<String> productNames) {
     return productNames
         .stream()
         .map(this::productWith)
-        .anyMatch(InMemoryProductCatalog::unknown);
+        .anyMatch(this::unknown);
+  }
+
+  private boolean unknown(Product product) {
+    return product == null;
   }
 }
