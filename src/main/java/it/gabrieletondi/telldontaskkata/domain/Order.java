@@ -39,23 +39,9 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public void assertNotApprovingRejectedOrder() {
-    if (approvingRejectedOrder()) {
-      throw new RejectedOrderCannotBeApprovedException();
-    }
-  }
-
-  private boolean approvingRejectedOrder() {
-    return is(REJECTED);
-  }
-
   public void assertCanBeShipped() {
     assertNotShippedAlready();
     assertReadyForShipment();
-  }
-
-  private boolean shippedAlready() {
-    return is(SHIPPED);
   }
 
   public void markAsRejected() {
@@ -65,10 +51,6 @@ public class Order {
   public void markAsApproved() {
     assertNotApprovingRejectedOrder();
     changeStatusTo(APPROVED);
-  }
-
-  private void changeStatusTo(OrderStatus approved) {
-    this.status = approved;
   }
 
   public void markAsShipped() {
@@ -111,5 +93,23 @@ public class Order {
 
   private boolean notReadyForShipment() {
     return is(CREATED) || is(REJECTED);
+  }
+
+  private void changeStatusTo(OrderStatus approved) {
+    this.status = approved;
+  }
+
+  private boolean shippedAlready() {
+    return is(SHIPPED);
+  }
+
+  private void assertNotApprovingRejectedOrder() {
+    if (approvingRejectedOrder()) {
+      throw new RejectedOrderCannotBeApprovedException();
+    }
+  }
+
+  private boolean approvingRejectedOrder() {
+    return is(REJECTED);
   }
 }
