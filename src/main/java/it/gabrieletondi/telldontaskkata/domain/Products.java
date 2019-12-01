@@ -11,6 +11,10 @@ public class Products {
   }
 
   public Product selectOneWith(String name) {
-    return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
+    return values
+        .stream()
+        .filter(p -> p.with(name))
+        .findFirst()
+        .orElse(null);
   }
 }
