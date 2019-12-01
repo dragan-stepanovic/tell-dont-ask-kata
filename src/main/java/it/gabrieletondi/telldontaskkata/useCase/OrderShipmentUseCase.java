@@ -20,8 +20,8 @@ class OrderShipmentUseCase {
     order.assertNotShippedAlready();
     order.assertCanBeShipped();
     shipmentService.ship(order);
-
     order.markAsShipped();
+
     orderRepository.save(order);
   }
 
