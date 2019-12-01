@@ -59,16 +59,20 @@ public class Order {
   }
 
   public void markAsRejected() {
-    this.status = REJECTED;
+    changeStatusTo(REJECTED);
   }
 
   public void markAsApproved() {
     assertNotApprovingRejectedOrder();
-    this.status = APPROVED;
+    changeStatusTo(APPROVED);
+  }
+
+  private void changeStatusTo(OrderStatus approved) {
+    this.status = approved;
   }
 
   public void markAsShipped() {
-    this.status = OrderStatus.SHIPPED;
+    changeStatusTo(OrderStatus.SHIPPED);
   }
 
   public boolean is(OrderStatus thatStatus) {
