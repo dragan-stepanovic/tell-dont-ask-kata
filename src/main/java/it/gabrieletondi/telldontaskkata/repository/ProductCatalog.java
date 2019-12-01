@@ -4,5 +4,5 @@ import it.gabrieletondi.telldontaskkata.domain.Product;
 
 public interface ProductCatalog {
 
-    Product having(String name);
+    Product productWith(String name);
 }

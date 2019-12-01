@@ -12,7 +12,7 @@ public class InMemoryProductCatalog implements ProductCatalog {
     this.products = products;
   }
 
-  public Product having(final String name) {
+  public Product productWith(final String name) {
     return products.selectOneWith(name);
   }
 }

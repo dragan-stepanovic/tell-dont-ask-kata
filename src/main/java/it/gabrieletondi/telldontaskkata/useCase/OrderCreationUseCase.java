@@ -24,7 +24,7 @@ class OrderCreationUseCase {
     Order order = Order.withoutOrderItems();
 
     for (SellItemRequest itemRequest : request.getRequests()) {
-      final Product product = productCatalog.having(itemRequest.getProductName());
+      final Product product = productCatalog.productWith(itemRequest.getProductName());
       if (unknown(product)) {
         throw new UnknownProductException();
       }
