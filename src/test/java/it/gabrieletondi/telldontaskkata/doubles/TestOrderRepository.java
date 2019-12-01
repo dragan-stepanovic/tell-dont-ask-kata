@@ -26,4 +26,8 @@ public class TestOrderRepository implements OrderRepository {
   public void add(Order order) {
     this.orders.add(order);
   }
+
+  public boolean savedOrderIs(Order value) {
+    return insertedOrder == value;
+  }
 }

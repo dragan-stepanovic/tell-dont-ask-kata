@@ -62,7 +62,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertThat(orderRepository.getSavedOrder(), is(nullValue()));
+    assertTrue(orderRepository.savedOrderIs(null));
   }
 
   @Test(expected = ShippedOrdersCannotBeChangedException.class)
