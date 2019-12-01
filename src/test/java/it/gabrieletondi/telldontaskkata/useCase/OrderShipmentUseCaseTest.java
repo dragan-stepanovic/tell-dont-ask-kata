@@ -18,10 +18,14 @@ public class OrderShipmentUseCaseTest {
   private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
 
   private static Order orderWithStatus(OrderStatus status) {
-    Order initialOrder = new Order();
+    Order initialOrder = anOrder().build();
     initialOrder.setId(1);
     initialOrder.setStatus(status);
     return initialOrder;
+  }
+
+  private static OrderBuilder anOrder() {
+    return new OrderBuilder();
   }
 
   @Test
