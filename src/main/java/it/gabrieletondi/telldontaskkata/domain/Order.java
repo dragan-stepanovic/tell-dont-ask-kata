@@ -7,6 +7,7 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
 import it.gabrieletondi.telldontaskkata.useCase.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.OrderNotReadyForShippmentException;
+import it.gabrieletondi.telldontaskkata.useCase.RejectedOrderCannotBeApprovedException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,16 @@ public class Order {
   public static Order withoutOrderItems() {
     return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
         new BigDecimal("0.00"));
+  }
+
+  public static void assertNotApprovingRejectedOrder(Order order) {
+    if (approvingRejectedOrder(order)) {
+      throw new RejectedOrderCannotBeApprovedException();
+    }
+  }
+
+  private static boolean approvingRejectedOrder(Order order) {
+    return order.is(REJECTED);
   }
 
   public void assertCanBeShipped() {

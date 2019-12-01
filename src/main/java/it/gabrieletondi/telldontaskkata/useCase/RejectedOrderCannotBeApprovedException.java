@@ -1,4 +1,4 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-class RejectedOrderCannotBeApprovedException extends RuntimeException {
+public class RejectedOrderCannotBeApprovedException extends RuntimeException {
 }
