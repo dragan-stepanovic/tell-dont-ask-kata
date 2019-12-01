@@ -63,6 +63,7 @@ public class Order {
   }
 
   public void markAsApproved() {
+    assertNotApprovingRejectedOrder();
     this.status = APPROVED;
   }
 

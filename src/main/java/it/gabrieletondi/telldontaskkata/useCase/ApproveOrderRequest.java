@@ -11,7 +11,6 @@ class ApproveOrderRequest extends OrderApprovalRequest {
   @Override
   void updateOrderStatus(Order order) {
     super.updateOrderStatus(order);
-    order.assertNotApprovingRejectedOrder();
     order.markAsApproved();
   }
 }
