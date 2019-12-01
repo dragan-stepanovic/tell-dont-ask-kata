@@ -18,7 +18,7 @@ public class OrderCreationUseCase {
 
   public void run(SellItemsRequest request) {
 
-    assertContainsAllProductsWith(request.productNames());
+    assertWeHaveAllProductsWith(request.productNames());
 
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : request.getRequests()) {
@@ -29,7 +29,7 @@ public class OrderCreationUseCase {
     orderRepository.save(order);
   }
 
-  private void assertContainsAllProductsWith(List<String> productNames) {
+  private void assertWeHaveAllProductsWith(List<String> productNames) {
     if (productCatalog.doesNotContainsAllProductsWith(productNames)) {
       throw new UnknownProductException();
     }
