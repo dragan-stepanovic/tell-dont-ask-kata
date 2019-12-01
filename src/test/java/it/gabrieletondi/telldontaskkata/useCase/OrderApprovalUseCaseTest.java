@@ -19,8 +19,8 @@ public class OrderApprovalUseCaseTest {
     orderRepository.add(initialOrder);
 
     OrderApprovalRequest request = new ApproveOrderRequest(1);
-
     useCase.run(request);
+
     assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.APPROVED));
   }
 
@@ -30,7 +30,6 @@ public class OrderApprovalUseCaseTest {
     orderRepository.add(initialOrder);
 
     OrderApprovalRequest request = new RejectOrderRequest(1);
-
     useCase.run(request);
 
     assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.REJECTED));
@@ -42,7 +41,6 @@ public class OrderApprovalUseCaseTest {
     orderRepository.add(initialOrder);
 
     OrderApprovalRequest request = new ApproveOrderRequest(1);
-
     useCase.run(request);
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
@@ -54,7 +52,6 @@ public class OrderApprovalUseCaseTest {
     orderRepository.add(initialOrder);
 
     OrderApprovalRequest request = new RejectOrderRequest(1);
-
     useCase.run(request);
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
@@ -65,9 +62,7 @@ public class OrderApprovalUseCaseTest {
     Order initialOrder = anOrder().with(OrderStatus.SHIPPED).build();
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new ApproveOrderRequest(1);
-
-    useCase.run(request);
+    useCase.run(new ApproveOrderRequest(1));
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
   }
@@ -77,9 +72,7 @@ public class OrderApprovalUseCaseTest {
     Order initialOrder = anOrder().with(OrderStatus.SHIPPED).build();
     orderRepository.add(initialOrder);
 
-    OrderApprovalRequest request = new RejectOrderRequest(1);
-
-    useCase.run(request);
+    useCase.run(new RejectOrderRequest(1));
 
     assertTrue(orderRepository.thereIsNoSavedOrder());
   }
