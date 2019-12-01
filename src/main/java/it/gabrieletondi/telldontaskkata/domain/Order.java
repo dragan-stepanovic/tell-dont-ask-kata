@@ -39,14 +39,14 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public static void assertNotApprovingRejectedOrder(Order order) {
-    if (approvingRejectedOrder(order)) {
+  public void assertNotApprovingRejectedOrder() {
+    if (approvingRejectedOrder()) {
       throw new RejectedOrderCannotBeApprovedException();
     }
   }
 
-  private static boolean approvingRejectedOrder(Order order) {
-    return order.is(REJECTED);
+  private boolean approvingRejectedOrder() {
+    return is(REJECTED);
   }
 
   public void assertCanBeShipped() {
