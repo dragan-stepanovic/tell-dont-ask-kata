@@ -3,7 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import java.util.List;
 import java.util.stream.Stream;
 
-class SellItemsRequest {
+public class SellItemsRequest {
 
   private List<SellItemRequest> requests;
 
@@ -11,7 +11,7 @@ class SellItemsRequest {
     this.requests = requests;
   }
 
-  Stream<String> productNames() {
+  public Stream<String> productNames() {
     return requests.stream().map(SellItemRequest::getProductName);
   }
 

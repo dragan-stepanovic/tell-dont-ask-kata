@@ -17,7 +17,7 @@ class OrderCreationUseCase {
 
   void run(SellItemsRequest request) {
 
-    if (notAllProductsFound(request)) {
+    if (ProductCatalog.notAllProductsFound(request, productCatalog)) {
       throw new UnknownProductException();
     }
 
@@ -28,15 +28,5 @@ class OrderCreationUseCase {
     }
 
     orderRepository.save(order);
-  }
-
-  private boolean notAllProductsFound(SellItemsRequest request) {
-    return request.productNames()
-        .map(productCatalog::productWith)
-        .anyMatch(this::unknown);
-  }
-
-  private boolean unknown(Product product) {
-    return product == null;
   }
 }
