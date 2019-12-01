@@ -4,6 +4,7 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import java.util.Objects;
 
 class OrderCreationUseCase {
 
@@ -17,21 +18,24 @@ class OrderCreationUseCase {
 
   void run(SellItemsRequest request) {
 
-//    final List<Product> products = request.getRequests().stream().map(SellItemRequest::getProductName)
-//        .map(productCatalog::getByName)
-//        .collect(Collectors.toList());
+    if (notAllProductsFound(request)) {
+      throw new UnknownProductException();
+    }
 
     Order order = Order.withoutOrderItems();
 
     for (SellItemRequest itemRequest : request.getRequests()) {
       final Product product = productCatalog.productWith(itemRequest.getProductName());
-      if (unknown(product)) {
-        throw new UnknownProductException();
-      }
       order.addOrderItemFor(product, itemRequest.getQuantity());
     }
 
     orderRepository.save(order);
+  }
+
+  private boolean notAllProductsFound(SellItemsRequest request) {
+    return request.getRequests().stream().map(SellItemRequest::getProductName)
+        .map(productCatalog::productWith)
+        .anyMatch(Objects::isNull);
   }
 
   private boolean unknown(Product product) {
