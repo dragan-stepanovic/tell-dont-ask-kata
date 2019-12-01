@@ -19,6 +19,10 @@ public class Product {
     this.price = price;
   }
 
+  private static BigDecimal multiply(BigDecimal value, int quantity) {
+    return value.multiply(valueOf(quantity)).setScale(2, HALF_UP);
+  }
+
   boolean with(String thatName) {
     return name.equals(thatName);
   }
@@ -29,9 +33,5 @@ public class Product {
 
   BigDecimal taxAmountFor(int quantity) {
     return multiply(price.unitaryTaxAmount(), quantity);
-  }
-
-  private static BigDecimal multiply(BigDecimal value, int quantity) {
-    return value.multiply(valueOf(quantity)).setScale(2, HALF_UP);
   }
 }
