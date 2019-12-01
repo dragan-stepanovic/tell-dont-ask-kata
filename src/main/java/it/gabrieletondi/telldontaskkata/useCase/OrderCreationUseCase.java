@@ -4,6 +4,7 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import java.util.List;
 
 class OrderCreationUseCase {
 
@@ -17,9 +18,7 @@ class OrderCreationUseCase {
 
   void run(SellItemsRequest request) {
 
-    if (productCatalog.doesNotContainsAllProductsWith(request.productNames())) {
-      throw new UnknownProductException();
-    }
+    assertContainsAllProductsWith(request.productNames());
 
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : request.getRequests()) {
@@ -28,5 +27,11 @@ class OrderCreationUseCase {
     }
 
     orderRepository.save(order);
+  }
+
+  private void assertContainsAllProductsWith(List<String> productNames) {
+    if (productCatalog.doesNotContainsAllProductsWith(productNames)) {
+      throw new UnknownProductException();
+    }
   }
 }
