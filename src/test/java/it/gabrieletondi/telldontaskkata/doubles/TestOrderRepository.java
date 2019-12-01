@@ -15,10 +15,6 @@ public class TestOrderRepository implements OrderRepository {
     return savedOrderIs(null);
   }
 
-  public Order getSavedOrder() {
-    return insertedOrder;
-  }
-
   public void save(Order order) {
     this.insertedOrder = order;
   }

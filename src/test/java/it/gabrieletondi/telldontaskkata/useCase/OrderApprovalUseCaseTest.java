@@ -45,7 +45,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertTrue(orderRepository.savedOrderIs(null));
+    assertTrue(orderRepository.thereIsNoSavedOrder());
   }
 
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
@@ -57,7 +57,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertTrue(orderRepository.savedOrderIs(null));
+    assertTrue(orderRepository.thereIsNoSavedOrder());
   }
 
   @Test(expected = ShippedOrdersCannotBeChangedException.class)
@@ -69,7 +69,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertTrue(orderRepository.savedOrderIs(null));
+    assertTrue(orderRepository.thereIsNoSavedOrder());
   }
 
   @Test(expected = ShippedOrdersCannotBeChangedException.class)
@@ -81,6 +81,6 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertTrue(orderRepository.savedOrderIs(null));
+    assertTrue(orderRepository.thereIsNoSavedOrder());
   }
 }
