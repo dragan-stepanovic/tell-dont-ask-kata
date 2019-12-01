@@ -1,4 +1,4 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-class OrderNotReadyForShippmentException extends RuntimeException {
+public class OrderNotReadyForShippmentException extends RuntimeException {
 }

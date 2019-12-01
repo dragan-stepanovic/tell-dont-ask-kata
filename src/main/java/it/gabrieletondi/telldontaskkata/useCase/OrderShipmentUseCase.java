@@ -17,24 +17,12 @@ class OrderShipmentUseCase {
   void run(OrderShipmentRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    assertNotShippedAlready(order);
-    assertCanBeShipped(order);
+    order.assertNotShippedAlready();
+    order.assertCanBeShipped();
     shipmentService.ship(order);
 
     order.markAsShipped();
     orderRepository.save(order);
-  }
-
-  private void assertCanBeShipped(Order order) {
-    if (order.notReadyForShippment()) {
-      throw new OrderNotReadyForShippmentException();
-    }
-  }
-
-  private void assertNotShippedAlready(Order order) {
-    if (order.shippedAlready()) {
-      throw new OrderCannotBeShippedTwiceException();
-    }
   }
 
 }

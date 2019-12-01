@@ -5,6 +5,8 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
+import it.gabrieletondi.telldontaskkata.useCase.OrderCannotBeShippedTwiceException;
+import it.gabrieletondi.telldontaskkata.useCase.OrderNotReadyForShippmentException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +38,23 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public boolean notReadyForShippment() {
+  public void assertNotShippedAlready() {
+    if (shippedAlready()) {
+      throw new OrderCannotBeShippedTwiceException();
+    }
+  }
+
+  public void assertCanBeShipped() {
+    if (notReadyForShipment()) {
+      throw new OrderNotReadyForShippmentException();
+    }
+  }
+
+  private boolean notReadyForShipment() {
     return is(CREATED) || is(REJECTED);
   }
 
-  public boolean shippedAlready() {
+  private boolean shippedAlready() {
     return is(SHIPPED);
   }
 
