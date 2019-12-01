@@ -20,7 +20,7 @@ public class Price {
   }
 
   BigDecimal unitaryTaxAmount() {
-    return this.amount.divide(valueOf(100)).multiply(this.taxPercentage).setScale(2, HALF_UP);
+    return amount.divide(valueOf(100)).multiply(this.taxPercentage).setScale(2, HALF_UP);
   }
 
   BigDecimal includingUnitaryTax() {
