@@ -63,7 +63,7 @@ public class Order {
   }
 
   public void markAsShipped() {
-    changeStatusTo(OrderStatus.SHIPPED);
+    changeStatusTo(SHIPPED);
   }
 
   public void addOrderItemFor(Product product, int quantity) {
