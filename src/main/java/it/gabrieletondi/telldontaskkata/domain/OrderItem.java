@@ -10,13 +10,13 @@ public class OrderItem {
 
   private Product product;
   private int quantity;
-  private BigDecimal price;
+  private BigDecimal taxedAmount;
   private BigDecimal taxAmount;
 
-  public OrderItem(Product product, int quantity, BigDecimal price, BigDecimal taxAmount) {
+  public OrderItem(Product product, int quantity, BigDecimal taxedAmount, BigDecimal taxAmount) {
     this.product = product;
     this.quantity = quantity;
-    this.price = price;
+    this.taxedAmount = taxedAmount;
     this.taxAmount = taxAmount;
   }
 
@@ -24,8 +24,8 @@ public class OrderItem {
     return new OrderItem(product, quantity, product.taxedAmountFor(quantity), product.taxAmountFor(quantity));
   }
 
-  BigDecimal getPrice() {
-    return price;
+  BigDecimal getTaxedAmount() {
+    return taxedAmount;
   }
 
   BigDecimal getTaxAmount() {
