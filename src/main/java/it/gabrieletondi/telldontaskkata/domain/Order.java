@@ -51,13 +51,13 @@ public class Order {
   }
 
   public void markAsRejected() {
-    assertNotChangingShippedOrder();
+    assertNotTryingToChangeShippedOrder();
     assertNotRejectingApprovedOrder();
     changeStatusTo(REJECTED);
   }
 
   public void markAsApproved() {
-    assertNotChangingShippedOrder();
+    assertNotTryingToChangeShippedOrder();
     assertNotApprovingRejectedOrder();
     changeStatusTo(APPROVED);
   }
@@ -124,13 +124,13 @@ public class Order {
     return is(APPROVED);
   }
 
-  private void assertNotChangingShippedOrder() {
-    if (changingShippedOrder()) {
+  private void assertNotTryingToChangeShippedOrder() {
+    if (tryingToChangeShippedOrder()) {
       throw new ShippedOrdersCannotBeChangedException();
     }
   }
 
-  private boolean changingShippedOrder() {
+  private boolean tryingToChangeShippedOrder() {
     return is(SHIPPED);
   }
 
