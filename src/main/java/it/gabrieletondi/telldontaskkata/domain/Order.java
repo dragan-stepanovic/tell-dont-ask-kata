@@ -1,7 +1,9 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,6 +34,14 @@ public class Order {
   public static Order withoutOrderItems() {
     return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
         new BigDecimal("0.00"));
+  }
+
+  public boolean canBeShipped() {
+    return is(CREATED) || is(REJECTED);
+  }
+
+  public boolean shippedAlready() {
+    return is(SHIPPED);
   }
 
   public void markAsRejected() {

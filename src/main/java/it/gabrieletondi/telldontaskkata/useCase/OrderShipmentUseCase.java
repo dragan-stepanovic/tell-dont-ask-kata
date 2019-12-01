@@ -1,9 +1,5 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
-
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.service.ShipmentService;
@@ -30,14 +26,15 @@ class OrderShipmentUseCase {
   }
 
   private void assertCanBeShipped(Order order) {
-    if (order.is(CREATED) || order.is(REJECTED)) {
+    if (order.canBeShipped()) {
       throw new OrderCannotBeShippedException();
     }
   }
 
   private void assertNotShippedAlready(Order order) {
-    if (order.is(SHIPPED)) {
+    if (order.shippedAlready()) {
       throw new OrderCannotBeShippedTwiceException();
     }
   }
+
 }
