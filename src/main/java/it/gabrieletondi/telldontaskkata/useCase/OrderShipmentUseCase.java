@@ -40,5 +40,4 @@ class OrderShipmentUseCase {
       throw new OrderCannotBeShippedTwiceException();
     }
   }
-
 }
