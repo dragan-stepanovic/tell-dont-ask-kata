@@ -10,29 +10,30 @@ import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.service.ShipmentService;
 
 class OrderShipmentUseCase {
-    private final OrderRepository orderRepository;
-    private final ShipmentService shipmentService;
 
-    public OrderShipmentUseCase(OrderRepository orderRepository, ShipmentService shipmentService) {
-        this.orderRepository = orderRepository;
-        this.shipmentService = shipmentService;
+  private final OrderRepository orderRepository;
+  private final ShipmentService shipmentService;
+
+  OrderShipmentUseCase(OrderRepository orderRepository, ShipmentService shipmentService) {
+    this.orderRepository = orderRepository;
+    this.shipmentService = shipmentService;
+  }
+
+  void run(OrderShipmentRequest request) {
+    final Order order = orderRepository.getById(request.getOrderId());
+
+    if (order.is(CREATED) || order.is(REJECTED)) {
+      throw new OrderCannotBeShippedException();
     }
 
-    public void run(OrderShipmentRequest request) {
-        final Order order = orderRepository.getById(request.getOrderId());
-
-        if (order.is(CREATED) || order.is(REJECTED)) {
-            throw new OrderCannotBeShippedException();
-        }
-
-        if (order.is(SHIPPED)) {
-            throw new OrderCannotBeShippedTwiceException();
-        }
-
-        shipmentService.ship(order);
-
-        order.setStatus(OrderStatus.SHIPPED);
-        orderRepository.save(order);
+    if (order.is(SHIPPED)) {
+      throw new OrderCannotBeShippedTwiceException();
     }
+
+    shipmentService.ship(order);
+
+    order.setStatus(OrderStatus.SHIPPED);
+    orderRepository.save(order);
+  }
 
 }
