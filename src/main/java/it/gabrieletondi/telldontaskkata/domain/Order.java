@@ -41,26 +41,6 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public void assertNotRejectingApprovedOrder() {
-    if (rejectingApprovedOrder()) {
-      throw new ApprovedOrderCannotBeRejectedException();
-    }
-  }
-
-  private boolean rejectingApprovedOrder() {
-    return is(APPROVED);
-  }
-
-  public void assertNotChangingShippedOrder() {
-    if (changingShippedOrder()) {
-      throw new ShippedOrdersCannotBeChangedException();
-    }
-  }
-
-  private boolean changingShippedOrder() {
-    return is(SHIPPED);
-  }
-
   public void assertCanBeShipped() {
     assertNotShippedAlready();
     assertReadyForShipment();
@@ -80,10 +60,6 @@ public class Order {
 
   public void markAsShipped() {
     changeStatusTo(OrderStatus.SHIPPED);
-  }
-
-  public boolean is(OrderStatus thatStatus) {
-    return this.status == thatStatus;
   }
 
   public void addOrderItemFor(Product product, int quantity) {
@@ -136,5 +112,29 @@ public class Order {
 
   private boolean approvingRejectedOrder() {
     return is(REJECTED);
+  }
+
+  private void assertNotRejectingApprovedOrder() {
+    if (rejectingApprovedOrder()) {
+      throw new ApprovedOrderCannotBeRejectedException();
+    }
+  }
+
+  private boolean rejectingApprovedOrder() {
+    return is(APPROVED);
+  }
+
+  private void assertNotChangingShippedOrder() {
+    if (changingShippedOrder()) {
+      throw new ShippedOrdersCannotBeChangedException();
+    }
+  }
+
+  private boolean changingShippedOrder() {
+    return is(SHIPPED);
+  }
+
+  private boolean is(OrderStatus thatStatus) {
+    return this.status == thatStatus;
   }
 }
