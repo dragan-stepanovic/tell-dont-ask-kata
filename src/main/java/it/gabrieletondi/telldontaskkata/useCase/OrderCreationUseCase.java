@@ -4,7 +4,6 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
-import java.util.Objects;
 
 class OrderCreationUseCase {
 
@@ -23,7 +22,6 @@ class OrderCreationUseCase {
     }
 
     Order order = Order.withoutOrderItems();
-
     for (SellItemRequest itemRequest : request.getRequests()) {
       final Product product = productCatalog.productWith(itemRequest.getProductName());
       order.addOrderItemFor(product, itemRequest.getQuantity());
@@ -35,7 +33,7 @@ class OrderCreationUseCase {
   private boolean notAllProductsFound(SellItemsRequest request) {
     return request.getRequests().stream().map(SellItemRequest::getProductName)
         .map(productCatalog::productWith)
-        .anyMatch(Objects::isNull);
+        .anyMatch(this::unknown);
   }
 
   private boolean unknown(Product product) {
