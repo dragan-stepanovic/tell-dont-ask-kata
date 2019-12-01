@@ -17,7 +17,7 @@ class OrderCreationUseCase {
 
   void run(SellItemsRequest request) {
 
-    if (ProductCatalog.notAllProductsFound(request, productCatalog)) {
+    if (productCatalog.notAllProductsFound(request)) {
       throw new UnknownProductException();
     }
 
