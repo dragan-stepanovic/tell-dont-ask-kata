@@ -1,7 +1,5 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
-
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
 class OrderApprovalRequest {
@@ -13,16 +11,7 @@ class OrderApprovalRequest {
   }
 
   void updateOrderStatus(Order order) {
-    assertNotChangingShippedOrder(order);
+    Order.assertNotChangingShippedOrder(order);
   }
 
-  private static void assertNotChangingShippedOrder(Order order) {
-    if (changingShippedOrder(order)) {
-      throw new ShippedOrdersCannotBeChangedException();
-    }
-  }
-
-  private static boolean changingShippedOrder(Order order) {
-    return order.is(SHIPPED);
-  }
 }
