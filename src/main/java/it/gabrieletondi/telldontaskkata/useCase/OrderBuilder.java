@@ -15,7 +15,7 @@ class OrderBuilder {
   }
 
   Order build() {
-    final Order order = new Order(status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
+    final Order order = new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
     order.setId(id);
     return order;
   }

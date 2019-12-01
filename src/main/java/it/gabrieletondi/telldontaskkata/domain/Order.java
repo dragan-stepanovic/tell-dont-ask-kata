@@ -28,6 +28,15 @@ public class Order {
   public Order() {
   }
 
+  public Order(int id, OrderStatus status, List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
+    this.id = id;
+    this.status = status;
+    this.items = items;
+    this.currency = currency;
+    this.total = total;
+    this.tax = tax;
+  }
+
   public static Order withoutOrderItems() {
     return new Order(OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
         new BigDecimal("0.00"));
