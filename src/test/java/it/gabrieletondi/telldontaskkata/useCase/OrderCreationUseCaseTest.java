@@ -7,6 +7,7 @@ import it.gabrieletondi.telldontaskkata.domain.Category;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
+import it.gabrieletondi.telldontaskkata.domain.Price;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.domain.Products;
 import it.gabrieletondi.telldontaskkata.doubles.InMemoryProductCatalog;
@@ -22,8 +23,8 @@ public class OrderCreationUseCaseTest {
   private final Category food = new Category("food", new BigDecimal("10"));
   private final ProductCatalog productCatalog = new InMemoryProductCatalog(
       new Products(asList(
-          new Product("salad", new BigDecimal("3.56"), food.getTaxPercentage()),
-          new Product("tomato", new BigDecimal("4.65"), food.getTaxPercentage()))));
+          new Product("salad", new Price(new BigDecimal("3.56"), food.getTaxPercentage())),
+          new Product("tomato", new Price(new BigDecimal("4.65"), food.getTaxPercentage())))));
   private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
 
   @Test
@@ -36,10 +37,10 @@ public class OrderCreationUseCaseTest {
 
     final Order insertedOrder = orderRepository.getSavedOrder();
     final Order expected = new Order(1, OrderStatus.CREATED,
-        asList(new OrderItem(new Product("salad", new BigDecimal("3.56"), food.getTaxPercentage()), 2,
+        asList(new OrderItem(new Product("salad", new Price(new BigDecimal("3.56"), food.getTaxPercentage())), 2,
                 new BigDecimal("0.72"),
                 new BigDecimal("7.84")),
-            new OrderItem(new Product("tomato", new BigDecimal("4.65"), food.getTaxPercentage()), 3,
+            new OrderItem(new Product("tomato", new Price(new BigDecimal("4.65"), food.getTaxPercentage())), 3,
                 new BigDecimal("1.41"),
                 new BigDecimal("15.36"))),
         "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));

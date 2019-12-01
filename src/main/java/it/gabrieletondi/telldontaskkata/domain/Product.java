@@ -14,9 +14,9 @@ public class Product {
   private String name;
   private Price price;
 
-  public Product(String name, BigDecimal amount, BigDecimal taxPercentage) {
+  public Product(String name, Price price) {
     this.name = name;
-    this.price = new Price(amount, taxPercentage);
+    this.price = price;
   }
 
   boolean has(String thatName) {
