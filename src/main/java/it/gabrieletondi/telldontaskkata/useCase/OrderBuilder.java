@@ -14,11 +14,6 @@ class OrderBuilder {
     return new OrderBuilder();
   }
 
-  static Order withoutOrderItems() {
-    return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
-        new BigDecimal("0.00"));
-  }
-
   Order build() {
     return new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }

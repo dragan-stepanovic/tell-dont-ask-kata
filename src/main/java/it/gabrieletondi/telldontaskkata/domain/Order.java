@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -34,6 +35,11 @@ public class Order {
     this.currency = currency;
     this.total = total;
     this.tax = tax;
+  }
+
+  public static Order withoutOrderItems() {
+    return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
+        new BigDecimal("0.00"));
   }
 
   public boolean is(OrderStatus thatStatus) {
