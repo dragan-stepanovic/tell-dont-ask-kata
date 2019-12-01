@@ -23,5 +23,4 @@ class OrderShipmentUseCase {
 
     orderRepository.save(order);
   }
-
 }
