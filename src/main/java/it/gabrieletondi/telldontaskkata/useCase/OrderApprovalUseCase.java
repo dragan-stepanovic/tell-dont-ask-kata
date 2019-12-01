@@ -16,5 +16,4 @@ class OrderApprovalUseCase {
     request.updateOrderStatus(order);
     orderRepository.save(order);
   }
-
 }
