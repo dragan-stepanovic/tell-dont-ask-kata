@@ -20,12 +20,12 @@ class OrderBuilder {
     return order;
   }
 
-  OrderBuilder withStatus(OrderStatus status) {
+  OrderBuilder with(OrderStatus status) {
     this.status = status;
     return this;
   }
 
-  OrderBuilder withId(int id) {
+  OrderBuilder with(int id) {
     this.id = id;
     return this;
   }
