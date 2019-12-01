@@ -12,14 +12,12 @@ import lombok.ToString;
 public class Product {
 
   private String name;
-  private BigDecimal price;
+  private Price price;
   private Category category;
-  private Price price1;
 
   public Product(String name, BigDecimal price, Category category) {
     this.name = name;
-    this.price = price;
-    this.price1 = new Price(price, category.getTaxPercentage());
+    this.price = new Price(price, category.getTaxPercentage());
     this.category = category;
   }
 
@@ -28,11 +26,11 @@ public class Product {
   }
 
   BigDecimal taxAmountFor(int quantity) {
-    return price1.unitaryTax().multiply(BigDecimal.valueOf(quantity));
+    return price.unitaryTax().multiply(BigDecimal.valueOf(quantity));
   }
 
   private BigDecimal unitaryTaxedAmount() {
-    return price1.addUnitaryTax().setScale(2, HALF_UP);
+    return price.addUnitaryTax();
   }
 
   BigDecimal taxedAmountFor(int quantity) {
