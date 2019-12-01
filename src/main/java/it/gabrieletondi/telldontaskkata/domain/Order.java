@@ -41,6 +41,10 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
+  public boolean hasId(int orderId) {
+    return id == orderId;
+  }
+
   public void assertCanBeShipped() {
     assertNotShippedAlready();
     assertReadyForShipment();
@@ -64,10 +68,6 @@ public class Order {
 
   public void addOrderItemFor(Product product, int quantity) {
     add(OrderItem.forA(product, quantity));
-  }
-
-  public int getId() {
-    return id;
   }
 
   public boolean hasStatus(OrderStatus thatStatus) {
