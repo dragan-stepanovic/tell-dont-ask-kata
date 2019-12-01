@@ -2,21 +2,20 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 class SellItemRequest {
 
-  private int quantity;
   private String productName;
+  private int quantity;
 
   SellItemRequest(String productName, int quantity) {
-
     this.productName = productName;
     this.quantity = quantity;
   }
 
-  int getQuantity() {
-    return quantity;
-  }
-
   String getProductName() {
     return productName;
+  }
+
+  int getQuantity() {
+    return quantity;
   }
 
 }
