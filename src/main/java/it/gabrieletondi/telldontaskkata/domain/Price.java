@@ -9,12 +9,12 @@ import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-class Price {
+public class Price {
 
   private final BigDecimal amount;
   private final BigDecimal taxPercentage;
 
-  Price(BigDecimal amount, BigDecimal taxPercentage) {
+  public Price(BigDecimal amount, BigDecimal taxPercentage) {
     this.amount = amount;
     this.taxPercentage = taxPercentage;
   }
