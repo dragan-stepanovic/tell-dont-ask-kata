@@ -2,7 +2,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-class OrderApprovalRequest {
+abstract class OrderApprovalRequest {
 
   int orderId;
 
@@ -10,7 +10,5 @@ class OrderApprovalRequest {
     return orderId;
   }
 
-  void updateOrderStatus(Order order) {
-    order.assertNotChangingShippedOrder();
-  }
+  abstract void updateOrderStatus(Order order);
 }
