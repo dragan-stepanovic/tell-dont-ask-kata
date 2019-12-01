@@ -14,10 +14,12 @@ public class Product {
   private String name;
   private BigDecimal price;
   private Category category;
+  private Price price1;
 
   public Product(String name, BigDecimal price, Category category) {
     this.name = name;
     this.price = price;
+    this.price1 = new Price(price, category.getTaxPercentage());
     this.category = category;
   }
 
@@ -25,16 +27,12 @@ public class Product {
     return this.name.equals(thatName);
   }
 
-  private BigDecimal unitaryTax() {
-    return price.divide(valueOf(100)).multiply(category.getTaxPercentage()).setScale(2, HALF_UP);
-  }
-
   BigDecimal taxAmountFor(int quantity) {
-    return unitaryTax().multiply(BigDecimal.valueOf(quantity));
+    return price1.unitaryTax().multiply(BigDecimal.valueOf(quantity));
   }
 
   private BigDecimal unitaryTaxedAmount() {
-    return price.add(unitaryTax()).setScale(2, HALF_UP);
+    return price1.addUnitaryTax().setScale(2, HALF_UP);
   }
 
   BigDecimal taxedAmountFor(int quantity) {
