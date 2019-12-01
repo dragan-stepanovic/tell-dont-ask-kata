@@ -17,7 +17,7 @@ public class OrderShipmentUseCaseTest {
   private final TestShipmentService shipmentService = new TestShipmentService();
   private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
 
-  private static Order orderWithIdAndStatus(OrderStatus status) {
+  private static Order orderWithStatus(OrderStatus status) {
     Order initialOrder = new Order();
     initialOrder.setId(1);
     initialOrder.setStatus(status);
@@ -26,7 +26,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final Order initialOrder = orderWithIdAndStatus(OrderStatus.APPROVED);
+    final Order initialOrder = orderWithStatus(OrderStatus.APPROVED);
     orderRepository.add(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest(1);
@@ -39,7 +39,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedException.class)
   public void createdOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(orderWithIdAndStatus(OrderStatus.CREATED));
+    orderRepository.add(orderWithStatus(OrderStatus.CREATED));
     OrderShipmentRequest request = new OrderShipmentRequest(1);
 
     useCase.run(request);
@@ -50,7 +50,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(orderWithIdAndStatus(OrderStatus.REJECTED));
+    orderRepository.add(orderWithStatus(OrderStatus.REJECTED));
 
     OrderShipmentRequest request = new OrderShipmentRequest(1);
 
@@ -62,7 +62,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.add(orderWithIdAndStatus(OrderStatus.SHIPPED));
+    orderRepository.add(orderWithStatus(OrderStatus.SHIPPED));
 
     OrderShipmentRequest request = new OrderShipmentRequest(1);
 
