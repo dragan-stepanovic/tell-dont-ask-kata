@@ -63,7 +63,7 @@ public class OrderShipmentUseCaseTest {
 
     useCase.run(request);
 
-    assertThat(orderRepository.getSavedOrder(), is(nullValue()));
+    assertTrue(orderRepository.thereIsNoSavedOrder());
     assertThat(shipmentService.getShippedOrder(), is(nullValue()));
   }
 }
