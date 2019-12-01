@@ -16,13 +16,13 @@ class OrderApprovalRequest {
     assertNotChangingShippedOrder(order);
   }
 
-  private void assertNotChangingShippedOrder(Order order) {
+  private static void assertNotChangingShippedOrder(Order order) {
     if (changingShippedOrder(order)) {
       throw new ShippedOrdersCannotBeChangedException();
     }
   }
 
-  private boolean changingShippedOrder(Order order) {
+  private static boolean changingShippedOrder(Order order) {
     return order.is(SHIPPED);
   }
 }
