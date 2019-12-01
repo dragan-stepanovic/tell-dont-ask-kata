@@ -12,5 +12,4 @@ class RejectOrderRequest extends OrderApprovalRequest {
   void updateOrderStatus(Order order) {
     order.markAsRejected();
   }
-
 }
