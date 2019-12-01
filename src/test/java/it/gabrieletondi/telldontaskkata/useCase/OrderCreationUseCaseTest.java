@@ -28,7 +28,7 @@ public class OrderCreationUseCaseTest {
       new Products(asList(
           new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage)),
           new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage)))));
-  private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
+  private final OrderCreationUseCase orderCreation = new OrderCreationUseCase(orderRepository, productCatalog);
 
   @Test
   public void sellMultipleItems() throws Exception {
@@ -36,7 +36,7 @@ public class OrderCreationUseCaseTest {
     SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
     final SellItemsRequest request = new SellItemsRequest(asList(saladRequest, tomatoRequest));
 
-    useCase.run(request);
+    orderCreation.run(request);
 
     final Order expected = new Order(1, OrderStatus.CREATED,
         asList(new OrderItem(new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage)), 2,
@@ -52,6 +52,6 @@ public class OrderCreationUseCaseTest {
   public void unknownProduct() throws Exception {
     SellItemRequest unknownProductRequest = new SellItemRequest("unknown product", 0);
     SellItemsRequest request = new SellItemsRequest(Collections.singletonList(unknownProductRequest));
-    useCase.run(request);
+    orderCreation.run(request);
   }
 }
