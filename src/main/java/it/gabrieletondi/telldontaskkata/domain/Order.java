@@ -5,11 +5,11 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
-import it.gabrieletondi.telldontaskkata.useCase.invariants.ApprovedOrderCannotBeRejectedException;
-import it.gabrieletondi.telldontaskkata.useCase.invariants.OrderCannotBeShippedTwiceException;
-import it.gabrieletondi.telldontaskkata.useCase.invariants.OrderNotReadyForShippmentException;
-import it.gabrieletondi.telldontaskkata.useCase.invariants.RejectedOrderCannotBeApprovedException;
-import it.gabrieletondi.telldontaskkata.useCase.invariants.ShippedOrdersCannotBeChangedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejectedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.RejectedOrderCannotBeApprovedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeChangedException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotReadyForShippmentException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

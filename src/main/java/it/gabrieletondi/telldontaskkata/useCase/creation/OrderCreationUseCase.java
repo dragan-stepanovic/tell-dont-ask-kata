@@ -6,7 +6,6 @@ import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import it.gabrieletondi.telldontaskkata.useCase.SellItemRequest;
 import it.gabrieletondi.telldontaskkata.useCase.SellItemsRequest;
-import it.gabrieletondi.telldontaskkata.useCase.invariants.UnknownProductException;
 import java.util.List;
 
 public class OrderCreationUseCase {
