@@ -32,7 +32,7 @@ public class OrderShipmentUseCaseTest {
     assertThat(shipmentService.getShippedOrder(), is(initialOrder));
   }
 
-  @Test(expected = OrderCannotBeShippedException.class)
+  @Test(expected = OrderNotReadyForShippmentException.class)
   public void createdOrdersCannotBeShipped() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.CREATED).build());
     OrderShipmentRequest request = new OrderShipmentRequest(1);
@@ -43,7 +43,7 @@ public class OrderShipmentUseCaseTest {
     assertThat(shipmentService.getShippedOrder(), is(nullValue()));
   }
 
-  @Test(expected = OrderCannotBeShippedException.class)
+  @Test(expected = OrderNotReadyForShippmentException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.REJECTED).build());
 
