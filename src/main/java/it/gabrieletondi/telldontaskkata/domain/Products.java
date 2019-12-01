@@ -10,7 +10,7 @@ public class Products {
     this.values = values;
   }
 
-  public Product selectOneHaving(String name) {
-    return values.stream().filter(p -> p.has(name)).findFirst().orElse(null);
+  public Product selectOneWith(String name) {
+    return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
   }
 }

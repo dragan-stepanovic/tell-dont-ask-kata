@@ -13,6 +13,6 @@ public class InMemoryProductCatalog implements ProductCatalog {
   }
 
   public Product having(final String name) {
-    return products.selectOneHaving(name);
+    return products.selectOneWith(name);
   }
 }

@@ -23,7 +23,7 @@ public class Product {
     return value.multiply(valueOf(quantity)).setScale(2, HALF_UP);
   }
 
-  boolean has(String thatName) {
+  boolean with(String thatName) {
     return this.name.equals(thatName);
   }
 
