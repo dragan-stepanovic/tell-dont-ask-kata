@@ -15,9 +15,9 @@ public class Product {
   private Price price;
   private Category category;
 
-  public Product(String name, BigDecimal price, Category category) {
+  public Product(String name, BigDecimal price, Category category, BigDecimal taxPercentage) {
     this.name = name;
-    this.price = new Price(price, category.getTaxPercentage());
+    this.price = new Price(price, taxPercentage);
     this.category = category;
   }
 

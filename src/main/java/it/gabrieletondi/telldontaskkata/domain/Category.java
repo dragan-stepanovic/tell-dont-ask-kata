@@ -12,7 +12,7 @@ public class Category {
     this.taxPercentage = taxPercentage;
   }
 
-  BigDecimal getTaxPercentage() {
+  public BigDecimal getTaxPercentage() {
     return taxPercentage;
   }
 }

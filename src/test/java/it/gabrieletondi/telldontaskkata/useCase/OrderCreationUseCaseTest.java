@@ -22,8 +22,8 @@ public class OrderCreationUseCaseTest {
   private final Category food = new Category("food", new BigDecimal("10"));
   private final ProductCatalog productCatalog = new InMemoryProductCatalog(
       new Products(asList(
-          new Product("salad", new BigDecimal("3.56"), food),
-          new Product("tomato", new BigDecimal("4.65"), food))));
+          new Product("salad", new BigDecimal("3.56"), food, food.getTaxPercentage()),
+          new Product("tomato", new BigDecimal("4.65"), food, food.getTaxPercentage()))));
   private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
 
   @Test
@@ -36,9 +36,11 @@ public class OrderCreationUseCaseTest {
 
     final Order insertedOrder = orderRepository.getSavedOrder();
     final Order expected = new Order(1, OrderStatus.CREATED,
-        asList(new OrderItem(new Product("salad", new BigDecimal("3.56"), food), 2, new BigDecimal("0.72"),
+        asList(new OrderItem(new Product("salad", new BigDecimal("3.56"), food, food.getTaxPercentage()), 2,
+                new BigDecimal("0.72"),
                 new BigDecimal("7.84")),
-            new OrderItem(new Product("tomato", new BigDecimal("4.65"), food), 3, new BigDecimal("1.41"),
+            new OrderItem(new Product("tomato", new BigDecimal("4.65"), food, food.getTaxPercentage()), 3,
+                new BigDecimal("1.41"),
                 new BigDecimal("15.36"))),
         "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
 
