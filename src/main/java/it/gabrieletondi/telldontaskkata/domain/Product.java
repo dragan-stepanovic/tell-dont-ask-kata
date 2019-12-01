@@ -13,12 +13,10 @@ public class Product {
 
   private String name;
   private Price price;
-  private Category category;
 
-  public Product(String name, BigDecimal price, Category category, BigDecimal taxPercentage) {
+  public Product(String name, BigDecimal amount, BigDecimal taxPercentage) {
     this.name = name;
-    this.price = new Price(price, taxPercentage);
-    this.category = category;
+    this.price = new Price(amount, taxPercentage);
   }
 
   boolean has(String thatName) {
