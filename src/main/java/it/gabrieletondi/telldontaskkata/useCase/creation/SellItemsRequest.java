@@ -1,4 +1,4 @@
-package it.gabrieletondi.telldontaskkata.useCase;
+package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import java.util.List;
 import java.util.stream.Collectors;
