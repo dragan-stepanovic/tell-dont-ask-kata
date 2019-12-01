@@ -24,11 +24,11 @@ public class OrderItem {
     return new OrderItem(product, quantity, product.taxedAmountFor(quantity), product.taxAmountFor(quantity));
   }
 
-  BigDecimal addTaxedAmountTo(BigDecimal total) {
-    return total.add(taxedAmount);
+  BigDecimal addTaxAmountTo(BigDecimal tax) {
+    return tax.add(taxAmount);
   }
 
-  BigDecimal getTaxAmount() {
-    return taxAmount;
+  BigDecimal addTaxedAmountTo(BigDecimal total) {
+    return total.add(taxedAmount);
   }
 }

@@ -77,7 +77,7 @@ public class Order {
   private void add(OrderItem orderItem) {
     items.add(orderItem);
     total = orderItem.addTaxedAmountTo(total);
-    tax = tax.add(orderItem.getTaxAmount());
+    tax = orderItem.addTaxAmountTo(tax);
   }
 
   private void assertNotShippedAlready() {
