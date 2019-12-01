@@ -11,6 +11,10 @@ public class TestOrderRepository implements OrderRepository {
   private Order insertedOrder;
   private List<Order> orders = new ArrayList<>();
 
+  public boolean thereIsNoSavedOrder() {
+    return savedOrderIs(null);
+  }
+
   public Order getSavedOrder() {
     return insertedOrder;
   }
