@@ -13,5 +13,4 @@ class OrderApprovalRequest {
   void updateOrderStatus(Order order) {
     Order.assertNotChangingShippedOrder(order);
   }
-
 }
