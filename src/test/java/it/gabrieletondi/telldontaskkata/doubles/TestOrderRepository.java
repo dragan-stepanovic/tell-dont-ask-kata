@@ -12,7 +12,7 @@ public class TestOrderRepository implements OrderRepository {
   private List<Order> orders = new ArrayList<>();
 
   @Override
-  public Order getById(int orderId) {
+  public Order orderWith(int orderId) {
     return orders.stream().filter(o -> o.hasId(orderId)).findFirst().get();
   }
 

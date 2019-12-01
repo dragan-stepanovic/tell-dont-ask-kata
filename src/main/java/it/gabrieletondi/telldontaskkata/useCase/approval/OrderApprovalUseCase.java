@@ -12,7 +12,7 @@ public class OrderApprovalUseCase {
   }
 
   public void run(OrderApprovalRequest request) {
-    final Order order = orderRepository.getById(request.getOrderId());
+    final Order order = orderRepository.orderWith(request.getOrderId());
     request.updateOrderStatus(order);
     orderRepository.save(order);
   }
