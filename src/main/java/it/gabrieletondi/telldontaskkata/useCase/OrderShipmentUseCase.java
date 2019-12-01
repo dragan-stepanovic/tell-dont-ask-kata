@@ -22,18 +22,24 @@ class OrderShipmentUseCase {
   void run(OrderShipmentRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
 
-    if (order.is(CREATED) || order.is(REJECTED)) {
-      throw new OrderCannotBeShippedException();
-    }
-
-    if (order.is(SHIPPED)) {
-      throw new OrderCannotBeShippedTwiceException();
-    }
-
+    assertReadyForShipment(order);
+    assertNotShippedAlready(order);
     shipmentService.ship(order);
 
     order.setStatus(OrderStatus.SHIPPED);
     orderRepository.save(order);
+  }
+
+  private void assertReadyForShipment(Order order) {
+    if (order.is(CREATED) || order.is(REJECTED)) {
+      throw new OrderCannotBeShippedException();
+    }
+  }
+
+  private void assertNotShippedAlready(Order order) {
+    if (order.is(SHIPPED)) {
+      throw new OrderCannotBeShippedTwiceException();
+    }
   }
 
 }
