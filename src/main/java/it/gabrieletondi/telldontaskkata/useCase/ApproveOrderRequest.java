@@ -10,7 +10,6 @@ class ApproveOrderRequest extends OrderApprovalRequest {
 
   @Override
   void updateOrderStatus(Order order) {
-    order.assertNotChangingShippedOrder();
     order.markAsApproved();
   }
 }

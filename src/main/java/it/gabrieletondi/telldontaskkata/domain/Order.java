@@ -60,6 +60,7 @@ public class Order {
   }
 
   public void markAsApproved() {
+    assertNotChangingShippedOrder();
     assertNotApprovingRejectedOrder();
     changeStatusTo(APPROVED);
   }
