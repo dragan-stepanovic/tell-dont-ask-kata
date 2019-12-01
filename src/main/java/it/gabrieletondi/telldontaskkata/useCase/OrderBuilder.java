@@ -24,4 +24,9 @@ class OrderBuilder {
     this.status = status;
     return this;
   }
+
+  OrderBuilder withId(int id) {
+    this.id = id;
+    return this;
+  }
 }
