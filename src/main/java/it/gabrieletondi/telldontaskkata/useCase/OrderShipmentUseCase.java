@@ -26,7 +26,7 @@ class OrderShipmentUseCase {
   }
 
   private void assertCanBeShipped(Order order) {
-    if (order.canBeShipped()) {
+    if (order.notReadyForShippment()) {
       throw new OrderCannotBeShippedException();
     }
   }

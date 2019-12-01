@@ -36,7 +36,7 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public boolean canBeShipped() {
+  public boolean notReadyForShippment() {
     return is(CREATED) || is(REJECTED);
   }
 
