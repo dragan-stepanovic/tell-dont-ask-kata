@@ -17,16 +17,16 @@ public class OrderShipmentUseCaseTest {
   private final TestShipmentService shipmentService = new TestShipmentService();
   private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
 
-  private static Order orderWithIdAndStatus(int id, OrderStatus created) {
+  private static Order orderWithIdAndStatus(OrderStatus status) {
     Order initialOrder = new Order();
-    initialOrder.setId(id);
-    initialOrder.setStatus(created);
+    initialOrder.setId(1);
+    initialOrder.setStatus(status);
     return initialOrder;
   }
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final Order initialOrder = orderWithIdAndStatus(1, OrderStatus.APPROVED);
+    final Order initialOrder = orderWithIdAndStatus(OrderStatus.APPROVED);
     orderRepository.add(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest(1);
@@ -39,7 +39,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedException.class)
   public void createdOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(orderWithIdAndStatus(1, OrderStatus.CREATED));
+    orderRepository.add(orderWithIdAndStatus(OrderStatus.CREATED));
     OrderShipmentRequest request = new OrderShipmentRequest(1);
 
     useCase.run(request);
@@ -50,7 +50,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(orderWithIdAndStatus(1, OrderStatus.REJECTED));
+    orderRepository.add(orderWithIdAndStatus(OrderStatus.REJECTED));
 
     OrderShipmentRequest request = new OrderShipmentRequest(1);
 
@@ -62,7 +62,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.add(orderWithIdAndStatus(1, OrderStatus.SHIPPED));
+    orderRepository.add(orderWithIdAndStatus(OrderStatus.SHIPPED));
 
     OrderShipmentRequest request = new OrderShipmentRequest(1);
 
