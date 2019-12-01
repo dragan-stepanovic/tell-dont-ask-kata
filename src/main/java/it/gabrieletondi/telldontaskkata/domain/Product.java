@@ -27,11 +27,11 @@ public class Product {
     return price.unitaryTax().multiply(BigDecimal.valueOf(quantity));
   }
 
-  private BigDecimal unitaryTaxedAmount() {
-    return price.addUnitaryTax();
-  }
-
   BigDecimal taxedAmountFor(int quantity) {
     return unitaryTaxedAmount().multiply(valueOf(quantity)).setScale(2, HALF_UP);
+  }
+
+  private BigDecimal unitaryTaxedAmount() {
+    return price.addUnitaryTax();
   }
 }
