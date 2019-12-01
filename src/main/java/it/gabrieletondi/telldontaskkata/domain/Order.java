@@ -38,13 +38,18 @@ public class Order {
         new BigDecimal("0.00"));
   }
 
-  public void assertNotShippedAlready() {
+  private void assertNotShippedAlready() {
     if (shippedAlready()) {
       throw new OrderCannotBeShippedTwiceException();
     }
   }
 
   public void assertCanBeShipped() {
+    assertNotShippedAlready();
+    assertReadyForShipment();
+  }
+
+  private void assertReadyForShipment() {
     if (notReadyForShipment()) {
       throw new OrderNotReadyForShippmentException();
     }

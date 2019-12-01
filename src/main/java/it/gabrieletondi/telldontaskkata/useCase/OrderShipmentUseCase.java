@@ -18,7 +18,6 @@ class OrderShipmentUseCase {
     final Order order = orderRepository.getById(request.getOrderId());
 
     order.assertCanBeShipped();
-    order.assertNotShippedAlready();
     shipmentService.ship(order);
     order.markAsShipped();
 
