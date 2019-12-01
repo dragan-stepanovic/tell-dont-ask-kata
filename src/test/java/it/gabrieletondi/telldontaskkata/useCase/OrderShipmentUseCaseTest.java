@@ -14,10 +14,10 @@ public class OrderShipmentUseCaseTest {
   private final TestOrderRepository orderRepository = new TestOrderRepository();
   private final TestShipmentService shipmentService = new TestShipmentService();
   private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
+  private int anOrderId = 2;
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final int anOrderId = 2;
     final Order initialOrder = anOrder().with(anOrderId).with(OrderStatus.APPROVED).build();
     orderRepository.add(initialOrder);
 
