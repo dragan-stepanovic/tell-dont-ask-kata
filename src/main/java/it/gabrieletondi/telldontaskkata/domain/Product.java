@@ -19,12 +19,12 @@ public class Product {
     this.price = price;
   }
 
-  boolean has(String thatName) {
-    return this.name.equals(thatName);
-  }
-
   private static BigDecimal multiply(BigDecimal value, int quantity) {
     return value.multiply(valueOf(quantity)).setScale(2, HALF_UP);
+  }
+
+  boolean has(String thatName) {
+    return this.name.equals(thatName);
   }
 
   BigDecimal taxAmountFor(int quantity) {
