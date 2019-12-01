@@ -17,7 +17,7 @@ public class InMemoryProductCatalog implements ProductCatalog {
     return products.oneWithThe(name);
   }
 
-  public boolean doesNotContainsAllProductWith(List<String> productNames) {
+  public boolean doesNotContainsAllProductsWith(List<String> productNames) {
     return productNames
         .stream()
         .map(this::productWith)

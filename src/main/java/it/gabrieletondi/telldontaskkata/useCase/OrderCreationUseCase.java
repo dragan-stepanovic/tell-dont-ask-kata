@@ -17,7 +17,7 @@ class OrderCreationUseCase {
 
   void run(SellItemsRequest request) {
 
-    if (productCatalog.doesNotContainsAllProductWith(request.productNames())) {
+    if (productCatalog.doesNotContainsAllProductsWith(request.productNames())) {
       throw new UnknownProductException();
     }
 

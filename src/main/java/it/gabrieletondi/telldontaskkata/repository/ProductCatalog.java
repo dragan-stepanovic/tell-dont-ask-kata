@@ -7,5 +7,5 @@ public interface ProductCatalog {
 
   Product productWith(String name);
 
-  boolean doesNotContainsAllProductWith(List<String> productNames);
+  boolean doesNotContainsAllProductsWith(List<String> productNames);
 }
