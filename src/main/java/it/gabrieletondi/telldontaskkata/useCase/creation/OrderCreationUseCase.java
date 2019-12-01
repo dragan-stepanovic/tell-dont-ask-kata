@@ -1,23 +1,25 @@
-package it.gabrieletondi.telldontaskkata.useCase;
+package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import it.gabrieletondi.telldontaskkata.useCase.SellItemRequest;
+import it.gabrieletondi.telldontaskkata.useCase.SellItemsRequest;
 import it.gabrieletondi.telldontaskkata.useCase.invariants.UnknownProductException;
 import java.util.List;
 
-class OrderCreationUseCase {
+public class OrderCreationUseCase {
 
   private final OrderRepository orderRepository;
   private final ProductCatalog productCatalog;
 
-  OrderCreationUseCase(OrderRepository orderRepository, ProductCatalog productCatalog) {
+  public OrderCreationUseCase(OrderRepository orderRepository, ProductCatalog productCatalog) {
     this.orderRepository = orderRepository;
     this.productCatalog = productCatalog;
   }
 
-  void run(SellItemsRequest request) {
+  public void run(SellItemsRequest request) {
 
     assertContainsAllProductsWith(request.productNames());
 

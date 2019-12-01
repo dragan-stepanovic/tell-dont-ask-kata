@@ -1,6 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-class SellItemRequest {
+public class SellItemRequest {
 
   private String productName;
   private int quantity;
@@ -10,11 +10,11 @@ class SellItemRequest {
     this.quantity = quantity;
   }
 
-  String getProductName() {
+  public String getProductName() {
     return productName;
   }
 
-  int getQuantity() {
+  public int getQuantity() {
     return quantity;
   }
 }

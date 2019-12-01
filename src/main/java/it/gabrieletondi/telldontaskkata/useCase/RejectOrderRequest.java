@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
+import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalRequest;
 
 class RejectOrderRequest extends OrderApprovalRequest {
 
@@ -9,7 +10,7 @@ class RejectOrderRequest extends OrderApprovalRequest {
   }
 
   @Override
-  void updateOrderStatus(Order order) {
+  public void updateOrderStatus(Order order) {
     order.markAsRejected();
   }
 }

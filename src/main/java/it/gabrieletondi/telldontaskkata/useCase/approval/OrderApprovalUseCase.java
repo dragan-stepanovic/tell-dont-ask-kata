@@ -1,17 +1,17 @@
-package it.gabrieletondi.telldontaskkata.useCase;
+package it.gabrieletondi.telldontaskkata.useCase.approval;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 
-class OrderApprovalUseCase {
+public class OrderApprovalUseCase {
 
   private final OrderRepository orderRepository;
 
-  OrderApprovalUseCase(OrderRepository orderRepository) {
+  public OrderApprovalUseCase(OrderRepository orderRepository) {
     this.orderRepository = orderRepository;
   }
 
-  void run(OrderApprovalRequest request) {
+  public void run(OrderApprovalRequest request) {
     final Order order = orderRepository.getById(request.getOrderId());
     request.updateOrderStatus(order);
     orderRepository.save(order);

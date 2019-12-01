@@ -5,6 +5,8 @@ import static junit.framework.TestCase.assertTrue;
 
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
+import it.gabrieletondi.telldontaskkata.useCase.approval.ApproveOrderRequest;
+import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalUseCase;
 import it.gabrieletondi.telldontaskkata.useCase.invariants.ApprovedOrderCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.invariants.RejectedOrderCannotBeApprovedException;
 import it.gabrieletondi.telldontaskkata.useCase.invariants.ShippedOrdersCannotBeChangedException;

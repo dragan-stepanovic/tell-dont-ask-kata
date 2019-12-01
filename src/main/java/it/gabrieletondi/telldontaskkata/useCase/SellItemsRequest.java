@@ -3,7 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class SellItemsRequest {
+public class SellItemsRequest {
 
   private List<SellItemRequest> requests;
 
@@ -11,11 +11,11 @@ class SellItemsRequest {
     this.requests = requests;
   }
 
-  List<String> productNames() {
+  public List<String> productNames() {
     return requests.stream().map(SellItemRequest::getProductName).collect(Collectors.toList());
   }
 
-  List<SellItemRequest> getRequests() {
+  public List<SellItemRequest> getRequests() {
     return requests;
   }
 }
