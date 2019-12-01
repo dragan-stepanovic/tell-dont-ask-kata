@@ -16,14 +16,14 @@ public class OrderApprovalUseCaseTest {
   public void approvedExistingOrder() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.CREATED).build());
     useCase.run(new ApproveOrderRequest(1));
-    assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.APPROVED));
+    assertTrue(orderRepository.savedOrderHas(OrderStatus.APPROVED));
   }
 
   @Test
   public void rejectedExistingOrder() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.CREATED).build());
     useCase.run(new RejectOrderRequest(1));
-    assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.REJECTED));
+    assertTrue(orderRepository.savedOrderHas(OrderStatus.REJECTED));
   }
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)

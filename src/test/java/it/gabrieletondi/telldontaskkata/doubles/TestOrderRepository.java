@@ -32,7 +32,7 @@ public class TestOrderRepository implements OrderRepository {
     return insertedOrder.equals(value);
   }
 
-  public boolean savedOrderHasStatus(OrderStatus status) {
+  public boolean savedOrderHas(OrderStatus status) {
     return insertedOrder.hasStatus(status);
   }
 }
