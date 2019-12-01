@@ -10,7 +10,7 @@ public class Products {
     this.values = values;
   }
 
-  public Product selectOneWith(String name) {
+  public Product oneWithThe(String name) {
     return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
   }
 }
