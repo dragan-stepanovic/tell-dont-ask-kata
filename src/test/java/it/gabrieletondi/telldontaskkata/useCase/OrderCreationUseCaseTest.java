@@ -1,7 +1,7 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 import it.gabrieletondi.telldontaskkata.domain.Category;
 import it.gabrieletondi.telldontaskkata.domain.Order;
@@ -36,7 +36,6 @@ public class OrderCreationUseCaseTest {
 
     useCase.run(request);
 
-    final Order insertedOrder = orderRepository.getSavedOrder();
     final Order expected = new Order(1, OrderStatus.CREATED,
         asList(new OrderItem(new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage)), 2,
                 new BigDecimal("7.84"), new BigDecimal("0.72")),
@@ -44,7 +43,7 @@ public class OrderCreationUseCaseTest {
                 new BigDecimal("15.36"), new BigDecimal("1.41"))),
         "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
 
-    assertEquals(expected, insertedOrder);
+    assertTrue(orderRepository.savedOrderIs(expected));
   }
 
   @Test(expected = UnknownProductException.class)

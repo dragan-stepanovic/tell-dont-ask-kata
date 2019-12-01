@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.doubles;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
+import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,10 @@ public class TestOrderRepository implements OrderRepository {
   }
 
   public boolean savedOrderIs(Order value) {
-    return insertedOrder == value;
+    return insertedOrder.equals(value);
+  }
+
+  public boolean savedOrderHasStatus(OrderStatus status) {
+    return insertedOrder.hasStatus(status);
   }
 }

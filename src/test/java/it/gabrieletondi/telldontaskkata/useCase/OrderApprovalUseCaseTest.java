@@ -2,9 +2,6 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
@@ -24,8 +21,7 @@ public class OrderApprovalUseCaseTest {
     OrderApprovalRequest request = new ApproveOrderRequest(1);
 
     useCase.run(request);
-    final Order savedOrder = orderRepository.getSavedOrder();
-    assertTrue(savedOrder.hasStatus(OrderStatus.APPROVED));
+    assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.APPROVED));
   }
 
   @Test
@@ -37,8 +33,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    final Order savedOrder = orderRepository.getSavedOrder();
-    assertTrue(savedOrder.hasStatus(OrderStatus.REJECTED));
+    assertTrue(orderRepository.savedOrderHasStatus(OrderStatus.REJECTED));
   }
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)
@@ -50,7 +45,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertThat(orderRepository.getSavedOrder(), is(nullValue()));
+    assertTrue(orderRepository.savedOrderIs(null));
   }
 
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
@@ -74,7 +69,7 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertThat(orderRepository.getSavedOrder(), is(nullValue()));
+    assertTrue(orderRepository.savedOrderIs(null));
   }
 
   @Test(expected = ShippedOrdersCannotBeChangedException.class)
@@ -86,6 +81,6 @@ public class OrderApprovalUseCaseTest {
 
     useCase.run(request);
 
-    assertThat(orderRepository.getSavedOrder(), is(nullValue()));
+    assertTrue(orderRepository.savedOrderIs(null));
   }
 }
