@@ -23,12 +23,12 @@ public class Product {
     return name.equals(thatName);
   }
 
-  BigDecimal taxAmountFor(int quantity) {
-    return multiply(price.unitaryTaxAmount(), quantity);
-  }
-
   BigDecimal taxedAmountFor(int quantity) {
     return multiply(price.includingUnitaryTax(), quantity);
+  }
+
+  BigDecimal taxAmountFor(int quantity) {
+    return multiply(price.unitaryTaxAmount(), quantity);
   }
 
   private static BigDecimal multiply(BigDecimal value, int quantity) {
