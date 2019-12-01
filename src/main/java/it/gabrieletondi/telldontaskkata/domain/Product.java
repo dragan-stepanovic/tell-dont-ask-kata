@@ -23,11 +23,15 @@ public class Product {
     return this.name.equals(thatName);
   }
 
+  private static BigDecimal multiply(BigDecimal value, int quantity) {
+    return value.multiply(valueOf(quantity)).setScale(2, HALF_UP);
+  }
+
   BigDecimal taxAmountFor(int quantity) {
-    return price.unitaryTaxAmount().multiply(valueOf(quantity)).setScale(2, HALF_UP);
+    return multiply(price.unitaryTaxAmount(), quantity);
   }
 
   BigDecimal taxedAmountFor(int quantity) {
-    return price.includingUnitaryTax().multiply(valueOf(quantity)).setScale(2, HALF_UP);
+    return multiply(price.includingUnitaryTax(), quantity);
   }
 }
