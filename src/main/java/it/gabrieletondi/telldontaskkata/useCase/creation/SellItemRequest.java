@@ -5,16 +5,16 @@ public class SellItemRequest {
   private String productName;
   private int quantity;
 
-  SellItemRequest(String productName, int quantity) {
+  public SellItemRequest(String productName, int quantity) {
     this.productName = productName;
     this.quantity = quantity;
   }
 
-  public String getProductName() {
+  String getProductName() {
     return productName;
   }
 
-  public int getQuantity() {
+  int getQuantity() {
     return quantity;
   }
 }
