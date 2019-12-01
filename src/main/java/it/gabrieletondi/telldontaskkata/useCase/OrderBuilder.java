@@ -14,10 +14,13 @@ class OrderBuilder {
     return new OrderBuilder();
   }
 
+  static Order withoutOrderItems() {
+    return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"),
+        new BigDecimal("0.00"));
+  }
+
   Order build() {
-    final Order order = new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
-    order.setId(id);
-    return order;
+    return new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }
 
   OrderBuilder with(OrderStatus status) {
