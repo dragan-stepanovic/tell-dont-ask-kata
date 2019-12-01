@@ -2,9 +2,11 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
-public class OrderBuilder {
+class OrderBuilder {
 
-  public Order build() {
+  int id = 1;
+
+  Order build() {
     return new Order();
   }
 }
