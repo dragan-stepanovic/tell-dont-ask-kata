@@ -1,11 +1,11 @@
 package it.gabrieletondi.telldontaskkata.repository;
 
 import it.gabrieletondi.telldontaskkata.domain.Product;
-import it.gabrieletondi.telldontaskkata.useCase.SellItemsRequest;
+import java.util.List;
 
 public interface ProductCatalog {
 
   Product productWith(String name);
 
-  boolean notAllProductsFound(SellItemsRequest request);
+  boolean doesNotContainsAllProductWith(List<String> productNames);
 }

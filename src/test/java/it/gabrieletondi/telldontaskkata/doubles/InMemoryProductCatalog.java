@@ -3,7 +3,7 @@ package it.gabrieletondi.telldontaskkata.doubles;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.domain.Products;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
-import it.gabrieletondi.telldontaskkata.useCase.SellItemsRequest;
+import java.util.List;
 
 public class InMemoryProductCatalog implements ProductCatalog {
 
@@ -13,16 +13,17 @@ public class InMemoryProductCatalog implements ProductCatalog {
     this.products = products;
   }
 
-  private static boolean unknown(Product product) {
-    return product == null;
-  }
-
   public Product productWith(final String name) {
     return products.oneWithThe(name);
   }
 
-  public boolean notAllProductsFound(SellItemsRequest request) {
-    return request.productNames()
+  private static boolean unknown(Product product) {
+    return product == null;
+  }
+
+  public boolean doesNotContainsAllProductWith(List<String> productNames) {
+    return productNames
+        .stream()
         .map(this::productWith)
         .anyMatch(InMemoryProductCatalog::unknown);
   }
