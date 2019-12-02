@@ -31,7 +31,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder with(OrderStatusNew status) {
+  OrderBuilder thatIs(OrderStatusNew status) {
     this.statusNew = status;
     return this;
   }

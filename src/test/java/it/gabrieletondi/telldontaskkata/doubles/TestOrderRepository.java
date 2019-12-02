@@ -17,7 +17,7 @@ public class TestOrderRepository implements OrderRepository {
   }
 
   public boolean orderIsNotSaved() {
-    return savedOrderIs(null);
+    return savedOrderIs((OrderStatusNew) null);
   }
 
   public void save(Order order) {

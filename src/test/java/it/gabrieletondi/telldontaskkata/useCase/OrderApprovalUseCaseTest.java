@@ -23,42 +23,42 @@ public class OrderApprovalUseCaseTest {
 
   @Test
   public void approvedExistingOrder() throws Exception {
-    orderRepository.add(anOrder().with(new Created()).build());
+    orderRepository.add(anOrder().thatIs(new Created()).build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.savedOrderIs(new Approved()));
   }
 
   @Test
   public void rejectedExistingOrder() throws Exception {
-    orderRepository.add(anOrder().with(new Created()).build());
+    orderRepository.add(anOrder().thatIs(new Created()).build());
     approval.run(new RejectOrderRequest(1));
     assertTrue(orderRepository.savedOrderIs(new Rejected()));
   }
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)
   public void cannotApproveRejectedOrder() throws Exception {
-    orderRepository.add(anOrder().with(new Rejected()).build());
+    orderRepository.add(anOrder().thatIs(new Rejected()).build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
   public void cannotRejectApprovedOrder() throws Exception {
-    orderRepository.add(anOrder().with(new Approved()).build());
+    orderRepository.add(anOrder().thatIs(new Approved()).build());
     approval.run(new RejectOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
-    orderRepository.add(anOrder().with(new Shipped()).build());
+    orderRepository.add(anOrder().thatIs(new Shipped()).build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
-    orderRepository.add(anOrder().with(new Shipped()).build());
+    orderRepository.add(anOrder().thatIs(new Shipped()).build());
     approval.run(new RejectOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
