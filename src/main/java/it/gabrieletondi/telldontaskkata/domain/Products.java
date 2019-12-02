@@ -8,7 +8,7 @@ public class Products {
   private final List<Product> values;
 
   public Products(List<Product> values) {
-    assertWeHaveAllProductsFromRequest();
+    assertThereAreNoUnknownProducts();
     this.values = values;
   }
 
@@ -16,7 +16,7 @@ public class Products {
     return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
   }
 
-  private void assertWeHaveAllProductsFromRequest() {
+  private void assertThereAreNoUnknownProducts() {
     if (atLeastOneUnknownProduct()) {
       throw new UnknownProductException();
     }
