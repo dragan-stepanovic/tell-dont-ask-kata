@@ -43,9 +43,9 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderNotReadyForShippmentException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(anOrder().thatIsRejected().build());
+    orderRepository.add(anOrder().with(anOrderId).thatIsRejected().build());
 
-    shipment.run(new OrderShipmentRequest(1));
+    shipment.run(new OrderShipmentRequest(anOrderId));
 
     assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
