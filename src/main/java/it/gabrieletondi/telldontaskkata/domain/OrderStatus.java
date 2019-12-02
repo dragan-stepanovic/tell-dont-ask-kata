@@ -2,9 +2,9 @@ package it.gabrieletondi.telldontaskkata.domain;
 
 public interface OrderStatus {
 
-  OrderStatus reject();
+  OrderStatus toRejected();
 
-  OrderStatus approve();
+  OrderStatus toApproved();
 
-  OrderStatus ship();
+  OrderStatus toShipped();
 }

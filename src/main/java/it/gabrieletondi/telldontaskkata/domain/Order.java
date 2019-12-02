@@ -36,15 +36,15 @@ public class Order {
   }
 
   public void reject() {
-    this.status = status.reject();
+    this.status = status.toRejected();
   }
 
   public void approve() {
-    this.status = status.approve();
+    this.status = status.toApproved();
   }
 
   public void ship() {
-    this.status = status.ship();
+    this.status = status.toShipped();
   }
 
   public void addOrderItemFor(Product product, int quantity) {

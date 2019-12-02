@@ -7,17 +7,17 @@ import lombok.EqualsAndHashCode;
 public class Created implements OrderStatus {
 
   @Override
-  public OrderStatus reject() {
+  public OrderStatus toRejected() {
     return new Rejected();
   }
 
   @Override
-  public OrderStatus approve() {
+  public OrderStatus toApproved() {
     return new Approved();
   }
 
   @Override
-  public OrderStatus ship() {
+  public OrderStatus toShipped() {
     throw new OrderNotReadyForShippment();
   }
 }
