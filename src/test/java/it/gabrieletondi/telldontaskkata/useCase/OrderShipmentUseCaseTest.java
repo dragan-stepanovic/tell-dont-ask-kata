@@ -3,8 +3,10 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static junit.framework.TestCase.assertTrue;
 
+import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
+import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentRequest;
@@ -22,12 +24,12 @@ public class OrderShipmentUseCaseTest {
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final Order initialOrder = anOrder().with(anOrderId).with(OrderStatus.APPROVED).build();
+    final Order initialOrder = anOrder().with(anOrderId).with(new Approved()).build();
     orderRepository.add(initialOrder);
 
     shipment.run(new OrderShipmentRequest(anOrderId));
 
-    assertTrue(orderRepository.savedOrderHas(OrderStatus.SHIPPED));
+    assertTrue(orderRepository.savedOrderHasStatus(new Shipped()));
     assertTrue(shipmentService.shippedOrderIs(initialOrder));
   }
 
@@ -53,7 +55,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.add(anOrder().with(OrderStatus.SHIPPED).build());
+    orderRepository.add(anOrder().with(new Shipped()).build());
 
     shipment.run(new OrderShipmentRequest(1));
 

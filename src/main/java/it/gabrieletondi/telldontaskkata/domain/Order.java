@@ -57,9 +57,9 @@ public class Order {
   }
 
   public void ship() {
-    assertCanBeShipped();
+//    assertCanBeShipped();
     this.newStatus = newStatus.ship();
-    changeStatusTo(SHIPPED);
+//    changeStatusTo(SHIPPED);
   }
 
   public void addOrderItemFor(Product product, int quantity) {
