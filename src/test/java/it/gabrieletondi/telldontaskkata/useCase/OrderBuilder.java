@@ -5,6 +5,7 @@ import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Rejected;
+import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -41,5 +42,9 @@ class OrderBuilder {
 
   OrderBuilder thatIsApproved() {
     return thatIs(new Approved());
+  }
+
+  OrderBuilder thatIsShipped() {
+    return thatIs(new Shipped());
   }
 }

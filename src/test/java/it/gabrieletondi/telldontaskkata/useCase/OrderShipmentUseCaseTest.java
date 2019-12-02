@@ -53,7 +53,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.add(anOrder().thatIs(new Shipped()).build());
+    orderRepository.add(anOrder().thatIsShipped().build());
 
     shipment.run(new OrderShipmentRequest(1));
 

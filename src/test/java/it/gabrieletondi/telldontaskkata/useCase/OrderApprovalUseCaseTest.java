@@ -5,7 +5,6 @@ import static junit.framework.TestCase.assertTrue;
 
 import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.Rejected;
-import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.useCase.approval.ApproveOrderRequest;
 import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalUseCase;
@@ -43,21 +42,21 @@ public class OrderApprovalUseCaseTest {
 
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
   public void cannotRejectApprovedOrder() throws Exception {
-    orderRepository.add(anOrder().thatIs(new Approved()).build());
+    orderRepository.add(anOrder().thatIsApproved().build());
     approval.run(new RejectOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
-    orderRepository.add(anOrder().thatIs(new Shipped()).build());
+    orderRepository.add(anOrder().thatIsShipped().build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
-    orderRepository.add(anOrder().thatIs(new Shipped()).build());
+    orderRepository.add(anOrder().thatIsShipped().build());
     approval.run(new RejectOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
