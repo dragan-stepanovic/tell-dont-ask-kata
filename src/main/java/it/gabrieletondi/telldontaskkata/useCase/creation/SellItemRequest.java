@@ -13,7 +13,7 @@ public class SellItemRequest {
     this.quantity = quantity;
   }
 
-  OrderItem orderItemFrom(Product product) {
+  OrderItem orderItemFor(Product product) {
     return OrderItem.forA(product, quantity);
   }
 

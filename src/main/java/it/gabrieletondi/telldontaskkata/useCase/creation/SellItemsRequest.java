@@ -20,7 +20,7 @@ public class SellItemsRequest {
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
       final Product product = productCatalog.productWith(itemRequest.getProductName());
-      final OrderItem orderItem = itemRequest.orderItemFrom(product);
+      final OrderItem orderItem = itemRequest.orderItemFor(product);
       order.add(orderItem);
     }
     return order;
