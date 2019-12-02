@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertTrue;
 import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
+import it.gabrieletondi.telldontaskkata.domain.Rejected;
 import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
@@ -46,7 +46,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderNotReadyForShippmentException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(anOrder().with(OrderStatus.REJECTED).build());
+    orderRepository.add(anOrder().thatIs(new Rejected()).build());
 
     shipment.run(new OrderShipmentRequest(1));
 
