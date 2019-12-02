@@ -27,7 +27,7 @@ public class OrderShipmentUseCaseTest {
     shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
     assertTrue(orderRepository.savedOrderIsShipped());
-    assertTrue(shipmentService.shippedOrderIs(initialOrder));
+    assertTrue(shipmentService.shippedOrderMatches(initialOrder));
   }
 
   @Test(expected = OrderNotReadyForShippment.class)

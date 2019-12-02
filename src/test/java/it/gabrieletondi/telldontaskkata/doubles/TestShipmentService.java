@@ -13,7 +13,7 @@ public class TestShipmentService implements ShipmentService {
     this.shippedOrder = order;
   }
 
-  public boolean shippedOrderIs(Order order) {
+  public boolean shippedOrderMatches(Order order) {
     return shippedOrder.equals(order);
   }
 
