@@ -18,7 +18,7 @@ public class SellItemsRequest {
     assertWeHaveAllProductsFromRequest(productCatalog);
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
-      final Product product = productCatalog.productWith(itemRequest.getProductName());
+      Product product = productCatalog.productWith(itemRequest.getProductName());
       order.add(itemRequest.orderItemFor(product));
     }
     return order;
