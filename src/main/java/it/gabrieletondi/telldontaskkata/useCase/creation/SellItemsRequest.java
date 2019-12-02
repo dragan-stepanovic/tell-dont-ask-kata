@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
+import it.gabrieletondi.telldontaskkata.domain.OrderItem;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import java.util.List;
@@ -19,7 +20,8 @@ public class SellItemsRequest {
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
       final Product product = productCatalog.productWith(itemRequest.getProductName());
-      itemRequest.orderItemFrom(order, product);
+      final OrderItem orderItem = itemRequest.orderItemFrom(product);
+      order.add(orderItem);
     }
     return order;
   }
