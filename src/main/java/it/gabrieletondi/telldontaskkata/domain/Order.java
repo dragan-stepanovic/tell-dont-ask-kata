@@ -4,8 +4,6 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
-import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
-import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotReadyForShippmentException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +55,7 @@ public class Order {
   }
 
   public void ship() {
-//    assertCanBeShipped();
     this.newStatus = newStatus.ship();
-//    changeStatusTo(SHIPPED);
   }
 
   public void addOrderItemFor(Product product, int quantity) {
@@ -72,33 +68,12 @@ public class Order {
     tax = orderItem.addTaxAmountTo(tax);
   }
 
-  private void assertNotShippedAlready() {
-    if (shippedAlready()) {
-      throw new OrderCannotBeShippedTwiceException();
-    }
-  }
-
-  private void assertReadyForShipment() {
-    if (notReadyForShipment()) {
-      throw new OrderNotReadyForShippmentException();
-    }
-  }
-
   private boolean notReadyForShipment() {
     return is(CREATED) || is(REJECTED);
   }
 
-  private void changeStatusTo(OrderStatus approved) {
-    this.status = approved;
-  }
-
   private boolean shippedAlready() {
     return is(SHIPPED);
-  }
-
-  private void assertCanBeShipped() {
-    assertNotShippedAlready();
-    assertReadyForShipment();
   }
 
   private boolean is(OrderStatus thatStatus) {
