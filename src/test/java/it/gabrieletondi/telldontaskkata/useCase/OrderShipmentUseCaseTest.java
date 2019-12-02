@@ -29,7 +29,7 @@ public class OrderShipmentUseCaseTest {
 
     shipment.run(new OrderShipmentRequest(anOrderId));
 
-    assertTrue(orderRepository.savedOrderHasStatus(new Shipped()));
+    assertTrue(orderRepository.savedOrderHas(new Shipped()));
     assertTrue(shipmentService.shippedOrderIs(initialOrder));
   }
 
