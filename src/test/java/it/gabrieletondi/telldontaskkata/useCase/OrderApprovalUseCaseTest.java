@@ -4,8 +4,6 @@ import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrderId;
 import static junit.framework.TestCase.assertTrue;
 
-import it.gabrieletondi.telldontaskkata.domain.Approved;
-import it.gabrieletondi.telldontaskkata.domain.Rejected;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.useCase.approval.ApproveOrderRequest;
 import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalUseCase;
@@ -24,14 +22,14 @@ public class OrderApprovalUseCaseTest {
   public void approvedExistingOrder() throws Exception {
     orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
     approval.run(ApproveOrderRequest.forOrderWith(anOrderId));
-    assertTrue(orderRepository.savedOrderIs(new Approved()));
+    assertTrue(orderRepository.savedOrderIsApproved());
   }
 
   @Test
   public void rejectedExistingOrder() throws Exception {
     orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
     approval.run(RejectOrderRequest.forOrderWith(2));
-    assertTrue(orderRepository.savedOrderIs(new Rejected()));
+    assertTrue(orderRepository.savedOrderIsRejected());
   }
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)

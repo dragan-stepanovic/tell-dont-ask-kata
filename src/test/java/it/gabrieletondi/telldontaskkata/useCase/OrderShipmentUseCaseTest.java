@@ -5,7 +5,6 @@ import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrderId;
 import static junit.framework.TestCase.assertTrue;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentRequest;
@@ -27,7 +26,7 @@ public class OrderShipmentUseCaseTest {
 
     shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
-    assertTrue(orderRepository.savedOrderIs(new Shipped()));
+    assertTrue(orderRepository.savedOrderIsShipped());
     assertTrue(shipmentService.shippedOrderIs(initialOrder));
   }
 
