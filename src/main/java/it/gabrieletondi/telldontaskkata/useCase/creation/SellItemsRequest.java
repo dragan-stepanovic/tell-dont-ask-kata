@@ -2,7 +2,7 @@ package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.Product;
-import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import it.gabrieletondi.telldontaskkata.domain.Products;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,23 +14,24 @@ public class SellItemsRequest {
     this.requests = requests;
   }
 
-  Order orderForRequest(ProductCatalog productCatalog) {
-    assertWeHaveAllProductsFromRequest(productCatalog);
+  Order orderForRequest(Products products, boolean weDoNotHaveAllProducts) {
+    assertWeHaveAllProductsFromRequest(weDoNotHaveAllProducts);
     Order order = Order.withoutOrderItems();
+
     for (SellItemRequest itemRequest : requests) {
-      Product product = productCatalog.productWith(itemRequest.getProductName());
+      Product product = products.oneWithThe(itemRequest.getProductName());
       order.add(itemRequest.orderItemFor(product));
     }
     return order;
   }
 
-  private void assertWeHaveAllProductsFromRequest(ProductCatalog productCatalog) {
-    if (productCatalog.doesNotContainsAllProductsWith(productNames())) {
+  private void assertWeHaveAllProductsFromRequest(boolean weDoNotHaveAllProducts) {
+    if (weDoNotHaveAllProducts) {
       throw new UnknownProductException();
     }
   }
 
-  private List<String> productNames() {
+  List<String> productNames() {
     return requests.stream().map(SellItemRequest::getProductName).collect(Collectors.toList());
   }
 
