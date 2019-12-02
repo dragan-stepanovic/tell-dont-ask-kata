@@ -19,7 +19,7 @@ public class OrderCreationUseCase {
 
     final Products products = productCatalog.productsWith(request.productNames());
     Order order = request
-        .orderForRequest(products);
+        .orderFor(products);
     orderRepository.save(order);
   }
 }
