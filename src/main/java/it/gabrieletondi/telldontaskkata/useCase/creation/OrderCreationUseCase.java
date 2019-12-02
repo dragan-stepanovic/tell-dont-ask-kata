@@ -15,7 +15,7 @@ public class OrderCreationUseCase {
   }
 
   public void run(SellItemsRequest request) {
-    Order order = request.orderFromRequest(productCatalog);
+    Order order = request.orderForRequest(productCatalog);
     orderRepository.save(order);
   }
 }

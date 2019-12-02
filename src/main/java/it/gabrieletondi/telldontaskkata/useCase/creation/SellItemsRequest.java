@@ -14,7 +14,7 @@ public class SellItemsRequest {
     this.requests = requests;
   }
 
-  Order orderFromRequest(ProductCatalog productCatalog) {
+  Order orderForRequest(ProductCatalog productCatalog) {
     assertWeHaveAllProductsFromRequest(productCatalog);
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
