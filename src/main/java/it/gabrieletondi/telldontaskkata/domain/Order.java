@@ -22,6 +22,7 @@ public class Order {
 
   private int id;
   private OrderStatus status;
+  //  private OrderStatusNew newStatus = new Created();
   private List<OrderItem> items;
   private String currency;
   private BigDecimal total;
@@ -49,6 +50,11 @@ public class Order {
   }
 
   public void reject() {
+//    this.newStatus = newStatus.reject();
+    statusReject();
+  }
+
+  private void statusReject() {
     assertCanBeRejected();
     changeStatusTo(REJECTED);
   }
