@@ -21,11 +21,6 @@ class OrderBuilder {
     return new Order(id, status, statusNew, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }
 
-  OrderBuilder with(OrderStatus status) {
-    this.status = status;
-    return this;
-  }
-
   OrderBuilder with(int id) {
     this.id = id;
     return this;
