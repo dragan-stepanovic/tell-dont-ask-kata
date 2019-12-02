@@ -3,7 +3,6 @@ package it.gabrieletondi.telldontaskkata.useCase.creation;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
 import it.gabrieletondi.telldontaskkata.domain.Product;
-import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 
 public class SellItemRequest {
 
@@ -15,8 +14,7 @@ public class SellItemRequest {
     this.quantity = quantity;
   }
 
-  void orderItemFrom(ProductCatalog productCatalog, Order order) {
-    final Product product = productCatalog.productWith(productName);
+  void orderItemFrom(Order order, Product product) {
     order.add(OrderItem.forA(product, quantity));
   }
 
