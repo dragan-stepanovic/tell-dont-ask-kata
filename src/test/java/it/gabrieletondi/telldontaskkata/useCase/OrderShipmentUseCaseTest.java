@@ -9,7 +9,7 @@ import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentRequest;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentUseCase;
-import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwice;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotReadyForShippmentException;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class OrderShipmentUseCaseTest {
     assertTrue(shipmentService.orderIsNotShipped());
   }
 
-  @Test(expected = OrderCannotBeShippedTwiceException.class)
+  @Test(expected = OrderCannotBeShippedTwice.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
     orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
 
