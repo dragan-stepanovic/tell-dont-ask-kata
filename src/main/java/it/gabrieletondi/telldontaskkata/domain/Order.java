@@ -1,9 +1,5 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,18 +62,6 @@ public class Order {
     items.add(orderItem);
     total = orderItem.addTaxedAmountTo(total);
     tax = orderItem.addTaxAmountTo(tax);
-  }
-
-  private boolean notReadyForShipment() {
-    return is(CREATED) || is(REJECTED);
-  }
-
-  private boolean shippedAlready() {
-    return is(SHIPPED);
-  }
-
-  private boolean is(OrderStatus thatStatus) {
-    return this.status == thatStatus;
   }
 
   public boolean has(OrderStatusNew status) {
