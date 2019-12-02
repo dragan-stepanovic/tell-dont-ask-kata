@@ -57,6 +57,7 @@ public class Order {
   }
 
   public void ship() {
+    this.newStatus = newStatus.ship();
     assertCanBeShipped();
     changeStatusTo(SHIPPED);
   }

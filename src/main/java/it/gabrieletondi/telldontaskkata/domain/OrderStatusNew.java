@@ -5,4 +5,6 @@ public interface OrderStatusNew {
   OrderStatusNew reject();
 
   OrderStatusNew approve();
+
+  OrderStatusNew ship();
 }

@@ -15,4 +15,9 @@ public class Rejected implements OrderStatusNew {
   public OrderStatusNew approve() {
     throw new RejectedOrderCannotBeApprovedException();
   }
+
+  @Override
+  public OrderStatusNew ship() {
+    return this;
+  }
 }

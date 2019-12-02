@@ -15,4 +15,9 @@ public class Approved implements OrderStatusNew {
   public OrderStatusNew approve() {
     return this;
   }
+
+  @Override
+  public OrderStatusNew ship() {
+    return new Shipped();
+  }
 }

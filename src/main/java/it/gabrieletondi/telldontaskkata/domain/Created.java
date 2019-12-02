@@ -14,4 +14,9 @@ public class Created implements OrderStatusNew {
   public OrderStatusNew approve() {
     return new Approved();
   }
+
+  @Override
+  public OrderStatusNew ship() {
+    return this;
+  }
 }
