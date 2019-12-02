@@ -1,7 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import java.util.List;
@@ -19,13 +18,7 @@ public class OrderCreationUseCase {
   public void run(SellItemsRequest request) {
 
     assertWeHaveAllProductsWith(request.productNames());
-
-    Order order = Order.withoutOrderItems();
-    for (SellItemRequest itemRequest : request.getRequests()) {
-      final Product product = productCatalog.productWith(itemRequest.getProductName());
-      order.addOrderItemFor(product, itemRequest.getQuantity());
-    }
-
+    Order order = request.orderFromRequest(productCatalog);
     orderRepository.save(order);
   }
 
