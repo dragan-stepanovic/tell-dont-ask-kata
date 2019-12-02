@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeApprovedException;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
 import lombok.EqualsAndHashCode;
@@ -14,7 +15,7 @@ public class Shipped implements OrderStatus {
 
   @Override
   public OrderStatus approve() {
-    throw new ShippedOrdersCannotBeRejectedException();
+    throw new ShippedOrdersCannotBeApprovedException();
   }
 
   @Override
