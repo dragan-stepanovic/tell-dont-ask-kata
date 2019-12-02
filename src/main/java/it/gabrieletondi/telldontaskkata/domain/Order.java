@@ -50,19 +50,9 @@ public class Order {
     changeStatusTo(REJECTED);
   }
 
-  private void assertCanBeRejected() {
-    assertNotTryingToChangeShippedOrder();
-    assertNotRejectingApprovedOrder();
-  }
-
   public void approve() {
     assertCanBeApproved();
     changeStatusTo(APPROVED);
-  }
-
-  private void assertCanBeApproved() {
-    assertNotTryingToChangeShippedOrder();
-    assertNotApprovingRejectedOrder();
   }
 
   public void ship() {
@@ -98,6 +88,11 @@ public class Order {
 
   private boolean notReadyForShipment() {
     return is(CREATED) || is(REJECTED);
+  }
+
+  private void assertCanBeApproved() {
+    assertNotTryingToChangeShippedOrder();
+    assertNotApprovingRejectedOrder();
   }
 
   private void changeStatusTo(OrderStatus approved) {
@@ -145,5 +140,10 @@ public class Order {
 
   private boolean is(OrderStatus thatStatus) {
     return this.status == thatStatus;
+  }
+
+  private void assertCanBeRejected() {
+    assertNotTryingToChangeShippedOrder();
+    assertNotRejectingApprovedOrder();
   }
 }
