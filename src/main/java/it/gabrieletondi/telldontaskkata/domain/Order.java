@@ -94,7 +94,7 @@ public class Order {
   }
 
   private void assertCanBeApproved() {
-    assertNotTryingToChangeShippedOrder();
+//    assertNotTryingToChangeShippedOrder();
     assertNotApprovingRejectedOrder();
   }
 

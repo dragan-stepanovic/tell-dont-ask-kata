@@ -6,6 +6,7 @@ import static junit.framework.TestCase.assertTrue;
 import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Rejected;
+import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.useCase.approval.ApproveOrderRequest;
 import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalUseCase;
@@ -50,7 +51,7 @@ public class OrderApprovalUseCaseTest {
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
-    orderRepository.add(anOrder().with(OrderStatus.SHIPPED).build());
+    orderRepository.add(anOrder().with(new Shipped()).build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
