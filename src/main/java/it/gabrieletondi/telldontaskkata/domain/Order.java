@@ -7,7 +7,7 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.RejectedOrderCannotBeApprovedException;
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeChangedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotReadyForShippmentException;
 import java.math.BigDecimal;
@@ -138,7 +138,7 @@ public class Order {
 
   private void assertNotTryingToChangeShippedOrder() {
     if (tryingToChangeShippedOrder()) {
-      throw new ShippedOrdersCannotBeChangedException();
+      throw new ShippedOrdersCannotBeRejectedException();
     }
   }
 

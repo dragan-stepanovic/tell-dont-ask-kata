@@ -10,7 +10,7 @@ import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalUseCase;
 import it.gabrieletondi.telldontaskkata.useCase.approval.RejectOrderRequest;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.RejectedOrderCannotBeApprovedException;
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeChangedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeRejectedException;
 import org.junit.Test;
 
 public class OrderApprovalUseCaseTest {
@@ -46,14 +46,14 @@ public class OrderApprovalUseCaseTest {
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
-  @Test(expected = ShippedOrdersCannotBeChangedException.class)
+  @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.SHIPPED).build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
-  @Test(expected = ShippedOrdersCannotBeChangedException.class)
+  @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.SHIPPED).build());
     approval.run(new RejectOrderRequest(1));
