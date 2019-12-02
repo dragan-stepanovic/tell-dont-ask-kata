@@ -1,6 +1,6 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejectedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejected;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
@@ -8,7 +8,7 @@ public class Approved implements OrderStatus {
 
   @Override
   public OrderStatus reject() {
-    throw new ApprovedOrderCannotBeRejectedException();
+    throw new ApprovedOrderCannotBeRejected();
   }
 
   @Override
