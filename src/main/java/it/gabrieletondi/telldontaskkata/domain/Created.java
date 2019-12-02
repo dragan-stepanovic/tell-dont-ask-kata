@@ -9,4 +9,9 @@ public class Created implements OrderStatusNew {
   public OrderStatusNew reject() {
     return new Rejected();
   }
+
+  @Override
+  public OrderStatusNew approve() {
+    return new Approved();
+  }
 }

@@ -10,4 +10,9 @@ public class Shipped implements OrderStatusNew {
   public OrderStatusNew reject() {
     throw new ShippedOrdersCannotBeRejectedException();
   }
+
+  @Override
+  public OrderStatusNew approve() {
+    throw new ShippedOrdersCannotBeRejectedException();
+  }
 }

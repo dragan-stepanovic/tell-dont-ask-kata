@@ -8,4 +8,9 @@ public class Approved implements OrderStatusNew {
   public OrderStatusNew reject() {
     throw new ApprovedOrderCannotBeRejectedException();
   }
+
+  @Override
+  public OrderStatusNew approve() {
+    return this;
+  }
 }

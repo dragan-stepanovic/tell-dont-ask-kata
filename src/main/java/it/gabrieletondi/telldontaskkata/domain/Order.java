@@ -58,6 +58,7 @@ public class Order {
   }
 
   public void approve() {
+    this.newStatus = newStatus.approve();
     assertCanBeApproved();
     changeStatusTo(APPROVED);
   }
