@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
+import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ class OrderBuilder {
   }
 
   Order build() {
-    return new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
+    return new Order(id, status, new Created(), new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }
 
   OrderBuilder with(OrderStatus status) {

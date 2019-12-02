@@ -22,15 +22,17 @@ public class Order {
 
   private int id;
   private OrderStatus status;
-  //  private OrderStatusNew newStatus = new Created();
+  private OrderStatusNew newStatus = new Created();
   private List<OrderItem> items;
   private String currency;
   private BigDecimal total;
   private BigDecimal tax;
 
-  public Order(int id, OrderStatus status, List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
+  public Order(int id, OrderStatus status, OrderStatusNew newStatus,
+      List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
     this.id = id;
     this.status = status;
+    this.newStatus = newStatus;
     this.items = items;
     this.currency = currency;
     this.total = total;
@@ -38,7 +40,8 @@ public class Order {
   }
 
   public static Order withoutOrderItems() {
-    return new Order(1, OrderStatus.CREATED, new ArrayList<>(), "EUR", new BigDecimal("0.00"), new BigDecimal("0.00"));
+    return new Order(1, OrderStatus.CREATED, new Created(), new ArrayList<>(), "EUR", new BigDecimal("0.00"),
+        new BigDecimal("0.00"));
   }
 
   public boolean hasId(int orderId) {
