@@ -6,7 +6,6 @@ import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejectedException;
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.RejectedOrderCannotBeApprovedException;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotReadyForShippmentException;
@@ -58,7 +57,6 @@ public class Order {
   }
 
   public void approve() {
-    assertCanBeApproved();
     this.newStatus = newStatus.approve();
   }
 
@@ -93,27 +91,12 @@ public class Order {
     return is(CREATED) || is(REJECTED);
   }
 
-  private void assertCanBeApproved() {
-//    assertNotTryingToChangeShippedOrder();
-    assertNotApprovingRejectedOrder();
-  }
-
   private void changeStatusTo(OrderStatus approved) {
     this.status = approved;
   }
 
   private boolean shippedAlready() {
     return is(SHIPPED);
-  }
-
-  private void assertNotApprovingRejectedOrder() {
-    if (approvingRejectedOrder()) {
-      throw new RejectedOrderCannotBeApprovedException();
-    }
-  }
-
-  private boolean approvingRejectedOrder() {
-    return is(REJECTED);
   }
 
   private void assertNotRejectingApprovedOrder() {

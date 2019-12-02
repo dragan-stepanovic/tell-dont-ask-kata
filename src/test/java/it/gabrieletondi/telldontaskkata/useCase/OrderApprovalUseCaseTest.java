@@ -37,7 +37,7 @@ public class OrderApprovalUseCaseTest {
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)
   public void cannotApproveRejectedOrder() throws Exception {
-    orderRepository.add(anOrder().with(OrderStatus.REJECTED).build());
+    orderRepository.add(anOrder().with(new Rejected()).build());
     approval.run(new ApproveOrderRequest(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
