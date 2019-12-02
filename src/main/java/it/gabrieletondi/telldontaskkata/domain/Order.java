@@ -21,7 +21,7 @@ public class Order {
 
   private int id;
   private OrderStatus status;
-  private OrderStatusNew newStatus = new Created();
+  private OrderStatusNew newStatus;
   private List<OrderItem> items;
   private String currency;
   private BigDecimal total;
