@@ -3,6 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
+import it.gabrieletondi.telldontaskkata.domain.Rejected;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -27,5 +28,13 @@ class OrderBuilder {
   OrderBuilder thatIs(OrderStatus status) {
     this.statusNew = status;
     return this;
+  }
+
+  OrderBuilder thatIsCreated() {
+    return thatIs(new Created());
+  }
+
+  OrderBuilder thatIsRejected() {
+    return thatIs(new Rejected());
   }
 }
