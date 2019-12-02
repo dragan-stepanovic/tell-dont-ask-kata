@@ -27,7 +27,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder thatIs(OrderStatus status) {
+  private OrderBuilder thatIs(OrderStatus status) {
     this.statusNew = status;
     return this;
   }
