@@ -27,8 +27,7 @@ public class Order {
   }
 
   public static Order withoutOrderItems() {
-    return new Order(1, new Created(), new ArrayList<>(), "EUR", new BigDecimal("0.00"),
-        new BigDecimal("0.00"));
+    return new Order(1, new Created(), new ArrayList<>(), "EUR", new BigDecimal("0.00"), new BigDecimal("0.00"));
   }
 
   public boolean hasId(int orderId) {
