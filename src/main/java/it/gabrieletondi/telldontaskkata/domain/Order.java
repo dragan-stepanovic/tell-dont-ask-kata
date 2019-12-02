@@ -11,16 +11,16 @@ import lombok.ToString;
 public class Order {
 
   private int id;
-  private OrderStatusNew newStatus;
+  private OrderStatusNew status;
   private List<OrderItem> items;
   private String currency;
   private BigDecimal total;
   private BigDecimal tax;
 
-  public Order(int id, OrderStatusNew newStatus,
+  public Order(int id, OrderStatusNew status,
       List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
     this.id = id;
-    this.newStatus = newStatus;
+    this.status = status;
     this.items = items;
     this.currency = currency;
     this.total = total;
@@ -37,15 +37,15 @@ public class Order {
   }
 
   public void reject() {
-    this.newStatus = newStatus.reject();
+    this.status = status.reject();
   }
 
   public void approve() {
-    this.newStatus = newStatus.approve();
+    this.status = status.approve();
   }
 
   public void ship() {
-    this.newStatus = newStatus.ship();
+    this.status = status.ship();
   }
 
   public void addOrderItemFor(Product product, int quantity) {
@@ -59,6 +59,6 @@ public class Order {
   }
 
   public boolean has(OrderStatusNew status) {
-    return newStatus.equals(status);
+    return this.status.equals(status);
   }
 }
