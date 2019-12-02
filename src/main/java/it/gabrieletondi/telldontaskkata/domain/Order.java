@@ -46,15 +46,23 @@ public class Order {
   }
 
   public void reject() {
-    assertNotTryingToChangeShippedOrder();
-    assertNotRejectingApprovedOrder();
+    assertCanBeRejected();
     changeStatusTo(REJECTED);
   }
 
+  private void assertCanBeRejected() {
+    assertNotTryingToChangeShippedOrder();
+    assertNotRejectingApprovedOrder();
+  }
+
   public void approve() {
+    assertCanBeApproved();
+    changeStatusTo(APPROVED);
+  }
+
+  private void assertCanBeApproved() {
     assertNotTryingToChangeShippedOrder();
     assertNotApprovingRejectedOrder();
-    changeStatusTo(APPROVED);
   }
 
   public void ship() {
