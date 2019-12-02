@@ -30,8 +30,8 @@ public class TestOrderRepository implements OrderRepository {
     return savedOrderIs(null);
   }
 
-  public boolean savedOrderMatches(Order otherOrder) {
-    return insertedOrder.equals(otherOrder);
+  public boolean savedOrderMatches(Order thisOrder) {
+    return insertedOrder.equals(thisOrder);
   }
 
   public boolean savedOrderIsApproved() {
