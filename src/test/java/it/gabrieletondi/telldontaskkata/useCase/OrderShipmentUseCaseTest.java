@@ -25,7 +25,7 @@ public class OrderShipmentUseCaseTest {
     final Order initialOrder = anOrder().with(anOrderId).thatIsApproved().build();
     orderRepository.add(initialOrder);
 
-    shipment.run(new OrderShipmentRequest(anOrderId));
+    shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
     assertTrue(orderRepository.savedOrderIs(new Shipped()));
     assertTrue(shipmentService.shippedOrderIs(initialOrder));
@@ -35,7 +35,7 @@ public class OrderShipmentUseCaseTest {
   public void createdOrdersCannotBeShipped() throws Exception {
     orderRepository.add(anOrder().thatIsCreated().build());
 
-    shipment.run(new OrderShipmentRequest(1));
+    shipment.run(OrderShipmentRequest.forOrderWith(1));
 
     assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
@@ -45,7 +45,7 @@ public class OrderShipmentUseCaseTest {
   public void rejectedOrdersCannotBeShipped() throws Exception {
     orderRepository.add(anOrder().with(anOrderId).thatIsRejected().build());
 
-    shipment.run(new OrderShipmentRequest(anOrderId));
+    shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
     assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
@@ -53,11 +53,12 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwiceException.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.add(anOrder().thatIsShipped().build());
+    orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
 
-    shipment.run(new OrderShipmentRequest(1));
+    shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
     assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());
   }
+
 }

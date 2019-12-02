@@ -4,8 +4,12 @@ public class OrderShipmentRequest {
 
   private int orderId;
 
-  public OrderShipmentRequest(int orderId) {
+  private OrderShipmentRequest(int orderId) {
     this.orderId = orderId;
+  }
+
+  public static OrderShipmentRequest forOrderWith(int anOrderId) {
+    return new OrderShipmentRequest(anOrderId);
   }
 
   int getOrderId() {
