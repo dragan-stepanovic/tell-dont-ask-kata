@@ -1,4 +1,4 @@
-package it.gabrieletondi.telldontaskkata.useCase.approval;
+package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 
@@ -6,7 +6,7 @@ public abstract class OrderApprovalRequest {
 
   protected int orderId;
 
-  int getOrderId() {
+  public int getOrderId() {
     return orderId;
   }
 
