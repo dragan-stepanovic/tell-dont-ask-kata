@@ -1,6 +1,7 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
+import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrderId;
 import static junit.framework.TestCase.assertTrue;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
@@ -18,7 +19,6 @@ public class OrderShipmentUseCaseTest {
   private final TestOrderRepository orderRepository = new TestOrderRepository();
   private final TestShipmentService shipmentService = new TestShipmentService();
   private final OrderShipmentUseCase shipment = new OrderShipmentUseCase(orderRepository, shipmentService);
-  private int anOrderId = 2;
 
   @Test
   public void shipApprovedOrder() throws Exception {
