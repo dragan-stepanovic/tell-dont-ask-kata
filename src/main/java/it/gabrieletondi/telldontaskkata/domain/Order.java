@@ -45,13 +45,13 @@ public class Order {
     return id == orderId;
   }
 
-  public void markAsRejected() {
+  public void reject() {
     assertNotTryingToChangeShippedOrder();
     assertNotRejectingApprovedOrder();
     changeStatusTo(REJECTED);
   }
 
-  public void markAsApproved() {
+  public void approve() {
     assertNotTryingToChangeShippedOrder();
     assertNotApprovingRejectedOrder();
     changeStatusTo(APPROVED);

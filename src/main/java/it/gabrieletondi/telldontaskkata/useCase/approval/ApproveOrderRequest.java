@@ -10,6 +10,6 @@ public class ApproveOrderRequest extends OrderApprovalRequest {
 
   @Override
   public void updateOrderStatus(Order order) {
-    order.markAsApproved();
+    order.approve();
   }
 }
