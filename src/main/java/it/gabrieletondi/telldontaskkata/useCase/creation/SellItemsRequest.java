@@ -26,5 +26,4 @@ public class SellItemsRequest {
   List<String> productNames() {
     return requests.stream().map(SellItemRequest::getProductName).collect(Collectors.toList());
   }
-
 }
