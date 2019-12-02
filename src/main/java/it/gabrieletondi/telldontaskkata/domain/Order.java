@@ -11,17 +11,15 @@ import lombok.ToString;
 public class Order {
 
   private int id;
-  private OrderStatus status;
   private OrderStatusNew newStatus;
   private List<OrderItem> items;
   private String currency;
   private BigDecimal total;
   private BigDecimal tax;
 
-  public Order(int id, OrderStatus status, OrderStatusNew newStatus,
+  public Order(int id, OrderStatusNew newStatus,
       List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
     this.id = id;
-    this.status = status;
     this.newStatus = newStatus;
     this.items = items;
     this.currency = currency;
@@ -30,7 +28,7 @@ public class Order {
   }
 
   public static Order withoutOrderItems() {
-    return new Order(1, OrderStatus.CREATED, new Created(), new ArrayList<>(), "EUR", new BigDecimal("0.00"),
+    return new Order(1, new Created(), new ArrayList<>(), "EUR", new BigDecimal("0.00"),
         new BigDecimal("0.00"));
   }
 

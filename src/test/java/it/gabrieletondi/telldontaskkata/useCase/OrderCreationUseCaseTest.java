@@ -7,7 +7,6 @@ import it.gabrieletondi.telldontaskkata.domain.Category;
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Price;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.domain.Products;
@@ -41,7 +40,7 @@ public class OrderCreationUseCaseTest {
 
     orderCreation.run(request);
 
-    final Order expected = new Order(1, OrderStatus.CREATED, new Created(),
+    final Order expected = new Order(1, new Created(),
         asList(new OrderItem(new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage)), 2,
                 new BigDecimal("7.84"), new BigDecimal("0.72")),
             new OrderItem(new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage)), 3,

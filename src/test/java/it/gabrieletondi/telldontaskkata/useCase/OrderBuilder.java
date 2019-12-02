@@ -18,7 +18,7 @@ class OrderBuilder {
   }
 
   Order build() {
-    return new Order(id, status, statusNew, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
+    return new Order(id, statusNew, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }
 
   OrderBuilder with(int id) {
