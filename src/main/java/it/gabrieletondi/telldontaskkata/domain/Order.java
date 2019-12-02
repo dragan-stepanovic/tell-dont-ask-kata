@@ -53,7 +53,7 @@ public class Order {
   }
 
   public void reject() {
-//    this.newStatus = newStatus.reject();
+    this.newStatus = newStatus.reject();
     statusReject();
   }
 
