@@ -47,7 +47,7 @@ public class OrderCreationUseCaseTest {
                 new BigDecimal("15.36"), new BigDecimal("1.41"))),
         "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
 
-    assertTrue(orderRepository.savedOrderIs(expected));
+    assertTrue(orderRepository.savedOrderMatches(expected));
   }
 
   @Test(expected = UnknownProductException.class)

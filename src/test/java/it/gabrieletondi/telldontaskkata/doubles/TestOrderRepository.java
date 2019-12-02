@@ -27,10 +27,10 @@ public class TestOrderRepository implements OrderRepository {
   }
 
   public boolean orderIsNotSaved() {
-    return savedOrderIs((OrderStatus) null);
+    return savedOrderIs(null);
   }
 
-  public boolean savedOrderIs(Order value) {
+  public boolean savedOrderMatches(Order value) {
     return insertedOrder.equals(value);
   }
 
