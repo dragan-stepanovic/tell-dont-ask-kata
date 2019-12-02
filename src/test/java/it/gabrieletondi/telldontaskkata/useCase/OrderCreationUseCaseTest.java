@@ -26,13 +26,10 @@ public class OrderCreationUseCaseTest {
   private final TestOrderRepository orderRepository = new TestOrderRepository();
   private final Category food = new Category("food", new BigDecimal("10"));
   private BigDecimal foodTaxPercentage = food.getTaxPercentage();
-  private final ProductCatalog productCatalog;
-
-  {
-    final Product salad = new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage));
-    final Product tomato = new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage));
-    productCatalog = productCatalogContaining(salad, tomato);
-  }
+  final Product salad = new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage));
+  final Product tomato = new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage));
+  private final ProductCatalog productCatalog = productCatalogContaining(salad, tomato);
+  ;
 
   private static InMemoryProductCatalog productCatalogContaining(Product salad, Product tomato) {
     return new InMemoryProductCatalog(
