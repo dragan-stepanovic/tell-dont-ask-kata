@@ -1,6 +1,6 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
-interface OrderStatusNew {
+public interface OrderStatusNew {
 
   OrderStatusNew reject();
 }

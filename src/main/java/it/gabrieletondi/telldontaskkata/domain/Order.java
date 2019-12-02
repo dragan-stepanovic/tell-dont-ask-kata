@@ -59,7 +59,7 @@ public class Order {
   private void statusReject() {
     assertCanBeRejected();
     this.newStatus = newStatus.reject();
-    changeStatusTo(REJECTED);
+//    changeStatusTo(REJECTED);
   }
 
   public void approve() {
@@ -153,5 +153,9 @@ public class Order {
   private void assertCanBeRejected() {
     assertNotTryingToChangeShippedOrder();
     assertNotRejectingApprovedOrder();
+  }
+
+  public boolean has(OrderStatusNew status) {
+    return newStatus.equals(status);
   }
 }

@@ -2,6 +2,7 @@ package it.gabrieletondi.telldontaskkata.doubles;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
+import it.gabrieletondi.telldontaskkata.domain.OrderStatusNew;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,10 @@ public class TestOrderRepository implements OrderRepository {
   }
 
   public boolean savedOrderHas(OrderStatus status) {
+    return insertedOrder.has(status);
+  }
+
+  public boolean savedOrderHasStatus(OrderStatusNew status) {
     return insertedOrder.has(status);
   }
 }
