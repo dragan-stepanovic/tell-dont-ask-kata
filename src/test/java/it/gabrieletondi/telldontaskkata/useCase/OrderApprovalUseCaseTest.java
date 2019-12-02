@@ -9,9 +9,9 @@ import it.gabrieletondi.telldontaskkata.useCase.approval.ApproveOrderRequest;
 import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalUseCase;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.RejectedOrderCannotBeApproved;
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeApproved;
-import it.gabrieletondi.telldontaskkata.useCase.rejection.ApprovedOrderCannotBeRejected;
 import it.gabrieletondi.telldontaskkata.useCase.rejection.RejectOrderRequest;
-import it.gabrieletondi.telldontaskkata.useCase.rejection.ShippedOrdersCannotBeRejected;
+import it.gabrieletondi.telldontaskkata.useCase.rejection.invariants.ApprovedOrderCannotBeRejected;
+import it.gabrieletondi.telldontaskkata.useCase.rejection.invariants.ShippedOrdersCannotBeRejected;
 import org.junit.Test;
 
 public class OrderApprovalUseCaseTest {
