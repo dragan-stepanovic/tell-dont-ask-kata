@@ -45,11 +45,6 @@ public class Order {
     return id == orderId;
   }
 
-  public void assertCanBeShipped() {
-    assertNotShippedAlready();
-    assertReadyForShipment();
-  }
-
   public void markAsRejected() {
     assertNotTryingToChangeShippedOrder();
     assertNotRejectingApprovedOrder();
@@ -119,6 +114,11 @@ public class Order {
     if (rejectingApprovedOrder()) {
       throw new ApprovedOrderCannotBeRejectedException();
     }
+  }
+
+  private void assertCanBeShipped() {
+    assertNotShippedAlready();
+    assertReadyForShipment();
   }
 
   private boolean rejectingApprovedOrder() {

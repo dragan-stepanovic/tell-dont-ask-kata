@@ -16,9 +16,7 @@ public class OrderShipmentUseCase {
 
   public void run(OrderShipmentRequest request) {
     final Order order = orderRepository.orderWith(request.getOrderId());
-
     shipmentService.ship(order);
-
     orderRepository.save(order);
   }
 }
