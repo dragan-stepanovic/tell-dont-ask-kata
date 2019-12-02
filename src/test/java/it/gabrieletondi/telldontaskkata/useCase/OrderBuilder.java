@@ -27,11 +27,6 @@ class OrderBuilder {
     return this;
   }
 
-  private OrderBuilder thatIs(OrderStatus status) {
-    this.statusNew = status;
-    return this;
-  }
-
   OrderBuilder thatIsCreated() {
     return thatIs(new Created());
   }
@@ -46,5 +41,10 @@ class OrderBuilder {
 
   OrderBuilder thatIsShipped() {
     return thatIs(new Shipped());
+  }
+
+  private OrderBuilder thatIs(OrderStatus status) {
+    this.statusNew = status;
+    return this;
   }
 }
