@@ -3,6 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static junit.framework.TestCase.assertTrue;
 
+import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Rejected;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
@@ -23,7 +24,7 @@ public class OrderApprovalUseCaseTest {
   public void approvedExistingOrder() throws Exception {
     orderRepository.add(anOrder().with(OrderStatus.CREATED).build());
     approval.run(new ApproveOrderRequest(1));
-    assertTrue(orderRepository.savedOrderHas(OrderStatus.APPROVED));
+    assertTrue(orderRepository.savedOrderHasStatus(new Approved()));
   }
 
   @Test

@@ -58,9 +58,9 @@ public class Order {
   }
 
   public void approve() {
-    this.newStatus = newStatus.approve();
     assertCanBeApproved();
-    changeStatusTo(APPROVED);
+    this.newStatus = newStatus.approve();
+//    changeStatusTo(APPROVED);
   }
 
   public void ship() {
