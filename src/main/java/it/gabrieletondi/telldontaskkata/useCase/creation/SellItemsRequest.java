@@ -14,8 +14,8 @@ public class SellItemsRequest {
     this.requests = requests;
   }
 
-  Order orderForRequest(Products products, boolean weDoNotHaveAllProducts) {
-    assertWeHaveAllProductsFromRequest(weDoNotHaveAllProducts);
+  Order orderForRequest(Products products) {
+    assertWeHaveAllProductsFromRequest(products);
     Order order = Order.withoutOrderItems();
 
     for (SellItemRequest itemRequest : requests) {
@@ -25,8 +25,8 @@ public class SellItemsRequest {
     return order;
   }
 
-  private void assertWeHaveAllProductsFromRequest(boolean weDoNotHaveAllProducts) {
-    if (weDoNotHaveAllProducts) {
+  private void assertWeHaveAllProductsFromRequest(Products products) {
+    if (products.atLeastOneUnknownProduct()) {
       throw new UnknownProductException();
     }
   }

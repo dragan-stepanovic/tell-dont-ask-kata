@@ -13,4 +13,12 @@ public class Products {
   public Product oneWithThe(String name) {
     return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
   }
+
+  public boolean atLeastOneUnknownProduct() {
+    return values.stream().anyMatch(this::unknown);
+  }
+
+  private boolean unknown(Product product) {
+    return product == null;
+  }
 }

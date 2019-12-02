@@ -14,23 +14,11 @@ public class InMemoryProductCatalog implements ProductCatalog {
     this.products = products;
   }
 
-  public Product productWith(final String name) {
-    return products.oneWithThe(name);
-  }
-
-  public boolean doesNotContainsAllProductsWith(List<String> productNames) {
-    return productNames
-        .stream()
-        .map(this::productWith)
-        .anyMatch(this::unknown);
-  }
-
-  @Override
   public Products productsWith(List<String> productNames) {
     return new Products(productNames.stream().map(this::productWith).collect(Collectors.toList()));
   }
 
-  private boolean unknown(Product product) {
-    return product == null;
+  private Product productWith(final String name) {
+    return products.oneWithThe(name);
   }
 }
