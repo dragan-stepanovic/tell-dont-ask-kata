@@ -1,12 +1,9 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.APPROVED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.SHIPPED;
 
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejectedException;
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotReadyForShippmentException;
 import java.math.BigDecimal;
@@ -52,7 +49,6 @@ public class Order {
   }
 
   public void reject() {
-    assertCanBeRejected();
     this.newStatus = newStatus.reject();
   }
 
@@ -99,38 +95,13 @@ public class Order {
     return is(SHIPPED);
   }
 
-  private void assertNotRejectingApprovedOrder() {
-    if (rejectingApprovedOrder()) {
-      throw new ApprovedOrderCannotBeRejectedException();
-    }
-  }
-
   private void assertCanBeShipped() {
     assertNotShippedAlready();
     assertReadyForShipment();
   }
 
-  private boolean rejectingApprovedOrder() {
-    return is(APPROVED);
-  }
-
-  private void assertNotTryingToChangeShippedOrder() {
-    if (tryingToChangeShippedOrder()) {
-      throw new ShippedOrdersCannotBeRejectedException();
-    }
-  }
-
-  private boolean tryingToChangeShippedOrder() {
-    return is(SHIPPED);
-  }
-
   private boolean is(OrderStatus thatStatus) {
     return this.status == thatStatus;
-  }
-
-  private void assertCanBeRejected() {
-    assertNotTryingToChangeShippedOrder();
-    assertNotRejectingApprovedOrder();
   }
 
   public boolean has(OrderStatusNew status) {
