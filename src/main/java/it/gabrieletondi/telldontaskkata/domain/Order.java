@@ -62,7 +62,8 @@ public class Order {
     changeStatusTo(APPROVED);
   }
 
-  public void markAsShipped() {
+  public void ship() {
+    assertCanBeShipped();
     changeStatusTo(SHIPPED);
   }
 

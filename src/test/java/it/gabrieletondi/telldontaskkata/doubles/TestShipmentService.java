@@ -9,6 +9,7 @@ public class TestShipmentService implements ShipmentService {
 
   @Override
   public void ship(Order order) {
+    order.ship();
     this.shippedOrder = order;
   }
 
