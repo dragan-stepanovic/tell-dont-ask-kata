@@ -14,12 +14,16 @@ public class SellItemsRequest {
     this.requests = requests;
   }
 
+  private static void orderItemFrom(ProductCatalog productCatalog, Order order, SellItemRequest itemRequest) {
+    final Product product = productCatalog.productWith(itemRequest.getProductName());
+    order.addOrderItemFor(product, itemRequest.getQuantity());
+  }
+
   Order orderFromRequest(ProductCatalog productCatalog) {
     assertWeHaveAllProductsFromRequest(productCatalog);
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
-      final Product product = productCatalog.productWith(itemRequest.getProductName());
-      order.addOrderItemFor(product, itemRequest.getQuantity());
+      orderItemFrom(productCatalog, order, itemRequest);
     }
     return order;
   }
