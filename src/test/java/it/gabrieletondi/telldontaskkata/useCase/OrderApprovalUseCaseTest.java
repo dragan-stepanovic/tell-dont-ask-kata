@@ -5,7 +5,6 @@ import static junit.framework.TestCase.assertTrue;
 
 import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.Created;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Rejected;
 import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
@@ -31,7 +30,7 @@ public class OrderApprovalUseCaseTest {
 
   @Test
   public void rejectedExistingOrder() throws Exception {
-    orderRepository.add(anOrder().with(OrderStatus.CREATED).build());
+    orderRepository.add(anOrder().with(new Created()).build());
     approval.run(new RejectOrderRequest(1));
     assertTrue(orderRepository.savedOrderHasStatus(new Rejected()));
   }
