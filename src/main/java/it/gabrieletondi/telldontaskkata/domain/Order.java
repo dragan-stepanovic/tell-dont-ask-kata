@@ -55,5 +55,4 @@ public class Order {
   public boolean has(OrderStatus thatStatus) {
     return status.equals(thatStatus);
   }
-
 }
