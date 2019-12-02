@@ -16,10 +16,8 @@ public class OrderCreationUseCase {
   }
 
   public void run(SellItemsRequest request) {
-
     final Products products = productCatalog.productsWith(request.productNames());
-    Order order = request
-        .orderFor(products);
+    Order order = request.orderFor(products);
     orderRepository.save(order);
   }
 }

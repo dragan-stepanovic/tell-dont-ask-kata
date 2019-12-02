@@ -15,20 +15,12 @@ public class SellItemsRequest {
   }
 
   Order orderFor(Products products) {
-    assertWeHaveAllProductsFromRequest(products);
     Order order = Order.withoutOrderItems();
-
     for (SellItemRequest itemRequest : requests) {
       Product product = products.oneWithThe(itemRequest.getProductName());
       order.add(itemRequest.orderItemFor(product));
     }
     return order;
-  }
-
-  private void assertWeHaveAllProductsFromRequest(Products products) {
-    if (products.atLeastOneUnknownProduct()) {
-      throw new UnknownProductException();
-    }
   }
 
   List<String> productNames() {
