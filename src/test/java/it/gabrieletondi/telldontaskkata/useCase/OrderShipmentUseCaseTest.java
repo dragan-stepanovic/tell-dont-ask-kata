@@ -3,9 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static junit.framework.TestCase.assertTrue;
 
-import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.Rejected;
 import it.gabrieletondi.telldontaskkata.domain.Shipped;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
@@ -24,7 +22,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final Order initialOrder = anOrder().with(anOrderId).thatIs(new Approved()).build();
+    final Order initialOrder = anOrder().with(anOrderId).thatIsApproved().build();
     orderRepository.add(initialOrder);
 
     shipment.run(new OrderShipmentRequest(anOrderId));
@@ -45,7 +43,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderNotReadyForShippmentException.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(anOrder().thatIs(new Rejected()).build());
+    orderRepository.add(anOrder().thatIsRejected().build());
 
     shipment.run(new OrderShipmentRequest(1));
 

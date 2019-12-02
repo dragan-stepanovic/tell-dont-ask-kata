@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
+import it.gabrieletondi.telldontaskkata.domain.Approved;
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
@@ -36,5 +37,9 @@ class OrderBuilder {
 
   OrderBuilder thatIsRejected() {
     return thatIs(new Rejected());
+  }
+
+  OrderBuilder thatIsApproved() {
+    return thatIs(new Approved());
   }
 }
