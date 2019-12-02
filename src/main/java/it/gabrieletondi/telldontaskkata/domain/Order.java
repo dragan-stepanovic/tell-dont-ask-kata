@@ -45,6 +45,10 @@ public class Order {
     return id == orderId;
   }
 
+  public boolean has(OrderStatus thatStatus) {
+    return this.status == thatStatus;
+  }
+
   public void reject() {
     assertCanBeRejected();
     changeStatusTo(REJECTED);
@@ -62,10 +66,6 @@ public class Order {
 
   public void addOrderItemFor(Product product, int quantity) {
     add(OrderItem.forA(product, quantity));
-  }
-
-  public boolean hasStatus(OrderStatus thatStatus) {
-    return this.status == thatStatus;
   }
 
   private void add(OrderItem orderItem) {

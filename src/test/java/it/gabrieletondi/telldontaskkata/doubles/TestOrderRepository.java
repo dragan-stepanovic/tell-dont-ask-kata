@@ -33,6 +33,6 @@ public class TestOrderRepository implements OrderRepository {
   }
 
   public boolean savedOrderHas(OrderStatus status) {
-    return insertedOrder.hasStatus(status);
+    return insertedOrder.has(status);
   }
 }
