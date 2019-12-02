@@ -1,6 +1,7 @@
-package it.gabrieletondi.telldontaskkata.useCase.approval;
+package it.gabrieletondi.telldontaskkata.useCase.rejection;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
+import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalRequest;
 
 public class RejectOrderRequest extends OrderApprovalRequest {
 

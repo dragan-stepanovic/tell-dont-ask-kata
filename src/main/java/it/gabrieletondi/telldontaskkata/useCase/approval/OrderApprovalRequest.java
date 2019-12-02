@@ -4,7 +4,7 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 
 public abstract class OrderApprovalRequest {
 
-  int orderId;
+  protected int orderId;
 
   int getOrderId() {
     return orderId;

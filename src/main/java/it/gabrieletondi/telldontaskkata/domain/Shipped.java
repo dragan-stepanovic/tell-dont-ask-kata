@@ -1,7 +1,7 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeApproved;
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ShippedOrdersCannotBeRejected;
+import it.gabrieletondi.telldontaskkata.useCase.rejection.ShippedOrdersCannotBeRejected;
 import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotBeShippedTwice;
 import lombok.EqualsAndHashCode;
 

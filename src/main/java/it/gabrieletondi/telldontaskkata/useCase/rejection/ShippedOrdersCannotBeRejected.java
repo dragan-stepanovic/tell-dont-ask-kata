@@ -1,4 +1,4 @@
-package it.gabrieletondi.telldontaskkata.useCase.approval.invariants;
+package it.gabrieletondi.telldontaskkata.useCase.rejection;
 
 public class ShippedOrdersCannotBeRejected extends RuntimeException {
 }

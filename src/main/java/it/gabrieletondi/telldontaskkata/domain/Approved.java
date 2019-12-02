@@ -1,6 +1,6 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
-import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrderCannotBeRejected;
+import it.gabrieletondi.telldontaskkata.useCase.rejection.ApprovedOrderCannotBeRejected;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
