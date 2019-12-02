@@ -1,7 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,16 +13,11 @@ public class SellItemsRequest {
     this.requests = requests;
   }
 
-  private static void orderItemFrom(ProductCatalog productCatalog, Order order, SellItemRequest itemRequest) {
-    final Product product = productCatalog.productWith(itemRequest.getProductName());
-    order.addOrderItemFor(product, itemRequest.getQuantity());
-  }
-
   Order orderFromRequest(ProductCatalog productCatalog) {
     assertWeHaveAllProductsFromRequest(productCatalog);
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
-      orderItemFrom(productCatalog, order, itemRequest);
+      itemRequest.orderItemFrom(productCatalog, order);
     }
     return order;
   }

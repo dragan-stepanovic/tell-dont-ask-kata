@@ -47,17 +47,14 @@ public class Order {
     this.status = status.toShipped();
   }
 
-  public void addOrderItemFor(Product product, int quantity) {
-    add(OrderItem.forA(product, quantity));
+  public void add(OrderItem orderItem) {
+    items.add(orderItem);
+    total = orderItem.addTaxedAmountTo(total);
+    tax = orderItem.addTaxAmountTo(tax);
   }
 
   public boolean has(OrderStatus thatStatus) {
     return status.equals(thatStatus);
   }
 
-  private void add(OrderItem orderItem) {
-    items.add(orderItem);
-    total = orderItem.addTaxedAmountTo(total);
-    tax = orderItem.addTaxAmountTo(tax);
-  }
 }
