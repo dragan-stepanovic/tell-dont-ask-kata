@@ -15,6 +15,7 @@ public class SellItemsRequest {
   }
 
   Order orderFromRequest(ProductCatalog productCatalog) {
+    assertWeHaveAllProductsFromRequest(productCatalog);
     Order order = Order.withoutOrderItems();
     for (SellItemRequest itemRequest : requests) {
       final Product product = productCatalog.productWith(itemRequest.getProductName());
@@ -23,7 +24,14 @@ public class SellItemsRequest {
     return order;
   }
 
-  List<String> productNames() {
+  private List<String> productNames() {
     return requests.stream().map(SellItemRequest::getProductName).collect(Collectors.toList());
   }
+
+  private void assertWeHaveAllProductsFromRequest(ProductCatalog productCatalog) {
+    if (productCatalog.doesNotContainsAllProductsWith(productNames())) {
+      throw new UnknownProductException();
+    }
+  }
+
 }
