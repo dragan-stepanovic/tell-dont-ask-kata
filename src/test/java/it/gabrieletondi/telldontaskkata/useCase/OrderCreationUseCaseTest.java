@@ -23,16 +23,16 @@ import org.junit.Test;
 
 public class OrderCreationUseCaseTest {
 
-  private final TestOrderRepository orderRepository = new TestOrderRepository();
   private static final Category food = new Category("food", new BigDecimal("10"));
-  private final OrderCreationUseCase orderCreation = new OrderCreationUseCase(orderRepository, productCatalog);
   private static BigDecimal foodTaxPercentage = food.getTaxPercentage();
-  final static Product salad = new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage));
-  final static Product tomato = new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage));
-  private static final ProductCatalog productCatalog = productCatalogContaining(salad, tomato);
+  private final static Product salad = new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage));
+  private final static Product tomato = new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage));
+  private static final ProductCatalog productCatalog = new InMemoryProductCatalog(containing(salad, tomato));
+  private final TestOrderRepository orderRepository = new TestOrderRepository();
+  private final OrderCreationUseCase orderCreation = new OrderCreationUseCase(orderRepository, productCatalog);
 
-  private static InMemoryProductCatalog productCatalogContaining(Product salad, Product tomato) {
-    return new InMemoryProductCatalog(new Products(asList(salad, tomato)));
+  private static Products containing(Product salad, Product tomato) {
+    return new Products(asList(salad, tomato));
   }
 
   @Test
