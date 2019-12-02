@@ -38,10 +38,6 @@ public class Order {
     return id == orderId;
   }
 
-  public boolean has(OrderStatus thatStatus) {
-    return this.status == thatStatus;
-  }
-
   public void reject() {
     this.newStatus = newStatus.reject();
   }
