@@ -4,8 +4,12 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 
 public class RejectOrderRequest extends OrderApprovalRequest {
 
-  public RejectOrderRequest(int orderId) {
+  private RejectOrderRequest(int orderId) {
     this.orderId = orderId;
+  }
+
+  public static RejectOrderRequest forOrderWith(int i) {
+    return new RejectOrderRequest(i);
   }
 
   @Override

@@ -29,8 +29,8 @@ public class OrderApprovalUseCaseTest {
 
   @Test
   public void rejectedExistingOrder() throws Exception {
-    orderRepository.add(anOrder().thatIsCreated().build());
-    approval.run(new RejectOrderRequest(1));
+    orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
+    approval.run(RejectOrderRequest.forOrderWith(2));
     assertTrue(orderRepository.savedOrderIs(new Rejected()));
   }
 
@@ -44,7 +44,7 @@ public class OrderApprovalUseCaseTest {
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
   public void cannotRejectApprovedOrder() throws Exception {
     orderRepository.add(anOrder().thatIsApproved().build());
-    approval.run(new RejectOrderRequest(1));
+    approval.run(RejectOrderRequest.forOrderWith(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
@@ -58,7 +58,7 @@ public class OrderApprovalUseCaseTest {
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
     orderRepository.add(anOrder().thatIsShipped().build());
-    approval.run(new RejectOrderRequest(1));
+    approval.run(RejectOrderRequest.forOrderWith(1));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 }
