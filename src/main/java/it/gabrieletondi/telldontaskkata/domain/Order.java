@@ -17,8 +17,7 @@ public class Order {
   private BigDecimal total;
   private BigDecimal tax;
 
-  public Order(int id, OrderStatus status,
-      List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
+  public Order(int id, OrderStatus status, List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
     this.id = id;
     this.status = status;
     this.items = items;
