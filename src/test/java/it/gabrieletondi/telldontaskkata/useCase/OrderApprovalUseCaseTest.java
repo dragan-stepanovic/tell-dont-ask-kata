@@ -36,29 +36,29 @@ public class OrderApprovalUseCaseTest {
 
   @Test(expected = RejectedOrderCannotBeApprovedException.class)
   public void cannotApproveRejectedOrder() throws Exception {
-    orderRepository.add(anOrder().thatIsRejected().build());
-    approval.run(ApproveOrderRequest.forOrderWith(1));
+    orderRepository.add(anOrder().with(anOrderId).thatIsRejected().build());
+    approval.run(ApproveOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ApprovedOrderCannotBeRejectedException.class)
   public void cannotRejectApprovedOrder() throws Exception {
-    orderRepository.add(anOrder().thatIsApproved().build());
-    approval.run(RejectOrderRequest.forOrderWith(1));
+    orderRepository.add(anOrder().with(anOrderId).thatIsApproved().build());
+    approval.run(RejectOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
-    orderRepository.add(anOrder().thatIsShipped().build());
-    approval.run(ApproveOrderRequest.forOrderWith(1));
+    orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
+    approval.run(ApproveOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejectedException.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
-    orderRepository.add(anOrder().thatIsShipped().build());
-    approval.run(RejectOrderRequest.forOrderWith(1));
+    orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
+    approval.run(RejectOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 }

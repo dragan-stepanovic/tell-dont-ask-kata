@@ -33,9 +33,9 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderNotReadyForShippmentException.class)
   public void createdOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(anOrder().thatIsCreated().build());
+    orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
 
-    shipment.run(OrderShipmentRequest.forOrderWith(1));
+    shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
     assertTrue(orderRepository.orderIsNotSaved());
     assertTrue(shipmentService.orderIsNotShipped());

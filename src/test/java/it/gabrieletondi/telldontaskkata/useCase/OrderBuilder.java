@@ -12,7 +12,7 @@ import java.util.ArrayList;
 class OrderBuilder {
 
   static int anOrderId = 2;
-  private int id = 1;
+  private int id = 12;
   private OrderStatus statusNew = new Created();
 
   static OrderBuilder anOrder() {
