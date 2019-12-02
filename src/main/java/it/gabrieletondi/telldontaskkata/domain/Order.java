@@ -53,13 +53,8 @@ public class Order {
   }
 
   public void reject() {
-    statusReject();
-  }
-
-  private void statusReject() {
     assertCanBeRejected();
     this.newStatus = newStatus.reject();
-//    changeStatusTo(REJECTED);
   }
 
   public void approve() {
