@@ -1,7 +1,8 @@
 package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
-import it.gabrieletondi.telldontaskkata.domain.Product;
+import it.gabrieletondi.telldontaskkata.domain.Products;
+import java.util.List;
 
 public class SellItemRequest {
 
@@ -13,11 +14,11 @@ public class SellItemRequest {
     this.quantity = quantity;
   }
 
-  OrderItem orderItemFor(Product product) {
-    return OrderItem.forA(product, quantity);
+  OrderItem orderItemFor(Products products) {
+    return OrderItem.forA(products.oneWithThe(productName), quantity);
   }
 
-  String getProductName() {
-    return productName;
+  void addProductNameTo(List<String> productNames) {
+    productNames.add(productName);
   }
 }
