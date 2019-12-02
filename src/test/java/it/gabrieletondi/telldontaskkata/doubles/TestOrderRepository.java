@@ -11,13 +11,8 @@ public class TestOrderRepository implements OrderRepository {
   private Order insertedOrder;
   private List<Order> orders = new ArrayList<>();
 
-  @Override
   public Order orderWith(int orderId) {
     return orders.stream().filter(o -> o.hasId(orderId)).findFirst().get();
-  }
-
-  public boolean orderIsNotSaved() {
-    return savedOrderIs((OrderStatus) null);
   }
 
   public void save(Order order) {
@@ -26,6 +21,10 @@ public class TestOrderRepository implements OrderRepository {
 
   public void add(Order order) {
     this.orders.add(order);
+  }
+
+  public boolean orderIsNotSaved() {
+    return savedOrderIs((OrderStatus) null);
   }
 
   public boolean savedOrderIs(Order value) {
