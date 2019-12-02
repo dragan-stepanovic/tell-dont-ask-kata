@@ -8,7 +8,7 @@ public class Products {
   private final List<Product> values;
 
   public Products(List<Product> values) {
-    assertThereAreNoUnknownProducts();
+    assertThereAreNoUnknownProducts(values);
     this.values = values;
   }
 
@@ -16,13 +16,17 @@ public class Products {
     return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
   }
 
-  private void assertThereAreNoUnknownProducts() {
-    if (atLeastOneUnknownProduct()) {
+  private void assertThereAreNoUnknownProducts(List<Product> values) {
+    if (noValues(values) || atLeastOneUnknownProduct(values)) {
       throw new UnknownProductException();
     }
   }
 
-  private boolean atLeastOneUnknownProduct() {
+  private boolean noValues(List<Product> values) {
+    return values == null;
+  }
+
+  private boolean atLeastOneUnknownProduct(List<Product> values) {
     return values.stream().anyMatch(this::unknown);
   }
 
