@@ -1,7 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase.creation;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.domain.Products;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +15,8 @@ public class SellItemsRequest {
 
   Order orderFor(Products products) {
     Order order = Order.withoutOrderItems();
-    for (SellItemRequest itemRequest : requests) {
-      Product product = products.oneWithThe(itemRequest.getProductName());
-      order.add(itemRequest.orderItemFor(product));
+    for (SellItemRequest request : requests) {
+      order.add(request.orderItemFor(products.oneWithThe(request.getProductName())));
     }
     return order;
   }
