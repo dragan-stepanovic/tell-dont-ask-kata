@@ -60,7 +60,6 @@ public class Order {
   public void approve() {
     assertCanBeApproved();
     this.newStatus = newStatus.approve();
-//    changeStatusTo(APPROVED);
   }
 
   public void ship() {
