@@ -4,20 +4,20 @@ import it.gabrieletondi.telldontaskkata.useCase.approval.invariants.ApprovedOrde
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public class Approved implements OrderStatusNew {
+public class Approved implements OrderStatus {
 
   @Override
-  public OrderStatusNew reject() {
+  public OrderStatus reject() {
     throw new ApprovedOrderCannotBeRejectedException();
   }
 
   @Override
-  public OrderStatusNew approve() {
+  public OrderStatus approve() {
     return this;
   }
 
   @Override
-  public OrderStatusNew ship() {
+  public OrderStatus ship() {
     return new Shipped();
   }
 }

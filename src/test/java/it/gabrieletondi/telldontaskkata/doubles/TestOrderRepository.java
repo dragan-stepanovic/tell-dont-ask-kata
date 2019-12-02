@@ -1,7 +1,7 @@
 package it.gabrieletondi.telldontaskkata.doubles;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatusNew;
+import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class TestOrderRepository implements OrderRepository {
   }
 
   public boolean orderIsNotSaved() {
-    return savedOrderIs((OrderStatusNew) null);
+    return savedOrderIs((OrderStatus) null);
   }
 
   public void save(Order order) {
@@ -32,7 +32,7 @@ public class TestOrderRepository implements OrderRepository {
     return insertedOrder.equals(value);
   }
 
-  public boolean savedOrderIs(OrderStatusNew status) {
+  public boolean savedOrderIs(OrderStatus status) {
     return insertedOrder.has(status);
   }
 }

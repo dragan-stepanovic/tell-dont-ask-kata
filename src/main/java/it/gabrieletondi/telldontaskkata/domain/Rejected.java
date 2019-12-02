@@ -5,20 +5,20 @@ import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderNotRead
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public class Rejected implements OrderStatusNew {
+public class Rejected implements OrderStatus {
 
   @Override
-  public OrderStatusNew reject() {
+  public OrderStatus reject() {
     return this;
   }
 
   @Override
-  public OrderStatusNew approve() {
+  public OrderStatus approve() {
     throw new RejectedOrderCannotBeApprovedException();
   }
 
   @Override
-  public OrderStatusNew ship() {
+  public OrderStatus ship() {
     throw new OrderNotReadyForShippmentException();
   }
 }

@@ -5,20 +5,20 @@ import it.gabrieletondi.telldontaskkata.useCase.shipment.invariants.OrderCannotB
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public class Shipped implements OrderStatusNew {
+public class Shipped implements OrderStatus {
 
   @Override
-  public OrderStatusNew reject() {
+  public OrderStatus reject() {
     throw new ShippedOrdersCannotBeRejectedException();
   }
 
   @Override
-  public OrderStatusNew approve() {
+  public OrderStatus approve() {
     throw new ShippedOrdersCannotBeRejectedException();
   }
 
   @Override
-  public OrderStatusNew ship() {
+  public OrderStatus ship() {
     throw new OrderCannotBeShippedTwiceException();
   }
 }

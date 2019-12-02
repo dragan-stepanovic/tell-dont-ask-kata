@@ -2,14 +2,14 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatusNew;
+import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 class OrderBuilder {
 
   private int id = 1;
-  private OrderStatusNew statusNew = new Created();
+  private OrderStatus statusNew = new Created();
 
   static OrderBuilder anOrder() {
     return new OrderBuilder();
@@ -24,7 +24,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder thatIs(OrderStatusNew status) {
+  OrderBuilder thatIs(OrderStatus status) {
     this.statusNew = status;
     return this;
   }

@@ -11,13 +11,13 @@ import lombok.ToString;
 public class Order {
 
   private int id;
-  private OrderStatusNew status;
+  private OrderStatus status;
   private List<OrderItem> items;
   private String currency;
   private BigDecimal total;
   private BigDecimal tax;
 
-  public Order(int id, OrderStatusNew status,
+  public Order(int id, OrderStatus status,
       List<OrderItem> items, String currency, BigDecimal total, BigDecimal tax) {
     this.id = id;
     this.status = status;
@@ -58,7 +58,7 @@ public class Order {
     tax = orderItem.addTaxAmountTo(tax);
   }
 
-  public boolean has(OrderStatusNew status) {
+  public boolean has(OrderStatus status) {
     return this.status.equals(status);
   }
 }
