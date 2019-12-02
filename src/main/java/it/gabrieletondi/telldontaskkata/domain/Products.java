@@ -12,25 +12,25 @@ public class Products {
     this.values = values;
   }
 
-  public Product oneWithThe(String name) {
-    return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
-  }
-
-  private void assertThereAreNoUnknownProducts(List<Product> values) {
+  private static void assertThereAreNoUnknownProducts(List<Product> values) {
     if (noValues(values) || atLeastOneUnknownProduct(values)) {
       throw new UnknownProductException();
     }
   }
 
-  private boolean noValues(List<Product> values) {
+  private static boolean atLeastOneUnknownProduct(List<Product> values) {
+    return values.stream().anyMatch(Products::unknown);
+  }
+
+  private static boolean noValues(List<Product> values) {
     return values == null;
   }
 
-  private boolean atLeastOneUnknownProduct(List<Product> values) {
-    return values.stream().anyMatch(this::unknown);
+  private static boolean unknown(Product product) {
+    return product == null;
   }
 
-  private boolean unknown(Product product) {
-    return product == null;
+  public Product oneWithThe(String name) {
+    return values.stream().filter(p -> p.with(name)).findFirst().orElse(null);
   }
 }
