@@ -75,7 +75,7 @@ public class OrderCreationUseCaseTest {
                     .withTaxedAmount("15.36")
                     .withTaxAmount("1.41")
                     .build()))
-        .withTotal("23.20").andTax("2.13")
+        .inTotalOf("23.20").outOfWhichTaxIs("2.13")
         .build();
 
     assertTrue(orderRepository.savedOrderMatches(expected));

@@ -56,12 +56,12 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder withTotal(String price) {
+  OrderBuilder inTotalOf(String price) {
     this.total = new BigDecimal(price);
     return this;
   }
 
-  OrderBuilder andTax(String tax) {
+  OrderBuilder outOfWhichTaxIs(String tax) {
     this.tax = new BigDecimal(tax);
     return this;
   }
