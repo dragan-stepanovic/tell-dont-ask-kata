@@ -56,7 +56,9 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return new OrderItemBuilder(salad, price, quantity, taxedAmount, taxAmount).build();
+    return new OrderItemBuilder(price, quantity, taxedAmount, taxAmount)
+        .forProductWithName(salad)
+        .build();
   }
 
   private Order anOrder(List<OrderItem> orderItems, int id, Created status, String currency, BigDecimal total,
@@ -73,14 +75,13 @@ public class OrderCreationUseCaseTest {
 
   private class OrderItemBuilder {
 
-    private String productName;
+    private String productName = "";
     private String price;
     private int quantity;
     private String taxedAmount;
     private String taxAmount;
 
-    OrderItemBuilder(String productName, String price, int quantity, String taxedAmount, String taxAmount) {
-      this.productName = productName;
+    OrderItemBuilder(String price, int quantity, String taxedAmount, String taxAmount) {
       this.price = price;
       this.quantity = quantity;
       this.taxedAmount = taxedAmount;
