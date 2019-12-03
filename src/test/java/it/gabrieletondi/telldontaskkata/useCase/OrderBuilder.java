@@ -14,6 +14,8 @@ class OrderBuilder {
   static int anOrderId = 2;
   private int id = 12;
   private OrderStatus status = new Created();
+  private String currency = "EUR";
+  private BigDecimal total = BigDecimal.ZERO;
 
   static OrderBuilder anOrder() {
     return new OrderBuilder();
@@ -50,7 +52,17 @@ class OrderBuilder {
     return this;
   }
 
+  OrderBuilder forCurrency(String currency) {
+    this.currency = currency;
+    return this;
+  }
+
   Order build() {
     return new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
+  }
+
+  OrderBuilder withTotal(BigDecimal total) {
+    this.total = total;
+    return this;
   }
 }
