@@ -51,7 +51,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder forCurrency(String currency) {
+  OrderBuilder inCurrency(String currency) {
     this.currency = currency;
     return this;
   }
