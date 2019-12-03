@@ -66,7 +66,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder havingOrderItems(List<OrderItem> orderItems) {
+  OrderBuilder having(List<OrderItem> orderItems) {
     this.orderItems = orderItems;
     return this;
   }

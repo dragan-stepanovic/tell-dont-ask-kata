@@ -21,6 +21,7 @@ import it.gabrieletondi.telldontaskkata.useCase.creation.SellItemsRequest;
 import it.gabrieletondi.telldontaskkata.useCase.creation.UnknownProductException;
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 
 public class OrderCreationUseCaseTest {
@@ -46,16 +47,19 @@ public class OrderCreationUseCaseTest {
     orderCreation.run(request);
 
     final Order expected = anOrder().withId(1).thatIs(new Created())
-        .havingOrderItems(
-            asList(withItem("salad", "3.56", 2, "7.84", "0.72"),
-                withItem("tomato", "4.65", 3, "15.36", "1.41")))
+        .having(
+            orderItems(item("salad", "3.56", 2, "7.84", "0.72"), item("tomato", "4.65", 3, "15.36", "1.41")))
         .inCurrency("EUR").withTotal("23.20").withTax("2.13")
         .build();
 
     assertTrue(orderRepository.savedOrderMatches(expected));
   }
 
-  private OrderItem withItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
+  private List<OrderItem> orderItems(OrderItem item1, OrderItem item2) {
+    return asList(item1, item2);
+  }
+
+  private OrderItem item(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
     return anOrderItem()
         .forProductWithName(salad)
         .withPrice(price)
