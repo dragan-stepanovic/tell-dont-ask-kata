@@ -60,6 +60,7 @@ public class OrderCreationUseCaseTest {
         .forProductWithName(salad)
         .withPrice(price)
         .forQuantity(quantity)
+        .withTaxedAmount(taxedAmount)
         .build();
   }
 

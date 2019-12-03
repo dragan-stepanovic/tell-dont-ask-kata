@@ -36,6 +36,11 @@ class OrderItemBuilder {
     return this;
   }
 
+  OrderItemBuilder withTaxedAmount(String taxedAmount) {
+    this.taxedAmount = taxedAmount;
+    return this;
+  }
+
   OrderItem build() {
     return new OrderItem(new Product(productName, new Price(new BigDecimal(price), taxPercentage)), quantity,
         new BigDecimal(taxedAmount), new BigDecimal(taxAmount));
