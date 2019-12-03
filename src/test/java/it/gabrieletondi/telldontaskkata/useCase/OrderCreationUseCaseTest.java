@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
+import static it.gabrieletondi.telldontaskkata.useCase.OrderItemBuilder.anOrderItem;
 import static java.util.Arrays.asList;
 import static junit.framework.TestCase.assertTrue;
 
@@ -52,18 +53,13 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem withItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return anOrderItem(salad, price, quantity, taxedAmount, taxAmount, foodTaxPercentage);
-  }
-
-  private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount,
-      BigDecimal taxPercentage) {
-    return new OrderItemBuilder()
+    return anOrderItem()
         .forProductWithName(salad)
         .withPrice(price)
         .forQuantity(quantity)
         .withTaxedAmount(taxedAmount)
         .withTaxAmount(taxAmount)
-        .withTaxPercentage(taxPercentage)
+        .withTaxPercentage(foodTaxPercentage)
         .build();
   }
 
@@ -78,5 +74,6 @@ public class OrderCreationUseCaseTest {
     SellItemsRequest request = new SellItemsRequest(Collections.singletonList(unknownProductRequest));
     orderCreation.run(request);
   }
+
 
 }
