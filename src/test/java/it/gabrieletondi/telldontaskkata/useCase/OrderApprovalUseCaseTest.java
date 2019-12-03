@@ -21,42 +21,42 @@ public class OrderApprovalUseCaseTest {
 
   @Test
   public void approvedExistingOrder() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsCreated().build());
     approval.run(ApproveOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.savedOrderIsApproved());
   }
 
   @Test
   public void rejectedExistingOrder() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsCreated().build());
     approval.run(RejectOrderRequest.forOrderWith(2));
     assertTrue(orderRepository.savedOrderIsRejected());
   }
 
   @Test(expected = RejectedOrderCannotBeApproved.class)
   public void cannotApproveRejectedOrder() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsRejected().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsRejected().build());
     approval.run(ApproveOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ApprovedOrderCannotBeRejected.class)
   public void cannotRejectApprovedOrder() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsApproved().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsApproved().build());
     approval.run(RejectOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeApproved.class)
   public void shippedOrdersCannotBeApproved() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsShipped().build());
     approval.run(ApproveOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }
 
   @Test(expected = ShippedOrdersCannotBeRejected.class)
   public void shippedOrdersCannotBeRejected() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsShipped().build());
     approval.run(RejectOrderRequest.forOrderWith(anOrderId));
     assertTrue(orderRepository.orderIsNotSaved());
   }

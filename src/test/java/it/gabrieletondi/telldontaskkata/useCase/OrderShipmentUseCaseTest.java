@@ -21,7 +21,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test
   public void shipApprovedOrder() throws Exception {
-    final Order initialOrder = anOrder().with(anOrderId).thatIsApproved().build();
+    final Order initialOrder = anOrder().withId(anOrderId).thatIsApproved().build();
     orderRepository.add(initialOrder);
 
     shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
@@ -32,7 +32,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderNotReadyForShippment.class)
   public void createdOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsCreated().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsCreated().build());
 
     shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
@@ -42,7 +42,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderNotReadyForShippment.class)
   public void rejectedOrdersCannotBeShipped() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsRejected().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsRejected().build());
 
     shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 
@@ -52,7 +52,7 @@ public class OrderShipmentUseCaseTest {
 
   @Test(expected = OrderCannotBeShippedTwice.class)
   public void shippedOrdersCannotBeShippedAgain() throws Exception {
-    orderRepository.add(anOrder().with(anOrderId).thatIsShipped().build());
+    orderRepository.add(anOrder().withId(anOrderId).thatIsShipped().build());
 
     shipment.run(OrderShipmentRequest.forOrderWith(anOrderId));
 

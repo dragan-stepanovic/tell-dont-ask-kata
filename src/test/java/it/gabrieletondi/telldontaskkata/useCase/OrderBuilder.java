@@ -25,7 +25,7 @@ class OrderBuilder {
     return new OrderBuilder();
   }
 
-  OrderBuilder with(int id) {
+  OrderBuilder withId(int id) {
     this.id = id;
     return this;
   }
@@ -51,7 +51,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder with(OrderStatus status) {
+  OrderBuilder inStatus(OrderStatus status) {
     this.status = status;
     return this;
   }
@@ -71,7 +71,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder with(List<OrderItem> orderItems) {
+  OrderBuilder havingOrderItems(List<OrderItem> orderItems) {
     this.orderItems = orderItems;
     return this;
   }

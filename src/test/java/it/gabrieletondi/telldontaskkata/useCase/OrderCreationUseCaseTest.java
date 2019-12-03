@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
+import static it.gabrieletondi.telldontaskkata.useCase.OrderBuilder.anOrder;
 import static it.gabrieletondi.telldontaskkata.useCase.OrderItemBuilder.anOrderItem;
 import static java.util.Arrays.asList;
 import static junit.framework.TestCase.assertTrue;
@@ -8,7 +9,6 @@ import it.gabrieletondi.telldontaskkata.domain.Category;
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Price;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.domain.Products;
@@ -21,7 +21,6 @@ import it.gabrieletondi.telldontaskkata.useCase.creation.SellItemsRequest;
 import it.gabrieletondi.telldontaskkata.useCase.creation.UnknownProductException;
 import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.List;
 import org.junit.Test;
 
 public class OrderCreationUseCaseTest {
@@ -46,9 +45,11 @@ public class OrderCreationUseCaseTest {
 
     orderCreation.run(request);
 
-    final Order expected = anOrder(
-        asList(withItem("salad", "3.56", 2, "7.84", "0.72"), withItem("tomato", "4.65", 3, "15.36", "1.41")), 1,
-        new Created(), "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
+    final Order expected = anOrder().withId(1).inStatus(new Created())
+        .havingOrderItems(
+            asList(withItem("salad", "3.56", 2, "7.84", "0.72"), withItem("tomato", "4.65", 3, "15.36", "1.41")))
+        .forCurrency("EUR").withTotal(new BigDecimal("23.20")).withTax(new BigDecimal("2.13"))
+        .build();
 
     assertTrue(orderRepository.savedOrderMatches(expected));
   }
@@ -62,13 +63,6 @@ public class OrderCreationUseCaseTest {
         .withTaxAmount(taxAmount)
         .withTaxPercentage(foodTaxPercentage)
         .build();
-  }
-
-  private Order anOrder(List<OrderItem> orderItems, int id, OrderStatus status, String currency, BigDecimal total,
-      BigDecimal tax) {
-    return new OrderBuilder().with(id).with(status).with(orderItems).forCurrency(currency).withTotal(total).withTax(tax)
-        .build();
-//    return new Order(id, status, orderItems, currency, total, tax);
   }
 
   @Test(expected = UnknownProductException.class)
