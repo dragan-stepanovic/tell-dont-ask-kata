@@ -23,7 +23,7 @@ class OrderItemBuilder {
     return this;
   }
 
-  OrderItemBuilder withPrice(String price) {
+  OrderItemBuilder withPriceOf(String price) {
     this.price = price;
     return this;
   }

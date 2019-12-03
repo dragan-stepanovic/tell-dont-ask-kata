@@ -61,7 +61,7 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder withTax(String tax) {
+  OrderBuilder andTax(String tax) {
     this.tax = new BigDecimal(tax);
     return this;
   }

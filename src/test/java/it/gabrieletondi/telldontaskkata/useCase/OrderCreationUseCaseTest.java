@@ -38,39 +38,7 @@ public class OrderCreationUseCaseTest {
     return new Products(asList(salad, tomato));
   }
 
-  @Test
-  public void sellMultipleItems() throws Exception {
-    SellItemRequest saladRequest = new SellItemRequest("salad", 2);
-    SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
-    final SellItemsRequest request = new SellItemsRequest(asList(saladRequest, tomatoRequest));
-
-    orderCreation.run(request);
-
-    final Order expected = anOrder().withId(1).thatIs(new Created())
-        .having(
-            orderItems(anOrderItem()
-                    .forProductWithName("salad")
-                    .withPrice("3.56")
-                    .forQuantity(2)
-                    .withTaxedAmount("7.84")
-                    .withTaxAmount("0.72")
-                    .withTaxPercentage(foodTaxPercentage)
-                    .build(),
-                anOrderItem()
-                    .forProductWithName("tomato")
-                    .withPrice("4.65")
-                    .forQuantity(3)
-                    .withTaxedAmount("15.36")
-                    .withTaxAmount("1.41")
-                    .withTaxPercentage(foodTaxPercentage)
-                    .build()))
-        .inCurrency("EUR").withTotal("23.20").withTax("2.13")
-        .build();
-
-    assertTrue(orderRepository.savedOrderMatches(expected));
-  }
-
-  private List<OrderItem> orderItems(OrderItem... items) {
+  private static List<OrderItem> orderItems(OrderItem... items) {
     return asList(items);
   }
 
@@ -81,5 +49,35 @@ public class OrderCreationUseCaseTest {
     orderCreation.run(request);
   }
 
+  @Test
+  public void sellMultipleItems() throws Exception {
+    SellItemRequest saladRequest = new SellItemRequest("salad", 2);
+    SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
+    final SellItemsRequest request = new SellItemsRequest(asList(saladRequest, tomatoRequest));
 
+    orderCreation.run(request);
+
+    final Order expected = anOrder().withId(1).thatIs(new Created()).inCurrency("EUR")
+        .having(
+            orderItems(anOrderItem()
+                    .forProductWithName("salad")
+                    .withPriceOf("3.56")
+                    .forQuantity(2)
+                    .withTaxedAmount("7.84")
+                    .withTaxAmount("0.72")
+                    .withTaxPercentage(foodTaxPercentage)
+                    .build(),
+                anOrderItem()
+                    .forProductWithName("tomato")
+                    .withPriceOf("4.65")
+                    .forQuantity(3)
+                    .withTaxedAmount("15.36")
+                    .withTaxAmount("1.41")
+                    .withTaxPercentage(foodTaxPercentage)
+                    .build()))
+        .withTotal("23.20").andTax("2.13")
+        .build();
+
+    assertTrue(orderRepository.savedOrderMatches(expected));
+  }
 }
