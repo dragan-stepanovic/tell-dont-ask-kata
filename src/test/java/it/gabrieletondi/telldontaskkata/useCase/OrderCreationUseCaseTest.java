@@ -45,9 +45,8 @@ public class OrderCreationUseCaseTest {
     orderCreation.run(request);
 
     final Order expected = anOrder(
-        asList(withItem("salad", "3.56", 2, "7.84", "0.72"),
-            withItem("tomato", "4.65", 3, "15.36", "1.41")), 1, new Created(), "EUR", new BigDecimal("23.20"),
-        new BigDecimal("2.13"));
+        asList(withItem("salad", "3.56", 2, "7.84", "0.72"), withItem("tomato", "4.65", 3, "15.36", "1.41")), 1,
+        new Created(), "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
 
     assertTrue(orderRepository.savedOrderMatches(expected));
   }
