@@ -46,12 +46,7 @@ class OrderBuilder {
     return thatIs(new Shipped());
   }
 
-  private OrderBuilder thatIs(OrderStatus status) {
-    this.status = status;
-    return this;
-  }
-
-  OrderBuilder inStatus(OrderStatus status) {
+  OrderBuilder thatIs(OrderStatus status) {
     this.status = status;
     return this;
   }
