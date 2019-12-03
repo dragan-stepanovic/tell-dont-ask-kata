@@ -52,6 +52,10 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem withItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
+    return anOrderItem(salad, price, quantity, taxedAmount, taxAmount);
+  }
+
+  private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
     return new OrderItem(new Product(salad, new Price(new BigDecimal(price), foodTaxPercentage)), quantity,
         new BigDecimal(taxedAmount), new BigDecimal(taxAmount));
   }
