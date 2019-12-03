@@ -52,16 +52,18 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem withItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return anOrderItem(salad, price, quantity, taxedAmount, taxAmount);
+    return anOrderItem(salad, price, quantity, taxedAmount, taxAmount, foodTaxPercentage);
   }
 
-  private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return new OrderItemBuilder(foodTaxPercentage)
+  private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount,
+      BigDecimal taxPercentage) {
+    return new OrderItemBuilder(taxPercentage)
         .forProductWithName(salad)
         .withPrice(price)
         .forQuantity(quantity)
         .withTaxedAmount(taxedAmount)
         .withTaxAmount(taxAmount)
+        .withTaxPercentage(taxPercentage)
         .build();
   }
 
