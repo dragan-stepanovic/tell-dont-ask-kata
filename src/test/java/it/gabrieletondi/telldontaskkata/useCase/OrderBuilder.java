@@ -13,14 +13,10 @@ class OrderBuilder {
 
   static int anOrderId = 2;
   private int id = 12;
-  private OrderStatus statusNew = new Created();
+  private OrderStatus status = new Created();
 
   static OrderBuilder anOrder() {
     return new OrderBuilder();
-  }
-
-  Order build() {
-    return new Order(id, statusNew, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }
 
   OrderBuilder with(int id) {
@@ -45,7 +41,16 @@ class OrderBuilder {
   }
 
   private OrderBuilder thatIs(OrderStatus status) {
-    this.statusNew = status;
+    this.status = status;
     return this;
+  }
+
+  OrderBuilder with(OrderStatus status) {
+    this.status = status;
+    return this;
+  }
+
+  Order build() {
+    return new Order(id, status, new ArrayList<>(), "EUR", BigDecimal.ZERO, BigDecimal.ZERO);
   }
 }

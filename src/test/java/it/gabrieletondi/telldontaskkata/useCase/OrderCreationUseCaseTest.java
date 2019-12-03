@@ -8,6 +8,7 @@ import it.gabrieletondi.telldontaskkata.domain.Category;
 import it.gabrieletondi.telldontaskkata.domain.Created;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderItem;
+import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Price;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.domain.Products;
@@ -63,8 +64,9 @@ public class OrderCreationUseCaseTest {
         .build();
   }
 
-  private Order anOrder(List<OrderItem> orderItems, int id, Created status, String currency, BigDecimal total,
+  private Order anOrder(List<OrderItem> orderItems, int id, OrderStatus status, String currency, BigDecimal total,
       BigDecimal tax) {
+    new OrderBuilder().with(id).with(status).build();
     return new Order(id, status, orderItems, currency, total, tax);
   }
 
