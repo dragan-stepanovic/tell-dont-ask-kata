@@ -53,9 +53,9 @@ public class OrderCreationUseCaseTest {
   public void sellMultipleItems() throws Exception {
     SellItemRequest saladRequest = new SellItemRequest("salad", 2);
     SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
-    final SellItemsRequest request = new SellItemsRequest(asList(saladRequest, tomatoRequest));
+    final SellItemsRequest sellItemsRequest = new SellItemsRequest(asList(saladRequest, tomatoRequest));
 
-    orderCreation.run(request);
+    orderCreation.run(sellItemsRequest);
 
     final Order expected = anOrder().withId(1).thatIs(new Created()).inCurrency("EUR")
         .having(
