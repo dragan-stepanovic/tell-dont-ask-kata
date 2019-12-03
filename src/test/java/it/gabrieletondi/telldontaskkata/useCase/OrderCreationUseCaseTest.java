@@ -66,8 +66,9 @@ public class OrderCreationUseCaseTest {
 
   private Order anOrder(List<OrderItem> orderItems, int id, OrderStatus status, String currency, BigDecimal total,
       BigDecimal tax) {
-    new OrderBuilder().with(id).with(status).forCurrency(currency).withTotal(total).withTax(tax).build();
-    return new Order(id, status, orderItems, currency, total, tax);
+    return new OrderBuilder().with(id).with(status).with(orderItems).forCurrency(currency).withTotal(total).withTax(tax)
+        .build();
+//    return new Order(id, status, orderItems, currency, total, tax);
   }
 
   @Test(expected = UnknownProductException.class)
