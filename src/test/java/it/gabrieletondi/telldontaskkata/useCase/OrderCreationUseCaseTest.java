@@ -56,8 +56,9 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return new OrderItemBuilder(price, quantity, taxedAmount, taxAmount)
+    return new OrderItemBuilder(quantity, taxedAmount, taxAmount)
         .forProductWithName(salad)
+        .withPrice(price)
         .build();
   }
 
@@ -81,8 +82,7 @@ public class OrderCreationUseCaseTest {
     private String taxedAmount;
     private String taxAmount;
 
-    OrderItemBuilder(String price, int quantity, String taxedAmount, String taxAmount) {
-      this.price = price;
+    OrderItemBuilder(int quantity, String taxedAmount, String taxAmount) {
       this.quantity = quantity;
       this.taxedAmount = taxedAmount;
       this.taxAmount = taxAmount;
@@ -90,6 +90,11 @@ public class OrderCreationUseCaseTest {
 
     OrderItemBuilder forProductWithName(String productName) {
       this.productName = productName;
+      return this;
+    }
+
+    OrderItemBuilder withPrice(String price) {
+      this.price = price;
       return this;
     }
 
