@@ -61,7 +61,7 @@ public class OrderCreationUseCaseTest {
 
     orderCreation.run(sellItemsRequest);
 
-    final Order expected = anOrder().withId(1).thatIs(new Created()).inCurrency("EUR")
+    final Order expectedOrder = anOrder().withId(1).thatIs(new Created()).inCurrency("EUR")
         .having(
             orderItems(anOrderItem()
                     .forProductWithName(SALAD)
@@ -82,6 +82,6 @@ public class OrderCreationUseCaseTest {
         .inTotalOf("23.20").outOfWhichTaxIs("2.13")
         .build();
 
-    assertTrue(orderRepository.savedOrderMatches(expected));
+    assertTrue(orderRepository.savedOrderMatches(expectedOrder));
   }
 }
