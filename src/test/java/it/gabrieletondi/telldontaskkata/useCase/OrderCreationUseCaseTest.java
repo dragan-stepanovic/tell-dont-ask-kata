@@ -48,26 +48,30 @@ public class OrderCreationUseCaseTest {
 
     final Order expected = anOrder().withId(1).thatIs(new Created())
         .having(
-            orderItems(item("salad", "3.56", 2, "7.84", "0.72"), item("tomato", "4.65", 3, "15.36", "1.41")))
+            orderItems(anOrderItem()
+                    .forProductWithName("salad")
+                    .withPrice("3.56")
+                    .forQuantity(2)
+                    .withTaxedAmount("7.84")
+                    .withTaxAmount("0.72")
+                    .withTaxPercentage(foodTaxPercentage)
+                    .build(),
+                anOrderItem()
+                    .forProductWithName("tomato")
+                    .withPrice("4.65")
+                    .forQuantity(3)
+                    .withTaxedAmount("15.36")
+                    .withTaxAmount("1.41")
+                    .withTaxPercentage(foodTaxPercentage)
+                    .build()))
         .inCurrency("EUR").withTotal("23.20").withTax("2.13")
         .build();
 
     assertTrue(orderRepository.savedOrderMatches(expected));
   }
 
-  private List<OrderItem> orderItems(OrderItem item1, OrderItem item2) {
-    return asList(item1, item2);
-  }
-
-  private OrderItem item(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return anOrderItem()
-        .forProductWithName(salad)
-        .withPrice(price)
-        .forQuantity(quantity)
-        .withTaxedAmount(taxedAmount)
-        .withTaxAmount(taxAmount)
-        .withTaxPercentage(foodTaxPercentage)
-        .build();
+  private List<OrderItem> orderItems(OrderItem... items) {
+    return asList(items);
   }
 
   @Test(expected = UnknownProductException.class)
