@@ -61,13 +61,13 @@ class OrderBuilder {
     return this;
   }
 
-  OrderBuilder withTotal(BigDecimal total) {
-    this.total = total;
+  OrderBuilder withTotal(String price) {
+    this.total = new BigDecimal(price);
     return this;
   }
 
-  OrderBuilder withTax(BigDecimal tax) {
-    this.tax = tax;
+  OrderBuilder withTax(String tax) {
+    this.tax = new BigDecimal(tax);
     return this;
   }
 

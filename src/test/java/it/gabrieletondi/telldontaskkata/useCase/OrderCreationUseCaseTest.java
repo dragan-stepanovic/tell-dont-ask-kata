@@ -48,7 +48,7 @@ public class OrderCreationUseCaseTest {
     final Order expected = anOrder().withId(1).inStatus(new Created())
         .havingOrderItems(
             asList(withItem("salad", "3.56", 2, "7.84", "0.72"), withItem("tomato", "4.65", 3, "15.36", "1.41")))
-        .forCurrency("EUR").withTotal(new BigDecimal("23.20")).withTax(new BigDecimal("2.13"))
+        .forCurrency("EUR").withTotal("23.20").withTax("2.13")
         .build();
 
     assertTrue(orderRepository.savedOrderMatches(expected));
