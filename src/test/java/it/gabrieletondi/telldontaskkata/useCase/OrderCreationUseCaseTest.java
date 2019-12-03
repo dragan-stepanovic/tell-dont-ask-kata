@@ -56,8 +56,7 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return new OrderItem(new Product(salad, new Price(new BigDecimal(price), foodTaxPercentage)), quantity,
-        new BigDecimal(taxedAmount), new BigDecimal(taxAmount));
+    return new OrderItemBuilder(salad, price, quantity, taxedAmount, taxAmount).invoke();
   }
 
   private Order anOrder(List<OrderItem> orderItems, int id, Created status, String currency, BigDecimal total,
@@ -70,5 +69,27 @@ public class OrderCreationUseCaseTest {
     SellItemRequest unknownProductRequest = new SellItemRequest("unknown product", 0);
     SellItemsRequest request = new SellItemsRequest(Collections.singletonList(unknownProductRequest));
     orderCreation.run(request);
+  }
+
+  private class OrderItemBuilder {
+
+    private String salad;
+    private String price;
+    private int quantity;
+    private String taxedAmount;
+    private String taxAmount;
+
+    public OrderItemBuilder(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
+      this.salad = salad;
+      this.price = price;
+      this.quantity = quantity;
+      this.taxedAmount = taxedAmount;
+      this.taxAmount = taxAmount;
+    }
+
+    public OrderItem invoke() {
+      return new OrderItem(new Product(salad, new Price(new BigDecimal(price), foodTaxPercentage)), quantity,
+          new BigDecimal(taxedAmount), new BigDecimal(taxAmount));
+    }
   }
 }
