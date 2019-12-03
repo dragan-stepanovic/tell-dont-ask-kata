@@ -19,6 +19,7 @@ import it.gabrieletondi.telldontaskkata.useCase.creation.SellItemsRequest;
 import it.gabrieletondi.telldontaskkata.useCase.creation.UnknownProductException;
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 
 public class OrderCreationUseCaseTest {
@@ -43,14 +44,22 @@ public class OrderCreationUseCaseTest {
 
     orderCreation.run(request);
 
-    final Order expected = new Order(1, new Created(),
-        asList(new OrderItem(new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage)), 2,
-                new BigDecimal("7.84"), new BigDecimal("0.72")),
-            new OrderItem(new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage)), 3,
-                new BigDecimal("15.36"), new BigDecimal("1.41"))),
-        "EUR", new BigDecimal("23.20"), new BigDecimal("2.13"));
+    final Order expected = anOrder(
+        asList(withItem("salad", "3.56", 2, "7.84", "0.72"),
+            withItem("tomato", "4.65", 3, "15.36", "1.41")), 1, new Created(), "EUR", new BigDecimal("23.20"),
+        new BigDecimal("2.13"));
 
     assertTrue(orderRepository.savedOrderMatches(expected));
+  }
+
+  private OrderItem withItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
+    return new OrderItem(new Product(salad, new Price(new BigDecimal(price), foodTaxPercentage)), quantity,
+        new BigDecimal(taxedAmount), new BigDecimal(taxAmount));
+  }
+
+  private Order anOrder(List<OrderItem> orderItems, int id, Created status, String currency, BigDecimal total,
+      BigDecimal tax) {
+    return new Order(id, status, orderItems, currency, total, tax);
   }
 
   @Test(expected = UnknownProductException.class)
