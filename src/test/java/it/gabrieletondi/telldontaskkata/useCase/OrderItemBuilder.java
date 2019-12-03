@@ -14,8 +14,7 @@ class OrderItemBuilder {
   private String taxAmount;
   private BigDecimal taxPercentage;
 
-  OrderItemBuilder(String taxedAmount, String taxAmount, BigDecimal taxPercentage) {
-    this.taxedAmount = taxedAmount;
+  OrderItemBuilder(String taxAmount, BigDecimal taxPercentage) {
     this.taxAmount = taxAmount;
     this.taxPercentage = taxPercentage;
   }

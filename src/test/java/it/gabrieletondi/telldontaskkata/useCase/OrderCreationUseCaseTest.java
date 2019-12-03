@@ -56,7 +56,7 @@ public class OrderCreationUseCaseTest {
   }
 
   private OrderItem anOrderItem(String salad, String price, int quantity, String taxedAmount, String taxAmount) {
-    return new OrderItemBuilder(taxedAmount, taxAmount, foodTaxPercentage)
+    return new OrderItemBuilder(taxAmount, foodTaxPercentage)
         .forProductWithName(salad)
         .withPrice(price)
         .forQuantity(quantity)
