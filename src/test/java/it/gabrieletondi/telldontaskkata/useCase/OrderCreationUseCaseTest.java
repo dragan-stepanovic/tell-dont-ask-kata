@@ -26,13 +26,17 @@ import org.junit.Test;
 
 public class OrderCreationUseCaseTest {
 
+  private static final String SALAD = "salad";
+  private static final String TOMATO = "tomato";
   private Category food = new Category("food", new BigDecimal("10"));
   private TestOrderRepository orderRepository = new TestOrderRepository();
   private BigDecimal foodTaxPercentage = food.getTaxPercentage();
-  private Product salad = new Product("salad", new Price(new BigDecimal("3.56"), foodTaxPercentage));
-  private Product tomato = new Product("tomato", new Price(new BigDecimal("4.65"), foodTaxPercentage));
+  private Product salad = new Product(SALAD, new Price(new BigDecimal("3.56"), foodTaxPercentage));
+  private Product tomato = new Product(TOMATO, new Price(new BigDecimal("4.65"), foodTaxPercentage));
   private ProductCatalog productCatalog = new InMemoryProductCatalog(containing(salad, tomato));
   private OrderCreationUseCase orderCreation = new OrderCreationUseCase(orderRepository, productCatalog);
+  private int saladQuantity = 2;
+  private int tomatoQuantity = 3;
 
   private static Products containing(Product salad, Product tomato) {
     return new Products(asList(salad, tomato));
@@ -51,8 +55,8 @@ public class OrderCreationUseCaseTest {
 
   @Test
   public void sellMultipleItems() throws Exception {
-    SellItemRequest saladRequest = new SellItemRequest("salad", 2);
-    SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
+    SellItemRequest saladRequest = new SellItemRequest(SALAD, saladQuantity);
+    SellItemRequest tomatoRequest = new SellItemRequest(TOMATO, tomatoQuantity);
     final SellItemsRequest sellItemsRequest = new SellItemsRequest(asList(saladRequest, tomatoRequest));
 
     orderCreation.run(sellItemsRequest);
@@ -60,18 +64,18 @@ public class OrderCreationUseCaseTest {
     final Order expected = anOrder().withId(1).thatIs(new Created()).inCurrency("EUR")
         .having(
             orderItems(anOrderItem()
-                    .forProductWithName("salad")
+                    .forProductWithName(SALAD)
                     .withPriceOf("3.56")
                     .havingTaxPercentageOf(foodTaxPercentage)
-                    .forQuantityOf(2)
+                    .forQuantityOf(saladQuantity)
                     .withTaxedAmount("7.84")
                     .withTaxAmount("0.72")
                     .build(),
                 anOrderItem()
-                    .forProductWithName("tomato")
+                    .forProductWithName(TOMATO)
                     .withPriceOf("4.65")
                     .havingTaxPercentageOf(foodTaxPercentage)
-                    .forQuantityOf(3)
+                    .forQuantityOf(tomatoQuantity)
                     .withTaxedAmount("15.36")
                     .withTaxAmount("1.41")
                     .build()))
