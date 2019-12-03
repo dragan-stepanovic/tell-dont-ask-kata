@@ -59,6 +59,7 @@ public class OrderCreationUseCaseTest {
     return new OrderItemBuilder(quantity, taxedAmount, taxAmount)
         .forProductWithName(salad)
         .withPrice(price)
+        .forQuantity(quantity)
         .build();
   }
 
@@ -74,7 +75,7 @@ public class OrderCreationUseCaseTest {
     orderCreation.run(request);
   }
 
-  private class OrderItemBuilder {
+  class OrderItemBuilder {
 
     private String productName = "";
     private String price;
@@ -95,6 +96,11 @@ public class OrderCreationUseCaseTest {
 
     OrderItemBuilder withPrice(String price) {
       this.price = price;
+      return this;
+    }
+
+    OrderItemBuilder forQuantity(int quantity) {
+      this.quantity = quantity;
       return this;
     }
 
