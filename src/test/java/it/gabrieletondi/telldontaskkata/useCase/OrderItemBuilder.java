@@ -28,7 +28,7 @@ class OrderItemBuilder {
     return this;
   }
 
-  OrderItemBuilder forQuantity(int quantity) {
+  OrderItemBuilder forQuantityOf(int quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -43,7 +43,7 @@ class OrderItemBuilder {
     return this;
   }
 
-  OrderItemBuilder withTaxPercentage(BigDecimal taxPercentage) {
+  OrderItemBuilder havingTaxPercentageOf(BigDecimal taxPercentage) {
     this.taxPercentage = taxPercentage;
     return this;
   }
