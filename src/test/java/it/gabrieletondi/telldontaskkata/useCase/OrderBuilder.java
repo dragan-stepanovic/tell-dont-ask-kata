@@ -16,6 +16,7 @@ class OrderBuilder {
   private OrderStatus status = new Created();
   private String currency = "EUR";
   private BigDecimal total = BigDecimal.ZERO;
+  private BigDecimal tax = BigDecimal.ZERO;
 
   static OrderBuilder anOrder() {
     return new OrderBuilder();
@@ -63,6 +64,11 @@ class OrderBuilder {
 
   OrderBuilder withTotal(BigDecimal total) {
     this.total = total;
+    return this;
+  }
+
+  OrderBuilder withTax(BigDecimal tax) {
+    this.tax = tax;
     return this;
   }
 }
