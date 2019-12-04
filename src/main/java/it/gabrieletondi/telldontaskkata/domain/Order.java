@@ -46,7 +46,8 @@ public class Order {
     this.status = status.toShipped();
   }
 
-  public void add(OrderItem orderItem) {
+  public void add(Product product, int quantity) {
+    final OrderItem orderItem = OrderItem.forA(product, quantity);
     items.add(orderItem);
     total = orderItem.addTaxedAmountTo(total);
     tax = orderItem.addTaxAmountTo(tax);

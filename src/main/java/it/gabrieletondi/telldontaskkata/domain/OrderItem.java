@@ -20,7 +20,7 @@ public class OrderItem {
     this.taxAmount = taxAmount;
   }
 
-  public static OrderItem forA(Product product, int quantity) {
+  static OrderItem forA(Product product, int quantity) {
     return new OrderItem(product, quantity, product.taxedAmountFor(quantity), product.taxAmountFor(quantity));
   }
 
