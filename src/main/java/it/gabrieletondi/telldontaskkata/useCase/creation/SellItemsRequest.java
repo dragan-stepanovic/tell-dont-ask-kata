@@ -17,8 +17,8 @@ public class SellItemsRequest {
   Order orderFor(Products products) {
     Order order = Order.withoutOrderItems();
     for (SellItemRequest request : requests) {
-      final Product product = products.oneWithThe(request.getProductName());
-      final int quantity = request.getQuantity();
+      Product product = products.oneWithThe(request.getProductName());
+      int quantity = request.getQuantity();
       order.add(product, quantity);
     }
     return order;
