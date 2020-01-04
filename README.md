@@ -1,3 +1,6 @@
+An example of a solution for Tell Don't Ask kata. I did super incremental steps and ended up with 300+ commits. The idea of baby steps is it serves as an enabling constraint for practicing incremental development skills and reducing inventory of uncommitted and unmerged code.
+
+
 # tell don't ask kata
 A legacy refactor kata, focused on the violation of the [tell don't ask](https://pragprog.com/articles/tell-dont-ask) principle and the [anemic domain model](https://martinfowler.com/bliki/AnemicDomainModel.html).
 
